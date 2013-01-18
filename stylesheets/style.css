@@ -1,0 +1,29 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.container {
+	width: 640px;
+	height: 960px;
+}
+
+.wrapper {
+	overflow: hidden;
+}
+
+header {
+	position: fixed;
+	top: 0;
+}
+
+.content {
+	margin-top: 89px;
+	margin-bottom: 118px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	height: 126px;
+}
