@@ -12,6 +12,7 @@
 	<title>NiteLife</title>
 
 	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="stylesheet" href="stylesheets/barpage.css">
 	
 	<script type="application/javascript" src="js/iscroll.js"></script>
 	<script type="text/javascript">
@@ -30,7 +31,7 @@
 
 <div class="container">
 	<header>
-		<img src="images/header_01.jpg" alt="" />
+		<img src="images/logo_03.png" alt="" />
 	</header>
 <div class="wrapper">
 <? include_once('bar.php'); ?>

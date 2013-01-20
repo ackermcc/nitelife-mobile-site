@@ -1,0 +1,48 @@
+.specials-section {
+	margin: 30px 0px;
+}
+
+.specials-viewer {
+	width: 95%;
+	padding: 30px 25px 10px 25px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	border: 1px solid #d0d0d0;
+	overflow: auto;
+}
+
+	.specials-table {
+		width: 100%;
+	}
+
+		.specials-table td:first-child {
+			width: 65%;
+			text-align: left;
+		}
+
+		.specials-table td:last-child {
+			width: 35%;
+			text-align: right;
+		}
+
+	.active-special {
+		background: #34c5f3;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 28px;
+		font-weight: bold;
+		padding: 8px 13px;
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+
+	.special-time {
+		background: #42c01e;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 28px;
+		font-weight: bold;
+		padding: 8px 13px;
+		margin-bottom: 20px;
+		display: inline-block;
+	}
