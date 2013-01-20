@@ -1,5 +1,6 @@
-.specials-section {
+.section {
 	margin: 30px 0px;
+	overflow: auto;
 }
 
 .specials-date-picker {
@@ -35,7 +36,7 @@
 		border: none;
 	}
 
-.specials-viewer {
+.specials-viewer, .hh-viewer {
 	width: 95%;
 	padding: 30px 25px 10px 25px;
 	margin: auto;
@@ -81,3 +82,19 @@
 		margin-bottom: 20px;
 		display: inline-block;
 	}
+
+.info-section {
+	width: 95%;
+	margin: 20px auto 0px auto;
+	padding: 10px 25px 10px 25px;
+	background: #f9f9f9;
+	border: 1px solid #d0d0d0;
+}
+
+	.info-section span {
+		font-weight: bold;
+	}
+
+
+
+
