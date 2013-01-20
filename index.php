@@ -13,8 +13,10 @@
 
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<link rel="stylesheet" href="stylesheets/barpage.css">
-	
+
+	<script type="application/javascript" src="js/jquery.js"></script>
 	<script type="application/javascript" src="js/iscroll.js"></script>
+	<script type="application/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript">
 	var myScroll;
 	function loaded() {
@@ -23,6 +25,12 @@
 		}, 100);
 	}
 	window.addEventListener('load', loaded, false);
+	</script>
+
+	<script type="text/javascript">
+		window.addEventListener('load', function() {
+		    new FastClick(document.body);
+		}, false);
 	</script>
 
 </head>
