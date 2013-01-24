@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<link rel="stylesheet" href="stylesheets/barpage.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
 
 	<script type="application/javascript" src="js/jquery.js"></script>
 	<script type="application/javascript" src="js/iscroll.js"></script>

@@ -1,10 +1,14 @@
 <script type="text/javascript">
-		$(window).load(function(){
-			$(".date-picker td").click(function(){
-				$(".date-picker td").removeClass('active-date');
-				$(this).addClass('active-date');
-			});
+	$(window).load(function(){
+		$(".date-picker1 td").click(function(){
+			$(".date-picker1 td").removeClass('active-date');
+			$(this).addClass('active-date');
 		});
+		$(".date-picker2 td").click(function(){
+			$(".date-picker2 td").removeClass('active-date');
+			$(this).addClass('active-date');
+		});
+	});
 </script>
 
 
@@ -12,7 +16,7 @@
 		<div class="section">
 			<img src="images/specials-flag.png" />
 			<div class="specials-date-picker">
-				<table class="date-picker" border="0" cellspacing="0" cellpadding="0">
+				<table class="date-picker1" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td class="active-date">M</td>
 						<td>T</td>
@@ -41,7 +45,7 @@
 		<div class="section">
 			<img src="images/hh-flag.png" />
 			<div class="specials-date-picker">
-				<table class="date-picker" border="0" cellspacing="0" cellpadding="0">
+				<table class="date-picker2" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td class="active-date">M</td>
 						<td>T</td>

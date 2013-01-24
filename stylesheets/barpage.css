@@ -13,11 +13,11 @@
 	overflow: auto;
 }
 
-	.date-picker {
+	.date-picker1, .date-picker2 {
 		width: 100%;
 	}
 
-	.date-picker td {
+	.date-picker1 td, .date-picker2 td {
 		width: 14.2%;
 		padding: 10px 0px;
 		text-align: center;
@@ -30,7 +30,7 @@
 		/*border-bottom: inset 10px solid #666;*/
 	}
 
-	.date-picker td.active-date {
+	.date-picker1 td.active-date, .date-picker2 td.active-date {
 		background: #f9f9f9;
 		color: #333;
 		border: none;
