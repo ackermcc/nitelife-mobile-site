@@ -10,9 +10,14 @@
 		});
 	});
 </script>
-
-
 	<div class="content">
+		<div class="section">
+			<div class="video-section">
+				<div class="bar-title">Uncle Woody's</div>
+				<img class="grayscale" src="images/uncle-woodys.jpg" alt="" />
+			</div>
+		</div>
+	
 		<div class="section">
 			<img src="images/specials-flag.png" />
 			<div class="specials-date-picker">

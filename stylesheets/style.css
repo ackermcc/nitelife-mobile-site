@@ -27,6 +27,7 @@ header {
 	text-align: center;
 	padding: 20px 0px 10px 0px;
 	box-shadow: 0px 2px 5px #999;
+	z-index: 100;
 	border-top: 1px solid #aae7fb;
 	border-bottom: 1px solid #1e8cb0;
 	background: #35c4f3; /* Old browsers */
@@ -41,8 +42,9 @@ header {
 }
 
 .content {
-	margin-top: 130px;
+	margin-top: 50px;
 	margin-bottom: 160px;
+	z-index: 10;
 }
 
 footer {
