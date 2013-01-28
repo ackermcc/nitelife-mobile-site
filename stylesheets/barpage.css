@@ -1,10 +1,10 @@
 .section {
-	margin: 50px 0px;
+	margin: 40px 0px;
 	overflow: auto;
 }
 
 	.video-section {
-		margin: 80px auto 0px auto;
+		margin: 0px auto 0px auto;
 		padding: 10px;
 		background: #f9f9f9;
 		width: 95%;

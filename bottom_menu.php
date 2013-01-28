@@ -4,6 +4,14 @@
 			$("footer div").removeClass('active');
 			$(this).addClass('active');
 		});
+		$("#location").click(function(){
+			$("#bar-page").css('display','none');
+			$("#location-page").css('display','block');
+		});
+		$("#bars").click(function(){
+			$("#location-page").css('display','none');
+			$("#bar-page").css('display','block');
+		});
 	});
 </script>
 	

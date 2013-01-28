@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<link rel="stylesheet" href="stylesheets/barpage.css">
+	<link rel="stylesheet" href="stylesheets/location-style.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
 
 	<script type="application/javascript" src="js/jquery.js"></script>
@@ -42,11 +43,11 @@
 	<header>
 		<img src="images/logo_03.png" alt="" />
 	</header>
-<div class="wrapper">
-<? include_once('bar.php'); ?>
-	
-</div>
-<? include_once('bottom_menu.php'); ?>
+	<div class="wrapper">
+		<div id="bar-page"><? include_once('bar.php'); ?></div>
+		<div id="location-page"><? include_once('location.php'); ?></div>	
+	</div>
+	<? include_once('bottom_menu.php'); ?>
 </div>
 
 </body>
