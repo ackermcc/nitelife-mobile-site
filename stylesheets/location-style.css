@@ -10,7 +10,7 @@
 		text-align: center;
 		width: 100px;
 		display: inline-block;
-		font-size: 34px;
+		font-size: 44px;
 		padding: 8px 0px 5px 0px;
 		background: #aaa;
 		color: #444;
@@ -55,19 +55,19 @@
 
 	.bar-name {
 		font-weight: bold;
-		font-size: 26px;
+		font-size: 30px;
 		color: #333;
 	}
 
 	.bar-address {
-		font-size: 22px;
+		font-size: 26px;
 	}
 
 .bar-miles {
 	float: right;
 	width: 15%;
 	text-align: right;
-	font-size: 26px;
+	font-size: 30px;
 	color: #999;
 }
 
