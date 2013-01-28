@@ -8,9 +8,19 @@
 			$(".date-picker2 td").removeClass('active-date');
 			$(this).addClass('active-date');
 		});
+		$("#location-nav div").click(function(){
+			$("#location-nav div").removeClass('active-location-nav');
+			$(this).addClass('active-location-nav');
+		});
 	});
 </script>
 	<div class="content">
+
+		<div id="location-nav">
+			<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
+			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
+		</div>
+
 		<div class="bar-location">
 			<img src="images/unclewoodys-icon.jpg" alt=""/>
 			<div class="bar-info">
