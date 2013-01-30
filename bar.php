@@ -8,6 +8,11 @@
 			$(".date-picker2 td").removeClass('active-date');
 			$(this).addClass('active-date');
 		});
+		$(".back").click(function(){
+			$("#location-page").css('display','block');
+			$("#bar-page").css('display','none');
+			$(".back").css('display','none');
+		});
 	});
 </script>
 	<div class="content">

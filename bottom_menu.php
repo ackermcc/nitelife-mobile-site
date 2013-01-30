@@ -5,28 +5,28 @@
 			$(this).addClass('active');
 		});
 		$("#location").click(function(){
-			$("#bar-page").css('display','none');
 			$("#location-page").css('display','block');
+			$("#bar-page").css('display','none');
+			$(".back").css('display','none');
 		});
-		$("#bars").click(function(){
-			$("#location-page").css('display','none');
-			$("#bar-page").css('display','block');
+		$("#my-nl").click(function(){
+			
 		});
 	});
 </script>
 	
 
 	<footer>
-		<div class="active" id="bars">
-			<i class="icon-flag"></i><br>
-			Bars
+		<a href="#"><div id="location" class="active"></a>
+			<i class="icon-map-marker"></i><br>
+			Location
 		</div>
 		<div id="specials">
 			<i class="icon-beer"></i><br>
 			Specials
 		</div>
-		<div id="location">
-			<i class="icon-map-marker"></i><br>
-			Location
+		<div id="my-nl">
+			<i class="icon-user"></i><br>
+			My NL
 		</div>
 	</footer>

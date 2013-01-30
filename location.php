@@ -1,16 +1,14 @@
 <script type="text/javascript">
 	$(window).load(function(){
-		$(".date-picker1 td").click(function(){
-			$(".date-picker1 td").removeClass('active-date');
-			$(this).addClass('active-date');
-		});
-		$(".date-picker2 td").click(function(){
-			$(".date-picker2 td").removeClass('active-date');
-			$(this).addClass('active-date');
-		});
 		$("#location-nav div").click(function(){
 			$("#location-nav div").removeClass('active-location-nav');
 			$(this).addClass('active-location-nav');
+		});
+		$("#uncle-woodys").click(function(){
+			$("#location-page").css('display','none');
+			$("#bar-page").css('display','block');
+			$("footer div").removeClass('active');
+			$(".back").css('display','block');
 		});
 	});
 </script>
@@ -21,7 +19,7 @@
 			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
 		</div>
 
-		<div class="bar-location">
+		<div id="uncle-woodys" class="bar-location">
 			<img src="images/unclewoodys-icon.jpg" alt=""/>
 			<div class="bar-info">
 				<div class="bar-name">Uncle Woody's</div>

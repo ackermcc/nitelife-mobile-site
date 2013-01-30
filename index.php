@@ -33,6 +33,7 @@
 		window.addEventListener('load', function() {
 		    new FastClick(document.body);
 		}, false);
+
 	</script>
 
 </head>
@@ -41,6 +42,7 @@
 
 <div class="container">
 	<header>
+		<a href="#"><div class="back">Back</div></a>
 		<img src="images/logo_03.png" alt="" />
 	</header>
 	<div class="wrapper">
