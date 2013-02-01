@@ -41,6 +41,13 @@
 	overflow: auto;
 }
 
+.map-location {
+	background: #f9f9f9;
+	width:100%;
+	overflow:auto;
+
+}
+
 .bar-location img {
 	border: 1px solid #ccc;
 	float: left;

@@ -9,7 +9,7 @@
 require_once ('lib/OAuth.php');
 
 // For example, request business with id 'the-waterboy-sacramento'
-$unsigned_url = "http://api.yelp.com/v2/search?term=nightlife=Cincinnati";
+$unsigned_url = "http://api.yelp.com/v2/search?term=bar&location=cincinnati";
 
 // For examaple, search for 'tacos' in 'sf'
 //$unsigned_url = "http://api.yelp.com/v2/search?term=tacos&location=sf";
@@ -17,8 +17,8 @@ $unsigned_url = "http://api.yelp.com/v2/search?term=nightlife=Cincinnati";
 
 // Set your keys here
 $consumer_key = "jJoDfIN17DSehzFia9HrLw";
-$consumer_secret = "jJoDfIN17DSehzFia9HrLw";
-$token = "jJoDfIN17DSehzFia9HrLw";
+$consumer_secret = "5xenSFRt3UR-xli5CxhZ7OBDp1Y";
+$token = "gAmSCcmjVZoUEv6eIg86o8gqrcbnreAc";
 $token_secret = "uTXl5tG0-lqX7Qjws_LhzDHdSRo";
 
 // Token object built using the OAuth library
@@ -50,6 +50,13 @@ curl_close($ch);
 $response = json_decode($data);
 
 // Print it for debugging
-print_r($response);
+//print_r($response->businesses);
+
+foreach($response->businesses as $bars){
+	echo $bars->name . "<br />";
+	echo $bars->location->display_address[0]." ". $bars->location->display_address[1] . "<br />";
+	echo "<br />";
+}
+
 
 ?>
