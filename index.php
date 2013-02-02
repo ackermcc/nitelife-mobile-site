@@ -8,6 +8,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
+
 	<meta charset="utf-8" />
 	<title>NiteLife</title>
 
