@@ -84,9 +84,17 @@
 		<div class="section">
 			<img src="images/info-flag.png" />
 			<div class="info-section">
-				<span>Sunday</span> 11am-5pm<br>
-				<span>Mon-Wed</span> 11am-5pm<br>
-				<span>Fri-Sat</span> 11am-5pm<br>
+				<div class="left-info">
+					<span>Sun</span> 11am-5pm<br>
+					<span>Mon</span> 11am-5pm<br>
+					<span>Tue</span> 11am-5pm<br>
+					<span>Wed</span> 11am-5pm<br>
+				</div>
+				<div class="right-info">
+					<span>Thur</span> 11am-5pm<br>
+					<span>Fri</span> 11am-5pm<br>
+					<span>Sat</span> 11am-5pm<br>
+				</div>
 			</div>
 		</div>
 

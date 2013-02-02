@@ -54,7 +54,7 @@
 		padding: 10px 0px;
 		text-align: center;
 		/*text-shadow: 0px -1px 0px #555;*/
-		font-size: 28px;
+		font-size: 30px;
 		font-weight: bold;
 		color: #909090;
 		background: #d0d0d0;
@@ -97,7 +97,7 @@
 		background: #34c5f3;
 		border-radius: 5px;
 		color: #fff;
-		font-size: 28px;
+		font-size: 30px;
 		font-weight: bold;
 		padding: 8px 13px;
 		margin-bottom: 15px;
@@ -108,7 +108,7 @@
 		background: #42c01e;
 		border-radius: 5px;
 		color: #fff;
-		font-size: 28px;
+		font-size: 30px;
 		font-weight: bold;
 		padding: 8px 13px;
 		margin-bottom: 20px;
@@ -118,13 +118,25 @@
 .info-section {
 	width: 95%;
 	margin: 20px auto 0px auto;
-	padding: 10px 25px 10px 25px;
+	font-size: 30px;
+	padding: 20px 25px 20px 25px;
 	background: #f9f9f9;
 	border: 1px solid #d0d0d0;
+	overflow: auto;
 }
 
 	.info-section span {
 		font-weight: bold;
+	}
+
+	.left-info {
+		width: 50%;
+		float: left;
+	}
+
+	.right-info {
+		width: 50%;
+		float: left;
 	}
 
 
