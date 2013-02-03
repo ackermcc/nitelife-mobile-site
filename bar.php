@@ -41,12 +41,16 @@
 			<div class="specials-viewer">
 				<table class="specials-table" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td><div class="active-special">1/2 off appetizers</div></td>
+						<td><div class="special">1/2 off appetizers</div></td>
 						<td><div class="special-time">4pm-6pm</div></td>
 					</tr>
 					<tr>
-						<td><div class="active-special">$1 wells</div></td>
+						<td><div class="special">$1 wells</div></td>
 						<td><div class="special-time">7pm-9pm</div></td>
+					</tr>
+					<tr class="inactive-special">
+						<td><div class="special">$5 Hipster Bomb</div></td>
+						<td><div class="special-time">10pm-1am</div></td>
 					</tr>
 				</table>
 			</div>
@@ -70,11 +74,11 @@
 			<div class="hh-viewer">
 				<table class="specials-table" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td><div class="active-special">1/2 off appetizers</div></td>
+						<td><div class="special">1/2 off appetizers</div></td>
 						<td><div class="special-time">4pm-6pm</div></td>
 					</tr>
 					<tr>
-						<td><div class="active-special">$1 wells</div></td>
+						<td><div class="special">$1 wells</div></td>
 						<td><div class="special-time">7pm-9pm</div></td>
 					</tr>
 				</table>
