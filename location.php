@@ -51,30 +51,6 @@
 			</div>
 			<div class="bar-miles">2.3 mi</div>
 		</div>
-		<div class="bar-location">
-			<img src="images/fries-icon.jpg" alt=""/>
-			<div class="bar-info">
-				<div class="bar-name">Fries Cafe</div>
-				<div class="bar-address truncate">3247 Jefferson Ave, Cincinnati, OH 45220</div>
-			</div>
-			<div class="bar-miles">2.3 mi</div>
-		</div>
-		<div class="bar-location">
-			<img src="images/fries-icon.jpg" alt=""/>
-			<div class="bar-info">
-				<div class="bar-name">Fries Cafe</div>
-				<div class="bar-address truncate">3247 Jefferson Ave, Cincinnati, OH 45220</div>
-			</div>
-			<div class="bar-miles">2.3 mi</div>
-		</div>
-		<div class="bar-location">
-			<img src="images/fries-icon.jpg" alt=""/>
-			<div class="bar-info">
-				<div class="bar-name">Fries Cafe</div>
-				<div class="bar-address truncate">3247 Jefferson Ave, Cincinnati, OH 45220</div>
-			</div>
-			<div class="bar-miles">2.3 mi</div>
-		</div>
 	</div>
 
 

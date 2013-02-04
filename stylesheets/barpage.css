@@ -3,10 +3,6 @@
 	overflow: auto;
 }
 
-	.section img {
-		width: 50%;
-	}
-
 	.video-section {
 		margin: 0px auto 0px auto;
 		padding: 10px;
@@ -18,11 +14,11 @@
 
 		.bar-title {
 			color: #fff;
-			font-size: 16px;
+			font-size: 32px;
 			font-weight: bold;
 			position: absolute;
-			padding: 10px 10px;
-			bottom: 7px;
+			padding: 20px 20px;
+			bottom: 14px;
 			width: 97%;
 			text-shadow: 0px 1px 3px #000;
 			z-index: 20;
