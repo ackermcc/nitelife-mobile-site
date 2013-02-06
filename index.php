@@ -1,3 +1,10 @@
+<?php
+require('scripts/database.php');
+
+// Lets put all the text in this file through after the ending head tag in a header.php then include it?
+//That would make things more organized.
+?> 
+
 <!DOCTYPE html>
 
 <html>
@@ -67,6 +74,23 @@
 
 </head>
 
+
+<?php
+	//To see if we should get the bar page or location page.
+	$bar = $_GET['bar'];
+	
+	if($bar){
+		//display the bar page, because there is a bar url
+	
+	}else{
+		//display the location page.
+	
+	}
+	
+	// I used this code to demonstrate below, but I commented out the lines cause I wasnt sure if it would break.
+	//The logic basically says if we have a bar page, include bar.php, if we dont, include the location page.  
+
+?>
 <body>
 
 <div class="container">
@@ -75,8 +99,11 @@
 		<img src="images/logo_03.png" alt="" />
 	</header>
 	<div class="wrapper">
+		<?php //if($bar){	?>
 		<div id="bar-page"><? include_once('bar.php'); ?></div>
+		<?php //}else{ ?>
 		<div id="location-page"><? include_once('location.php'); ?></div>	
+		<?php } ?>
 	</div>
 	<? include_once('bottom_menu.php'); ?>
 </div>
