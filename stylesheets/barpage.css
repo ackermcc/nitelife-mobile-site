@@ -116,7 +116,7 @@
 	}
 
 	.inactive-special .special {
-		background: #ccc;
+		background: #ddd;
 		border-radius: 5px;
 		color: #fff;
 		font-size: 30px;
@@ -128,7 +128,7 @@
 	}
 
 	.inactive-special .special-time {
-		background: #ccc;
+		background: #ddd;
 		border-radius: 5px;
 		color: #fff;
 		font-size: 30px;

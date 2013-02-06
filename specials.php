@@ -1,3 +1,57 @@
+<script type="text/javascript">
+	$(window).load(function(){
+		$("#location-nav div").click(function(){
+			$("#location-nav div").removeClass('active-location-nav');
+			$(this).addClass('active-location-nav');
+		});
+		$("#uncle-woodys").click(function(){
+			$("#location-page").css('display','none');
+			$("#bar-page").css('display','block');
+			$("footer div").removeClass('active');
+			$(".back").css('display','block');
+		});
+	});
+</script>
+	<div class="content">
 
-		<img style="margin-bottom: -4px;" src="images/sub-head_02.png" alt="" />
-		<img src="images/specials-page_02.jpg" alt="" />
+		<div id="location-nav">
+			<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
+			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
+		</div>
+
+		<div id="uncle-woodys" class="bar-location">
+			<img src="images/unclewoodys-icon.jpg" alt=""/>
+			<div class="bar-info">
+				<div class="bar-name">Uncle Woody's</div>
+				<div class="bar-address truncate">339 Calhoun St. Cincinnati, Ohio 45219</div>
+			</div>
+			<div class="bar-miles">0.3 mi</div>
+		</div>
+		<div class="bar-location">
+			<img src="images/christies-icon.jpg" alt=""/>
+			<div class="bar-info">
+				<div class="bar-name">Lenhardt's & Christy's</div>
+				<div class="bar-address truncate">151 W McMillan St, Cincinnati, OH 45219</div>
+			</div>
+			<div class="bar-miles">0.5 mi</div>
+		</div>
+		<div class="bar-location">
+			<img src="images/murphys-icon.jpg" alt=""/>
+			<div class="bar-info">
+				<div class="bar-name">Murphy's Pub</div>
+				<div class="bar-address truncate">2329 W Clifton Ave, Cincinnati, OH 45219</div>
+			</div>
+			<div class="bar-miles">1.2 mi</div>
+		</div>
+		<div class="bar-location">
+			<img src="images/fries-icon.jpg" alt=""/>
+			<div class="bar-info">
+				<div class="bar-name">Fries Cafe</div>
+				<div class="bar-address truncate">3247 Jefferson Ave, Cincinnati, OH 45220</div>
+			</div>
+			<div class="bar-miles">2.3 mi</div>
+		</div>
+	</div>
+
+
+
