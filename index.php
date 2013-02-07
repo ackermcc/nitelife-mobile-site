@@ -79,7 +79,7 @@ require('scripts/database.php');
 		<div id="bar-page"><? include_once('bar.php'); ?></div>
 		<?php //}else{ ?>
 		<div id="location-page"><? include_once('location.php'); ?></div>	
-		<?php } ?>
+		<?php //} ?>
 	</div>
 	<? include_once('bottom_menu.php'); ?>
 </div>

@@ -1,12 +1,7 @@
 <? 
 
 	REQUIRE('scripts/database.php');
-	$DB = new DB();
-	$DB->connect();
-	$bars = mysql_query("SELECT * FROM bar");
-	while($row = mysql_fetch_array($bars)){
-		//var_dump($row);
-	}
+
 ?>
 <!DOCTYPE html>
 <html>

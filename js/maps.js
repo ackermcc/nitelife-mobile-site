@@ -67,28 +67,39 @@
 		// now we have an initialLocation! 
 		
 		// Lets use ajax to get the bars, we will send the location later.
+		
+		function getBars(location)
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			}else{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			
+			
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState==4 && xmlhttp.status==200){
+					document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+				}
+			}
+			
+			xmlhttp.open("GET","scripts/database.php?location="+location,true);
+			xmlhttp.send();
+		}
+	
+		function getLatLong(address){
+			var mygc = new google.maps.Geocoder();
+			mygc.geocode({'address' : address}, function(results, status){
+				alert( "latitude : " + results[0].geometry.location.lat() );
+				alert( "longitude : " + results[0].geometry.location.lng() );
+			});
+		}
+
+
 	}
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-	function getBars(location)
-	{
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		  {// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		}else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		
-		
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-			}
-		}
-		
-		xmlhttp.open("GET","scripts/database.php?location="+location,true);
-		xmlhttp.send();
-	}
-
+	
