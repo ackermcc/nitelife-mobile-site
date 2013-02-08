@@ -23,7 +23,7 @@ var_dump($bar_info);
 	<div class="content">
 		<div class="section">
 			<div class="video-section">
-				<div class="bar-title">Uncle Woody's</div>
+				<div class="bar-title"><?=$bar_info['name']?></div>
 				<img class="grayscale" src="images/uncle-woodys.jpg" alt="" />
 			</div>
 		</div>
