@@ -41,11 +41,11 @@ $bars = get_bars();
 
 		*/
  		?>
-			<a href="?bar=<?=$bar['slug']?>">
+			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 			<div id="<?=$bar['slug']?>" class="bar-location">
 				<img src="images/unclewoodys-icon.jpg" alt=""/>
 				<div class="bar-info">
-					<div class="bar-name"><?=$bar['name']?></div>
+					<div class="bar-name truncate"><?=$bar['name']?></div>
 					<div class="bar-address truncate"><?=$bar['address']?></div>
 				</div>
 				<div class="bar-miles">0.3 mi</div>
