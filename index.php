@@ -18,8 +18,7 @@ require('scripts/database.php');
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
-	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="images/startup.png" />
-
+	<link rel="apple-touch-startup-image" href="images/startup.png">
 
 	<meta charset="utf-8" />
 	<title>NiteLife</title>
