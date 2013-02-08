@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(window).load(function(){
 		$(".date-picker1 td").click(function(){
 			$(".date-picker1 td").removeClass('active-date');
@@ -14,7 +14,12 @@
 			$(".back").css('display','none');
 		});
 	});
-</script>
+</script> -->
+<?php
+//Getting bar info
+$bar_info = get_bar_info($bar);
+var_dump($bar_info);
+?>
 	<div class="content">
 		<div class="section">
 			<div class="video-section">

@@ -6,9 +6,6 @@ body {
 	color: #333;
 }
 
-#bar-page {
-	display: none;
-}
 
 div, p, header, footer, span {
 	box-sizing: border-box;

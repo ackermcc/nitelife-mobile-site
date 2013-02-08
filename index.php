@@ -75,11 +75,11 @@ require('scripts/database.php');
 		<img src="images/logo_03.png" alt="" />
 	</header>
 	<div class="wrapper">
-		<?php //if($bar){	?>
+		<?php if($bar){	?>
 		<div id="bar-page"><? include_once('bar.php'); ?></div>
-		<?php //}else{ ?>
+		<?php }else{ ?>
 		<div id="location-page"><? include_once('location.php'); ?></div>	
-		<?php //} ?>
+		<?php } ?>
 	</div>
 	<? include_once('bottom_menu.php'); ?>
 </div>

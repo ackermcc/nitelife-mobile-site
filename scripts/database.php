@@ -29,6 +29,30 @@ function get_bars(){
 
 }
 
+function get_home(){
+	return 'localhost/nitelife';
+
+}
+
+function get_bar_info($slug){
+	$barResults = mysql_query("SELECT * FROM bar WHERE slug='".$slug."'");
+	$bar_info = mysql_fetch_array($barResults);
+	
+	$spResults = mysql_query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+	for ($specials = array(); $tmp = mysql_fetch_array($spResults);) $specials[] = $tmp;
+	
+	$openResults = mysql_query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+	for ($open_times = array(); $tmp = mysql_fetch_array($openResults);) $open_times[] = $tmp;
+	
+	$all_info = array(
+		"info" => $bar_info,
+		"open_times" => $open_times,
+		"specials" => $specials
+	);
+	
+	return $all_info;
+}
+
 
 
 

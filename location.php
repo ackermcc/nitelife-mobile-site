@@ -6,6 +6,7 @@ $bars = get_bars();
 
 
 ?>
+<!--
 <script type="text/javascript">
 	$(window).load(function(){
 		$("#location-nav div").click(function(){
@@ -20,6 +21,8 @@ $bars = get_bars();
 		});
 	});
 </script>
+
+-->
 	<div class="content">
 
 		<div id="location-nav">
@@ -38,7 +41,7 @@ $bars = get_bars();
 
 		*/
  		?>
-		
+			<a href="?bar=<?=$bar['slug']?>">
 			<div id="<?=$bar['slug']?>" class="bar-location">
 				<img src="images/unclewoodys-icon.jpg" alt=""/>
 				<div class="bar-info">
@@ -47,6 +50,7 @@ $bars = get_bars();
 				</div>
 				<div class="bar-miles">0.3 mi</div>
 			</div>
+			</a>
 		
 		
 		
