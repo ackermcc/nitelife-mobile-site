@@ -1,29 +1,14 @@
-<!-- <script type="text/javascript">
-	$(window).load(function(){
-		$(".date-picker1 td").click(function(){
-			$(".date-picker1 td").removeClass('active-date');
-			$(this).addClass('active-date');
-		});
-		$(".date-picker2 td").click(function(){
-			$(".date-picker2 td").removeClass('active-date');
-			$(this).addClass('active-date');
-		});
-		$(".back").click(function(){
-			$("#location-page").css('display','block');
-			$("#bar-page").css('display','none');
-			$(".back").css('display','none');
-		});
-	});
-</script> -->
+<script type="text/javascript">
+
+</script>
 <?php
 //Getting bar info
 $bar_info = get_bar_info($bar);
-var_dump($bar_info);
 ?>
 	<div class="content">
 		<div class="section">
 			<div class="video-section">
-				<div class="bar-title"><?=$bar_info['name']?></div>
+				<div class="bar-title"><?=$bar_info['info']['name']?></div>
 				<img class="grayscale" src="images/uncle-woodys.jpg" alt="" />
 			</div>
 		</div>
@@ -76,16 +61,90 @@ var_dump($bar_info);
 					</tr>
 				</table>
 			</div>
-			<div class="hh-viewer">
-				<table class="specials-table" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td><div class="special">1/2 off appetizers</div></td>
-						<td><div class="special-time">4pm-6pm</div></td>
-					</tr>
-					<tr>
-						<td><div class="special">$1 wells</div></td>
-						<td><div class="special-time">7pm-9pm</div></td>
-					</tr>
+			<div class="hh-viewer"><!-- lets create one div of these for each day, and set those for the days that arent selected to be invisible -->
+				<table class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['M']){
+						foreach($bar_info['specials']['M'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['T']){
+						foreach($bar_info['specials']['T'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['W']){
+						foreach($bar_info['specials']['W'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['H']){
+						foreach($bar_info['specials']['H'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['F']){
+						foreach($bar_info['specials']['F'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['S']){
+						foreach($bar_info['specials']['S'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
+				</table>
+				<table class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
+					<?php if($bar_info['specials']['U']){
+						foreach($bar_info['specials']['U'] as $special){?>
+							<tr>
+								<td><div class="special"><?=$special['name']?></div></td>
+								<td><div class="special-time"><?=$special['times']?></div></td>
+							</tr>
+					<?php 	}
+					}else{ ?>
+						None
+					<?php } ?>
 				</table>
 			</div>
 		</div>
@@ -93,16 +152,30 @@ var_dump($bar_info);
 		<div class="section">
 			<img src="images/info-flag.png" />
 			<div class="info-section">
-				<div class="left-info">
-					<span>Sun</span> 11am-5pm<br>
-					<span>Mon</span> 11am-5pm<br>
-					<span>Tue</span> 11am-5pm<br>
-					<span>Wed</span> 11am-5pm<br>
+				<div class="left-info"> 
+					
+					<?php if($bar_info['open_times']['U']) {	?>
+						<span>Sun</span> <?=$bar_info['open_times']['U']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['M']) {	?>
+						<span>Mon</span> <?=$bar_info['open_times']['M']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['T']) {	?>
+						<span>Tue</span> <?=$bar_info['open_times']['T']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['W']) {	?>
+						<span>Wed</span> <?=$bar_info['open_times']['W']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['H']) {	?>
+						<span>Thur</span> <?=$bar_info['open_times']['H']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['F']) {	?>
+						<span>Fri</span> <?=$bar_info['open_times']['F']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['S']) {	?>
+						<span>Sat</span> <?=$bar_info['open_times']['S']['times']?><br>
+					<?php } ?>
 				</div>
-				<div class="right-info">
-					<span>Thur</span> 11am-5pm<br>
-					<span>Fri</span> 11am-5pm<br>
-					<span>Sat</span> 11am-5pm<br>
 				</div>
 			</div>
 		</div>
