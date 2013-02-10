@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2013 at 01:34 AM
+-- Generation Time: Feb 10, 2013 at 05:59 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `bar` (
 --
 
 INSERT INTO `bar` (`id`, `name`, `slug`, `icon_url`, `banner_url`, `address`, `zipcode`, `region`, `description`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`, `website`) VALUES
-(2, 'Cock and Bull English Pub', 'cock-and-bull-english-pub', NULL, NULL, '601 Main St ', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-581-4253', ''),
-(3, 'Keystone Bar & Grill', 'keystone-bar-and-grill', NULL, NULL, '313 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6777', 'http://www.keystonebar.com/'),
+(2, 'Cock and Bull English Pub', 'cock-and-bull-english-pub', NULL, NULL, '601 Main St ', '41011', 'Covington', 'desc', 'facebook', 'twitter', 'foursqur', 'usr', 'pass', '859-581-4253', ''),
+(3, 'Keystone Bar & Grill', 'keystone-bar-and-grill', NULL, NULL, '313 Greenup St', '41011', 'Covington', '', '', '', '', '', '', '859-261-6777', 'http://www.keystonebar.com/'),
 (4, 'Sidebar', 'sidebar', NULL, NULL, '322 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-3456', ''),
-(5, 'Mainstrasse Village Pub', 'mainstrasse-village-pub', NULL, NULL, '619 Main St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-5552', 'http://www.mainstrassevillagepub.com/'),
+(5, 'Mainstrasse Village Pub', 'mainstrasse-village-pub', NULL, NULL, '619 Main St', '41011', 'Covington', '', '', '', '', '', '', '859-431-5552', 'http://www.mainstrassevillagepub.com/'),
 (6, 'The Avenue Lounge', 'the-avenue-lounge', NULL, NULL, '411 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6120', 'http://www.theavenuelounge.com/'),
 (7, 'Molly Malone''s Irish Pub & Restaurant', 'molly-malones-irish-pub-restaurant', NULL, NULL, '112 E 4th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-6659', 'http://covington.mollymalonesirishpub.com/'),
 (8, 'Tickets Sports Bar', 'tickets-sports-bar', NULL, NULL, '100 W 6th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-1839', 'http://www.ticketssportscafe.com/'),
