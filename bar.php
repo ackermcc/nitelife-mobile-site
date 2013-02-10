@@ -4,19 +4,26 @@ $(window).load(function(){
 	var day = d.getDay();
 
 	if (day == 0) {
-
+		$("#sunday-specials").addClass('active-day');
+		$(".date-picker1 td:last-child").addClass('active-date');
 	} else if (day == 1) {
-
+		$("#monday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(1)").addClass('active-date');
 	} else if (day == 2) {
-
+		$("#tuesday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(2)").addClass('active-date');
 	} else if (day ==3 ) {
-
+		$("#wednesday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(3)").addClass('active-date');
 	} else if (day == 4) {
-
+		$("#thursday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(4)").addClass('active-date');
 	} else if (day == 5) {
-
+		$("#friday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(5)").addClass('active-date');
 	} else if (day == 6) {
-		alert("its saturday");
+		$("#saturday-specials").addClass('active-day');
+		$(".date-picker1 td:nth-child(6)").addClass('active-date');
 	}
 
 });
@@ -38,7 +45,7 @@ $bar_info = get_bar_info($bar);
 			<div class="specials-date-picker">
 				<table class="date-picker1" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td class="active-date">M</td>
+						<td>M</td>
 						<td>T</td>
 						<td>W</td>
 						<td>R</td>
@@ -48,7 +55,7 @@ $bar_info = get_bar_info($bar);
 					</tr>
 				</table>
 			</div>
-			<div class="specials-viewer">
+			<!-- <div class="specials-viewer">
 				<table class="specials-table" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td><div class="special">1/2 off appetizers</div></td>
@@ -80,7 +87,7 @@ $bar_info = get_bar_info($bar);
 						<td>U</td>
 					</tr>
 				</table>
-			</div>
+			</div> -->
 			<div class="hh-viewer"><!-- lets create one div of these for each day, and set those for the days that arent selected to be invisible -->
 				<table class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['M']){
@@ -91,7 +98,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -103,7 +110,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -115,7 +122,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -127,7 +134,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -139,7 +146,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -151,7 +158,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -163,7 +170,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
+						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 			</div>
@@ -175,25 +182,27 @@ $bar_info = get_bar_info($bar);
 				<div class="left-info"> 
 					
 					<?php if($bar_info['open_times']['U']) {	?>
-						<span>Sun</span> <?=$bar_info['open_times']['U']['times']?><br>
+						<span>U</span> <?=$bar_info['open_times']['U']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['M']) {	?>
-						<span>Mon</span> <?=$bar_info['open_times']['M']['times']?><br>
+						<span>M</span> <?=$bar_info['open_times']['M']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['T']) {	?>
-						<span>Tue</span> <?=$bar_info['open_times']['T']['times']?><br>
+						<span>T</span> <?=$bar_info['open_times']['T']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['W']) {	?>
-						<span>Wed</span> <?=$bar_info['open_times']['W']['times']?><br>
+						<span>W</span> <?=$bar_info['open_times']['W']['times']?><br>
 					<?php } ?>
+				</div>
+				<div class="right-info"> 
 					<?php if($bar_info['open_times']['H']) {	?>
-						<span>Thur</span> <?=$bar_info['open_times']['H']['times']?><br>
+						<span>R</span> <?=$bar_info['open_times']['H']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['F']) {	?>
-						<span>Fri</span> <?=$bar_info['open_times']['F']['times']?><br>
+						<span>F</span> <?=$bar_info['open_times']['F']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['S']) {	?>
-						<span>Sat</span> <?=$bar_info['open_times']['S']['times']?><br>
+						<span>S</span> <?=$bar_info['open_times']['S']['times']?><br>
 					<?php } ?>
 				</div>
 				</div>

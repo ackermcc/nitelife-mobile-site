@@ -81,6 +81,7 @@
 
 	.specials-table {
 		width: 100%;
+		display: none;
 	}
 
 		.specials-table td:first-child {
@@ -92,6 +93,11 @@
 			width: 35%;
 			text-align: right;
 		}
+
+	.active-day {
+		display: block;
+		margin: 30px 0px 50px 0px;
+	}
 
 
 	.special {
@@ -140,19 +146,19 @@
 		display: inline-block;
 	}
 
-	.null-special {
-		width: 80%;
+	.specials-table td.null-special {
+		width: 100%;
 		margin: auto;
 		text-align: center;
 		font-weight: bold;
-		font-size: 30px;
+		font-size: 40px;
 		color: #999;
 	}
 
 .info-section {
 	width: 95%;
 	margin: 20px auto 0px auto;
-	font-size: 30px;
+	font-size: 34px;
 	padding: 20px 25px 20px 25px;
 	background: #f9f9f9;
 	border: 1px solid #d0d0d0;
@@ -161,6 +167,7 @@
 
 	.info-section span {
 		font-weight: bold;
+		line-height: 1.3;
 	}
 
 	.left-info {
