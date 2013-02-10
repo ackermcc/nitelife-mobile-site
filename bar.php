@@ -3,28 +3,81 @@ $(window).load(function(){
 	var d = new Date();
 	var day = d.getDay();
 
-	if (day == 0) {
-		$("#sunday-specials").addClass('active-day');
-		$(".date-picker1 td:last-child").addClass('active-date');
-	} else if (day == 1) {
-		$("#monday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(1)").addClass('active-date');
-	} else if (day == 2) {
-		$("#tuesday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(2)").addClass('active-date');
-	} else if (day ==3 ) {
-		$("#wednesday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(3)").addClass('active-date');
-	} else if (day == 4) {
-		$("#thursday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(4)").addClass('active-date');
-	} else if (day == 5) {
-		$("#friday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(5)").addClass('active-date');
-	} else if (day == 6) {
-		$("#saturday-specials").addClass('active-day');
-		$(".date-picker1 td:nth-child(6)").addClass('active-date');
+	var datePicker = function(){
+		if (day == 0) {
+			$(".specials-table").removeClass('active-day');
+			$("#sunday-specials").addClass('active-day');
+			$(".date-picker1 td:last-child").addClass('active-date');
+		} else if (day == 1) {
+			$(".specials-table").removeClass('active-day');
+			$("#monday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(1)").addClass('active-date');
+		} else if (day == 2) {
+			$(".specials-table").removeClass('active-day');
+			$("#tuesday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(2)").addClass('active-date');
+		} else if (day ==3 ) {
+			$(".specials-table").removeClass('active-day');
+			$("#wednesday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(3)").addClass('active-date');
+		} else if (day == 4) {
+			$(".specials-table").removeClass('active-day');
+			$("#thursday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(4)").addClass('active-date');
+		} else if (day == 5) {
+			$(".specials-table").removeClass('active-day');
+			$("#friday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(5)").addClass('active-date');
+		} else if (day == 6) {
+			$(".specials-table").removeClass('active-day');
+			$("#saturday-specials").addClass('active-day');
+			$(".date-picker1 td:nth-child(6)").addClass('active-date');
+		}
 	}
+
+	datePicker();
+
+	$(".date-picker1 td:nth-child(1)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 1;
+		datePicker();
+	});
+
+	$(".date-picker1 td:nth-child(2)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 2;
+		datePicker();
+	});
+
+	$(".date-picker1 td:nth-child(3)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 3;
+		datePicker();
+	});
+
+	$(".date-picker1 td:nth-child(4)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 4;
+		datePicker();
+	});
+
+	$(".date-picker1 td:nth-child(5)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 5;
+		datePicker();
+	});
+
+	$(".date-picker1 td:nth-child(6)").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 6;
+		datePicker();
+	});
+
+	$(".date-picker1 td:last-child").click(function(){
+		$(".date-picker1 td").removeClass('active-date');
+		day = 0;
+		datePicker();
+	});
 
 	$("footer div").removeClass('active');
 	$(".back").css('display','block');
