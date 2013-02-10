@@ -31,6 +31,8 @@ require('scripts/database.php');
 	<script type="application/javascript" src="js/jquery.js"></script>
 	<script type="application/javascript" src="js/iscroll.js"></script>
 	<script type="application/javascript" src="js/fastclick.js"></script>
+	<script type="application/javascript" src="js/nitelife-jquery.js"></script>
+
 	<script type="text/javascript">
 	var myScroll;
 	function loaded() {
@@ -45,8 +47,8 @@ require('scripts/database.php');
 		window.addEventListener('load', function() {
 		    new FastClick(document.body);
 		}, false);
-
 	</script>
+
 
 </head>
 
@@ -71,7 +73,7 @@ require('scripts/database.php');
 
 <div class="container">
 	<header>
-		<a href="#"><div class="back">Back</div></a>
+		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
 		<img src="images/logo_03.png" alt="" />
 	</header>
 	<div class="wrapper">

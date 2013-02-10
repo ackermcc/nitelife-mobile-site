@@ -26,6 +26,9 @@ $(window).load(function(){
 		$(".date-picker1 td:nth-child(6)").addClass('active-date');
 	}
 
+	$("footer div").removeClass('active');
+	$(".back").css('display','block');
+
 });
 </script>
 <?php

@@ -6,23 +6,8 @@ $bars = get_bars();
 
 
 ?>
-<!--
-<script type="text/javascript">
-	$(window).load(function(){
-		$("#location-nav div").click(function(){
-			$("#location-nav div").removeClass('active-location-nav');
-			$(this).addClass('active-location-nav');
-		});
-		$("#uncle-woodys").click(function(){
-			$("#location-page").css('display','none');
-			$("#bar-page").css('display','block');
-			$("footer div").removeClass('active');
-			$(".back").css('display','block');
-		});
-	});
-</script>
 
--->
+
 	<div class="content">
 
 		<div id="location-nav">
@@ -42,14 +27,14 @@ $bars = get_bars();
 		*/
  		?>
 			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
-			<div id="<?=$bar['slug']?>" class="bar-location">
-				<img src="images/unclewoodys-icon.jpg" alt=""/>
-				<div class="bar-info">
-					<div class="bar-name truncate"><?=$bar['name']?></div>
-					<div class="bar-address truncate"><?=$bar['address']?></div>
+				<div id="<?=$bar['slug']?>" class="bar-location">
+					<img src="images/unclewoodys-icon.jpg" alt=""/>
+					<div class="bar-info">
+						<div class="bar-name truncate"><?=$bar['name']?></div>
+						<div class="bar-address truncate"><?=$bar['address']?></div>
+					</div>
+					<div class="bar-miles">0.3 mi</div>
 				</div>
-				<div class="bar-miles">0.3 mi</div>
-			</div>
 			</a>
 		
 		
