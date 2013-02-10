@@ -1,5 +1,25 @@
 <script type="text/javascript">
+$(window).load(function(){
+	var d = new Date();
+	var day = d.getDay();
 
+	if (day == 0) {
+
+	} else if (day == 1) {
+
+	} else if (day == 2) {
+
+	} else if (day ==3 ) {
+
+	} else if (day == 4) {
+
+	} else if (day == 5) {
+
+	} else if (day == 6) {
+		alert("its saturday");
+	}
+
+});
 </script>
 <?php
 //Getting bar info
@@ -71,7 +91,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -83,7 +103,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -95,7 +115,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -107,7 +127,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -119,7 +139,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -131,7 +151,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
@@ -143,7 +163,7 @@ $bar_info = get_bar_info($bar);
 							</tr>
 					<?php 	}
 					}else{ ?>
-						None
+						<tr><div class="null-special">Sorry there are no specials today, bummer.</div></tr>
 					<?php } ?>
 				</table>
 			</div>
