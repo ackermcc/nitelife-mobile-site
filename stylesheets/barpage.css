@@ -93,6 +93,7 @@
 			text-align: right;
 		}
 
+
 	.special {
 		background: #34c5f3;
 		border-radius: 5px;
@@ -137,6 +138,15 @@
 		padding: 8px 13px;
 		margin-bottom: 20px;
 		display: inline-block;
+	}
+
+	.null-special {
+		width: 80%;
+		margin: auto;
+		text-align: center;
+		font-weight: bold;
+		font-size: 30px;
+		color: #999;
 	}
 
 .info-section {
