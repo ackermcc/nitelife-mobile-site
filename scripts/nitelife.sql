@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2013 at 09:19 PM
+-- Generation Time: Feb 10, 2013 at 01:34 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `bar` (
   `name` varchar(50) NOT NULL,
   `slug` varchar(100) NOT NULL,
   `icon_url` varchar(200) DEFAULT NULL,
+  `banner_url` varchar(200) DEFAULT NULL,
   `address` varchar(200) NOT NULL,
   `zipcode` varchar(10) NOT NULL,
   `region` varchar(50) NOT NULL,
@@ -49,29 +50,29 @@ CREATE TABLE IF NOT EXISTS `bar` (
 -- Dumping data for table `bar`
 --
 
-INSERT INTO `bar` (`id`, `name`, `slug`, `icon_url`, `address`, `zipcode`, `region`, `description`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`, `website`) VALUES
-(2, 'Cock and Bull English Pub', 'cock-and-bull-english-pub', NULL, '601 Main St ', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-581-4253', ''),
-(3, 'Keystone Bar & Grill', 'keystone-bar-and-grill', NULL, '313 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6777', 'http://www.keystonebar.com/'),
-(4, 'Sidebar', 'sidebar', NULL, '322 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-3456', ''),
-(5, 'Mainstrasse Village Pub', 'mainstrasse-village-pub', NULL, '619 Main St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-5552', 'http://www.mainstrassevillagepub.com/'),
-(6, 'The Avenue Lounge', 'the-avenue-lounge', NULL, '411 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6120', 'http://www.theavenuelounge.com/'),
-(7, 'Molly Malone''s Irish Pub & Restaurant', 'molly-malones-irish-pub-restaurant', NULL, '112 E 4th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-6659', 'http://covington.mollymalonesirishpub.com/'),
-(8, 'Tickets Sports Bar', 'tickets-sports-bar', NULL, '100 W 6th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-1839', 'http://www.ticketssportscafe.com/'),
-(9, 'Zola Bar & Grill', 'zola-bar-and-grill', NULL, '626 Main St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-7510', 'http://www.zolapubandgrill.com/'),
-(10, 'Down Under', 'down-under', NULL, '126 Park Place', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-9393', ''),
-(11, 'Keefer''s Pub', 'keefers-pub', NULL, '902 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-5333', 'keeferspub.com'),
-(12, 'Hot Spot Sports Bar, Inc', 'hot-spot-sports-bar', NULL, '820 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-291-2904', ''),
-(13, 'Zazou Grill & Pub', 'zazou-grill-and-pub', NULL, '502 W 6th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-9111', 'http://www.zazoupub.com/'),
-(14, 'Club Yadda', 'club-yadda', NULL, '404 Pike St #1', '41016', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-5600', ''),
-(15, 'Herb & Thelma''s Tavern', 'herb-and-themlas-tavern', NULL, '718 Pike St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-6984', ''),
-(16, 'Jefferson Hall', 'jefferson-hall', NULL, '1 Levee Way #2118', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-6200', 'http://www.jeffersonhall.com/main/index.php'),
-(17, 'Bar Louie', 'bar-louie', NULL, '1 Levee Way', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-291-4222', 'http://www.barlouieamerica.com/home/'),
-(18, 'Gangsters Dueling Piano Bar', 'gangsters-dueling-piano-bar', NULL, '18 East 5th St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-8900', 'http://www.gangsterspianobar.com/'),
-(19, 'Beer Sellar', 'beer-sellar', NULL, '301 Riverboat Row #1', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-431-6969', 'http://www.beersellar.net/'),
-(20, 'Arnie''s on the Levee', 'arnies-on-the-levee', NULL, '120 East 3rd St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-431-4340', 'http://www.arniesonthelevee.com/'),
-(21, 'Crazy Fox Saloon', 'crazy-fox-saloon', NULL, '901 Washington Ave', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-261-2143', ''),
-(22, 'Hofbrauhaus', 'hofbrauhaus', NULL, '200 East 3rd St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-7200', 'http://www.hofbrauhausnewport.com/'),
-(23, 'Mansion Hill Tavern', 'mansion-hill-tavern', NULL, '502 Washington Ave #A', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-581-0100', 'http://mansionhilltavern.tripod.com/');
+INSERT INTO `bar` (`id`, `name`, `slug`, `icon_url`, `banner_url`, `address`, `zipcode`, `region`, `description`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`, `website`) VALUES
+(2, 'Cock and Bull English Pub', 'cock-and-bull-english-pub', NULL, NULL, '601 Main St ', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-581-4253', ''),
+(3, 'Keystone Bar & Grill', 'keystone-bar-and-grill', NULL, NULL, '313 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6777', 'http://www.keystonebar.com/'),
+(4, 'Sidebar', 'sidebar', NULL, NULL, '322 Greenup St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-3456', ''),
+(5, 'Mainstrasse Village Pub', 'mainstrasse-village-pub', NULL, NULL, '619 Main St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-5552', 'http://www.mainstrassevillagepub.com/'),
+(6, 'The Avenue Lounge', 'the-avenue-lounge', NULL, NULL, '411 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-6120', 'http://www.theavenuelounge.com/'),
+(7, 'Molly Malone''s Irish Pub & Restaurant', 'molly-malones-irish-pub-restaurant', NULL, NULL, '112 E 4th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-6659', 'http://covington.mollymalonesirishpub.com/'),
+(8, 'Tickets Sports Bar', 'tickets-sports-bar', NULL, NULL, '100 W 6th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-431-1839', 'http://www.ticketssportscafe.com/'),
+(9, 'Zola Bar & Grill', 'zola-bar-and-grill', NULL, NULL, '626 Main St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-7510', 'http://www.zolapubandgrill.com/'),
+(10, 'Down Under', 'down-under', NULL, NULL, '126 Park Place', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-9393', ''),
+(11, 'Keefer''s Pub', 'keefers-pub', NULL, NULL, '902 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-5333', 'keeferspub.com'),
+(12, 'Hot Spot Sports Bar, Inc', 'hot-spot-sports-bar', NULL, NULL, '820 Madison Ave', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-291-2904', ''),
+(13, 'Zazou Grill & Pub', 'zazou-grill-and-pub', NULL, NULL, '502 W 6th St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-261-9111', 'http://www.zazoupub.com/'),
+(14, 'Club Yadda', 'club-yadda', NULL, NULL, '404 Pike St #1', '41016', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-5600', ''),
+(15, 'Herb & Thelma''s Tavern', 'herb-and-themlas-tavern', NULL, NULL, '718 Pike St', '41011', 'Covington', '', NULL, NULL, NULL, '', '', '859-491-6984', ''),
+(16, 'Jefferson Hall', 'jefferson-hall', NULL, NULL, '1 Levee Way #2118', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-6200', 'http://www.jeffersonhall.com/main/index.php'),
+(17, 'Bar Louie', 'bar-louie', NULL, NULL, '1 Levee Way', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-291-4222', 'http://www.barlouieamerica.com/home/'),
+(18, 'Gangsters Dueling Piano Bar', 'gangsters-dueling-piano-bar', NULL, NULL, '18 East 5th St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-8900', 'http://www.gangsterspianobar.com/'),
+(19, 'Beer Sellar', 'beer-sellar', NULL, NULL, '301 Riverboat Row #1', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-431-6969', 'http://www.beersellar.net/'),
+(20, 'Arnie''s on the Levee', 'arnies-on-the-levee', NULL, NULL, '120 East 3rd St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-431-4340', 'http://www.arniesonthelevee.com/'),
+(21, 'Crazy Fox Saloon', 'crazy-fox-saloon', NULL, NULL, '901 Washington Ave', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-261-2143', ''),
+(22, 'Hofbrauhaus', 'hofbrauhaus', NULL, NULL, '200 East 3rd St', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-491-7200', 'http://www.hofbrauhausnewport.com/'),
+(23, 'Mansion Hill Tavern', 'mansion-hill-tavern', NULL, NULL, '502 Washington Ave #A', '41071', 'Newport', '', NULL, NULL, NULL, '', '', '859-581-0100', 'http://mansionhilltavern.tripod.com/');
 
 -- --------------------------------------------------------
 
@@ -124,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `open_times` (
 --
 
 INSERT INTO `open_times` (`id`, `bar_id`, `day`, `times`) VALUES
-(1, 2, 'M', '2pm-4pm'),
-(2, 2, 'W', '2pm-4pm');
+(1, 3, 'M', '2pm-4pm'),
+(2, 3, 'W', '2pm-4pm');
 
 -- --------------------------------------------------------
 
@@ -140,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `special` (
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
   `all_day` tinyint(1) NOT NULL,
-  `days_repeated` varchar(7) NOT NULL,
+  `day` varchar(7) NOT NULL,
   `type` enum('N') NOT NULL,
-  `Times` varchar(20) NOT NULL,
+  `times` varchar(20) NOT NULL,
   KEY `bar_id` (`bar_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -150,8 +151,8 @@ CREATE TABLE IF NOT EXISTS `special` (
 -- Dumping data for table `special`
 --
 
-INSERT INTO `special` (`id`, `bar_id`, `name`, `date_start`, `date_end`, `all_day`, `days_repeated`, `type`, `Times`) VALUES
-(0, 3, 'Free Margaritas', '2013-01-01', '2013-01-31', 0, 'MWD', '', '');
+INSERT INTO `special` (`id`, `bar_id`, `name`, `date_start`, `date_end`, `all_day`, `day`, `type`, `times`) VALUES
+(0, 2, 'Free Margaritas', '2013-01-01', '2013-01-31', 0, 'M', '', '');
 
 -- --------------------------------------------------------
 

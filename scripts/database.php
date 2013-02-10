@@ -64,6 +64,12 @@ function admin_get_bars(){
 
 }
 
+function admin_get_bar($slug){
+	$result = mysql_query("SELECT * FROM bar WHERE slug='".$slug."'");
+	return mysql_fetch_array($result);
+}
+
+
 
 
 
