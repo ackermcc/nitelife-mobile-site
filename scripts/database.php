@@ -1,17 +1,5 @@
 <?php
 
-/*
-if(isset($_GET['location'])){
-	
-	$location = $_GET['location'];
-	echo "I HAS A LOCATION ";
-	echo $location;
-	
-
-}
-*/
-
-
 $con = mysql_connect("localhost","root","");
 if (!$con)
 {
@@ -39,13 +27,17 @@ function get_bar_info($slug){
 	$bar_info = mysql_fetch_array($barResults);
 	
 	$spResults = mysql_query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
-	for ($specials = array(); $tmp = mysql_fetch_array($spResults);){
-		$specials[$tmp['day']][] = $tmp;
+	if($spResults){
+		for ($specials = array(); $tmp = mysql_fetch_array($spResults);){
+			$specials[$tmp['day']][] = $tmp;
+		}
 	}
 	
 	$openResults = mysql_query("SELECT * FROM open_times WHERE bmysql_queryar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
-	for ($open_times = array(); $tmp = mysql_fetch_array($openResults);){
-		$open_times[$tmp['day']] = $tmp;
+	if($openResults){
+		for ($open_times = array(); $tmp = mysql_fetch_array($openResults);){
+			$open_times[$tmp['day']] = $tmp;
+		}
 	}
 
 	$all_info = array(
