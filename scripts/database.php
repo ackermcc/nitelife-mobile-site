@@ -71,10 +71,9 @@ function admin_get_bar($slug){
 
 function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twitter, $four, $user, $password, $phone){
 	$query = "UPDATE bar SET name='".$name."', slug='".$slug."', address='".$address."', zipcode='"
-			.$zip."', region='".$region."', description='".$desc."', facebook='".$facebook."', twitter='"
-			.$twitter."', foursquare='".$foursquare."', username='".$user."', password='".$password."', 
+			.$zip."', region='".$region."', description='".$desc."', facebook='".$fb."', twitter='"
+			.$twitter."', foursquare='".$four."', username='".$user."', password='".$password."', 
 			phone='".$phone."' WHERE id='$id'";
-		
 	$ok = mysql_query($query);
 	if($ok) return true;
 	else return false;
@@ -94,6 +93,42 @@ function admin_update_banner($id, $filename){
 	if($ok) return true;
 	else return false;
 
+}
+
+function admin_get_specials($slug){
+	$id = get_id_from_slug($slug);
+	$specialsquery = "SELECT * FROM special WHERE bar_id='".$id."'";
+	$results = mysql_query($specialsquery);
+	
+	for ($specials = array(); $tmp = mysql_fetch_array($results);) $specials[] = $tmp;
+
+	return $specials;
+}
+
+function admin_get_opentimes($slug){
+	$id = get_id_from_slug($slug);
+	$query = "SELECT * FROM open_times WHERE bar_id='".$id."'";
+	$results = mysql_query($query);
+	
+	for ($opentimes = array(); $tmp = mysql_fetch_array($results);) $opentimes[] = $tmp;
+	
+	return $opentimes;
+
+}
+
+function get_id_from_slug($slug){
+	$query = "SELECT id FROM bar WHERE slug='".$slug."'";
+	$results = mysql_query($query);
+	$id = mysql_fetch_array($results);
+	return $id['id'];
+}
+
+function admin_add_opentimes($id, $days, $times){
+	foreach($days as $day){
+		$query = "INSERT INTO open_times (`bar_id`, `day`, `times`) VALUES ('".$id."', '".$day."', '".$times."')";
+		echo $query;
+		$ok = mysql_query($query);
+	}
 }
 
 

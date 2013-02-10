@@ -5,41 +5,43 @@ $slug = $_REQUEST['bar'];
 
 
 
-$id = $_POST['id'];
+$id = get_id_from_slug($slug);
 
-if($id){
+if(isset($_POST['update-bar'])){
 
-$name = $_POST['name'];
-$slug = $_POST['slug'];
-$address = $_POST['address'];
-$zip = $_POST['zipcode'];
-$region = $_POST['region'];
-$desc = $_POST['description'];
-$fb = $_POST['facebook'];
-$twit = $_POST['twitter'];
-$four = $_POST['foursquare'];
-$user = $_POST['username'];
-$pass = $_POST['password'];
-$phone = $_POST['phone'];
+	$name = $_POST['name'];
+	$slug = $_POST['slug'];
+	$address = $_POST['address'];
+	$zip = $_POST['zipcode'];
+	$region = $_POST['region'];
+	$desc = $_POST['description'];
+	$fb = $_POST['facebook'];
+	$twit = $_POST['twitter'];
+	$four = $_POST['foursquare'];
+	$user = $_POST['username'];
+	$pass = $_POST['password'];
+	$phone = $_POST['phone'];
 
 
-$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
+	$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
 
-}
 
-if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
-	move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
-	admin_update_icon($id, $_FILES["icon"]["name"]);
-	echo $_FILES["icon"]["name"];
- }
- 
- if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){
-	move_uploaded_file($_FILES["banner"]["tmp_name"], "../banners/" . $_FILES["banner"]["name"]);
-	admin_update_banner($id, $_FILES["banner"]["name"]);
+
+	if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
+		move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
+		admin_update_icon($id, $_FILES["icon"]["name"]);
+		echo $_FILES["icon"]["name"];
+	 }
+	 
+	 if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){
+		move_uploaded_file($_FILES["banner"]["tmp_name"], "../banners/" . $_FILES["banner"]["name"]);
+		admin_update_banner($id, $_FILES["banner"]["name"]);
+	 }
  }
  
  $bar = admin_get_bar($slug);
-
+ $specials = admin_get_specials($slug);
+ $opentimes = admin_get_opentimes($slug);
 
 ?>
 
@@ -50,6 +52,7 @@ if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
 <head>
 </head>
 <body>
+<h2>Bar Information</h2>
 <form method="post" enctype="multipart/form-data">
 	<?=$bar['icon_url']?>
 	<input type="hidden" value="<?=$bar['slug']?>" name="bar" />
@@ -70,7 +73,47 @@ if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
 	<br>Username: <input type="text" name="username" style="width:250px;" value="<?=$bar['username']?>"></input></br>
 	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=$bar['password']?>"></input></br>
 	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=$bar['phone']?>"></input></br>
-	<br><input type="submit" value="Update" /> <a href="bar-list.php">Go back to bar list</a></br>
+	<br><input type="submit" name="update-bar" value="Update" /> <a href="bar-list.php">Go back to bar list</a></br>
+	</form>
+	<h2>Specials</h2>
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Times</td>
+			<td>Start Date</td>
+			<td>End Date</td>
+			<td>Day</td>
+		</tr>
+	<?php foreach($specials as $special){ ?>
+			<tr>
+				<td><?=$special['id']?></td>
+				<td><?=$special['name']?></td>
+				<td><?=$special['times']?></td>
+				<td><?=$special['date_start']?></td>
+				<td><?=$special['date_end']?></td>
+				<td><?=$special['day']?></td>
+			</tr>
+	<?php } ?>
+	</table>
+	<h3>Add New</h3>
+	<form method="post">
+	Name:<input type="text" style="width:200;" name="new-special-name" />
+	Times:<input type="text" name="new-special-name" />
+	Date Start:<input type="date" name="special-start-date" />
+	Date End:<input type="date" name="special-end-date" /> 
+	Days: <input type="checkbox" name="special-days[]" value="M">M
+			<input type="checkbox" name="special-days[]" value="T">T
+			<input type="checkbox" name="special-days[]" value="W">W
+			<input type="checkbox" name="special-days[]" value="H">H
+			<input type="checkbox" name="special-days[]" value="F">F
+			<input type="checkbox" name="special-days[]" value="S">S
+			<input type="checkbox" name="special-days[]" value="U">U
+	<input type="submit" name="add-special" value="Add" />
+	</form>
+	
+	
+
 </form>
 </body>
 </html>
