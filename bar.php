@@ -92,7 +92,7 @@ $bar_info = get_bar_info($bar);
 		<div class="section">
 			<div class="video-section">
 				<div class="bar-title"><?=$bar_info['info']['name']?></div>
-				<img class="grayscale" src="images/uncle-woodys.jpg" alt="" />
+				<img src="images/uncle-woodys.jpg" alt="" />
 			</div>
 		</div>
 	
@@ -111,39 +111,6 @@ $bar_info = get_bar_info($bar);
 					</tr>
 				</table>
 			</div>
-			<!-- <div class="specials-viewer">
-				<table class="specials-table" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td><div class="special">1/2 off appetizers</div></td>
-						<td><div class="special-time">4pm-6pm</div></td>
-					</tr>
-					<tr>
-						<td><div class="special">$1 wells</div></td>
-						<td><div class="special-time">7pm-9pm</div></td>
-					</tr>
-					<tr class="inactive-special">
-						<td><div class="special">$5 Hipster Bomb</div></td>
-						<td><div class="special-time">10pm-1am</div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-
-		<div class="section">
-			<img src="images/hh-flag.png" />
-			<div class="specials-date-picker">
-				<table class="date-picker2" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td class="active-date">M</td>
-						<td>T</td>
-						<td>W</td>
-						<td>R</td>
-						<td>F</td>
-						<td>S</td>
-						<td>U</td>
-					</tr>
-				</table>
-			</div> -->
 			<div class="hh-viewer"><!-- lets create one div of these for each day, and set those for the days that arent selected to be invisible -->
 				<table class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['M']){
