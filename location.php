@@ -28,7 +28,7 @@ $bars = get_bars();
  		?>
 			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-location">
-					<img src="images/unclewoodys-icon.jpg" alt=""/>
+					<img src="images/no-img-icon.jpg" alt=""/>
 					<div class="bar-info">
 						<div class="bar-name truncate"><?=$bar['name']?></div>
 						<div class="bar-address truncate"><?=$bar['address']?></div>

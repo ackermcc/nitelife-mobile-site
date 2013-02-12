@@ -92,7 +92,7 @@ $bar_info = get_bar_info($bar);
 		<div class="section">
 			<div class="video-section">
 				<div class="bar-title"><?=$bar_info['info']['name']?></div>
-				<img src="images/uncle-woodys.jpg" alt="" />
+				<img src="images/no-img-banner.jpg" alt="" />
 			</div>
 		</div>
 	
