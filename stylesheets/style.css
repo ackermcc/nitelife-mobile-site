@@ -68,7 +68,7 @@ header {
 
 	#beta-ribbon {
 		position: absolute;
-		top: 0;
+		top: -1px;
 		right: 0;
 	}
 
