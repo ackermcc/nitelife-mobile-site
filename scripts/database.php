@@ -11,7 +11,7 @@ mysql_select_db("nitelife", $con);
 
 function get_bars(){
 
-	$result = mysql_query("SELECT name, address, slug FROM bar");
+	$result = mysql_query("SELECT name, address, slug, icon_url FROM bar");
 	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
 	return $bars;
 

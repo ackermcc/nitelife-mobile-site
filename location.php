@@ -28,7 +28,11 @@ $bars = get_bars();
  		?>
 			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-location">
-					<img src="images/no-img-icon.jpg" alt=""/>
+					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
+						<img src="images/<?=$bar['icon_url']?>" alt="" />
+					<?php }else{ ?>
+						<img src="images/no-img-icon.jpg" alt=""/>
+					<?php } ?>
 					<div class="bar-info">
 						<div class="bar-name truncate"><?=$bar['name']?></div>
 						<div class="bar-address truncate"><?=$bar['address']?></div>
