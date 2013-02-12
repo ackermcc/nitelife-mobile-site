@@ -75,6 +75,7 @@ require('scripts/database.php');
 	<header>
 		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
 		<img src="images/logo_03.png" alt="" />
+		<img id="beta-ribbon" src="images/beta-ribbon.png" alt="" />
 	</header>
 	<div class="wrapper">
 		<?php if($bar){	?>

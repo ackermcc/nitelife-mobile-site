@@ -66,6 +66,12 @@ header {
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35c4f3', endColorstr='#2eb2dd',GradientType=0 ); /* IE6-9 */
 	}
 
+	#beta-ribbon {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
 .content {
 	margin-bottom: 140px;
 	z-index: 10;
