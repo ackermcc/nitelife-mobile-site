@@ -1,6 +1,6 @@
 	
 	<footer>
-		<a href="#"><div id="location" class="active"></a>
+		<div id="location" class="active">
 			<i class="icon-map-marker"></i><br>
 			Location
 		</div>
