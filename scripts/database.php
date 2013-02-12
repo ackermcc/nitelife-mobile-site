@@ -118,9 +118,46 @@ function get_id_from_slug($slug){
 function admin_add_opentimes($id, $days, $times){
 	foreach($days as $day){
 		$query = "INSERT INTO open_times (`bar_id`, `day`, `times`) VALUES ('".$id."', '".$day."', '".$times."')";
-		echo $query;
 		$ok = mysql_query($query);
 	}
+}
+
+function admin_remove_opentimes($ids){
+	foreach($ids as $id){
+		$query = "DELETE FROM open_times WHERE id='".$id."'";
+		$ok = mysql_query($query);
+	}
+}
+
+function admin_add_specials($id, $name, $times, $startdate, $enddate, $days, $all_day=0){
+	foreach($days as $day){
+		$query = "INSERT INTO special (`bar_id`, `name`, `date_start`, `date_end`, `times`, `day`, `all_day`)
+				VALUES ('".$id."', '".$name."', '".$startdate."', '".$enddate."', '".$times."', '".$day."', '".$all_day."')";
+				$ok = mysql_query($query);
+	}
+} 
+
+function admin_add_bar($name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone){
+	$query = "INSERT INTO bar (`name`, `slug`, `address`, `zipcode`, `region`, `description`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`) 
+				values ('".$name."', '".$slug."', '".$address."', '".$zipcode."', '".$region."', '".$desc."', 
+					'".$fb."', '".$twit."', '".$four."', '".$user."', '".$pass."', '".$phone."')";
+	$success = mysql_query($query);
+	return mysql_insert_id();
+}
+
+function admin_delete_specials($ids){
+	foreach($ids as $id){
+		$query = "DELETE FROM special WHERE id='".$id."'";
+		$ok = mysql_query($query);
+	}
+}
+
+function admin_delete_bars($ids){
+	foreach($ids as $id){
+		$query = "DELETE FROM bar WHERE id='".$id."'";
+		$ok = mysql_query($query);
+	}
+	
 }
 
 
