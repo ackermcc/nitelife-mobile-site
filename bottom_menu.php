@@ -1,9 +1,9 @@
 	
 	<footer>
-		<div id="location" class="active">
+		<a href="index.php"><div id="location" class="active">
 			<i class="icon-map-marker"></i><br>
 			Location
-		</div>
+		</div></a>
 		<div id="specials">
 			<i class="icon-beer"></i><br>
 			Specials
