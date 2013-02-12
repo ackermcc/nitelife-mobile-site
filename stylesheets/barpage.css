@@ -86,12 +86,15 @@
 	}
 
 		.specials-table td:first-child {
-			width: 65%;
+			width: 60%;
 			text-align: left;
+			-webkit-hyphens: auto;
+			-moz-hyphens: auto;
+			hyphens: auto;
 		}
 
 		.specials-table td:last-child {
-			width: 35%;
+			width: 38%;
 			text-align: right;
 		}
 

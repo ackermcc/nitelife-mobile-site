@@ -115,19 +115,19 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['M']){
 						foreach($bar_info['specials']['M'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
 					<?php 	}
 					}else{ ?>
-						<tr><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
+						<tr valign="top"><td class="null-special">Sorry there are no specials today. Bummer.<td></tr>
 					<?php } ?>
 				</table>
 				<table class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['T']){
 						foreach($bar_info['specials']['T'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
@@ -139,7 +139,7 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['W']){
 						foreach($bar_info['specials']['W'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
@@ -151,7 +151,7 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['H']){
 						foreach($bar_info['specials']['H'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
@@ -163,7 +163,7 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['F']){
 						foreach($bar_info['specials']['F'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
@@ -175,7 +175,7 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['S']){
 						foreach($bar_info['specials']['S'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
@@ -187,7 +187,7 @@ $bar_info = get_bar_info($bar);
 				<table class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['U']){
 						foreach($bar_info['specials']['U'] as $special){?>
-							<tr>
+							<tr valign="top">
 								<td><div class="special"><?=$special['name']?></div></td>
 								<td><div class="special-time"><?=$special['times']?></div></td>
 							</tr>
