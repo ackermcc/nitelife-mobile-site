@@ -34,6 +34,9 @@ require('scripts/database.php');
 	<script type="application/javascript" src="js/fastclick.js"></script>
 	<script type="application/javascript" src="js/nitelife-jquery.js"></script>
 
+	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 	<script type="text/javascript">
 	var myScroll;
 	function loaded() {
