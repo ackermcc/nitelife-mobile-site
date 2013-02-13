@@ -79,9 +79,9 @@ require('scripts/database.php');
 	</header>
 	<div class="wrapper">
 		<?php if($bar){	?>
-		<div id="bar-page"><? include_once('bar.php'); ?></div>
+		<div id="middle-content"><? include_once('bar.php'); ?></div>
 		<?php }else{ ?>
-		<div id="location-page"><? include_once('location.php'); ?></div>	
+		<div id="middle-content"><? include_once('location.php'); ?></div>	
 		<?php } ?>
 	</div>
 	<? include_once('bottom_menu.php'); ?>
