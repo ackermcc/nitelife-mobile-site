@@ -11,7 +11,7 @@ require('scripts/database.php');
 
 <head>
 
-	<meta name="viewport" content="width=device-width, initial-scale=0.5" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no, " />
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -50,6 +50,18 @@ require('scripts/database.php');
 		window.addEventListener('load', function() {
 		    new FastClick(document.body);
 		}, false);
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+		  function reorient(e) {
+		    var portrait = (window.orientation % 180 == 0);
+		    $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
+		    $("#landscape").css('display','block');
+		  }
+		  window.onorientationchange = reorient;
+		  window.setTimeout(reorient, 0);
+		});
 	</script>
 
 
