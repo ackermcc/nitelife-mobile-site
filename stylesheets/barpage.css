@@ -100,9 +100,6 @@
 			margin-right: 10px;
 			max-width: 60%;
 			display: block;
-			-webkit-hyphens: auto;
-			-moz-hyphens: auto;
-			hyphens: auto;
 		}
 
 		.special-row div:last-child {
@@ -128,12 +125,13 @@
 	}
 
 	.special-time {
-		background: #42c01e;
+		/*background: #42c01e;*/
+		border: 3px solid #34c5f3;
 		border-radius: 5px;
-		color: #fff;
+		color: #34c5f3;
 		font-size: 34px;
 		font-weight: bold;
-		padding: 8px 13px;
+		padding: 5px 13px;
 		margin-bottom: 20px;
 		display: inline-block;
 	}

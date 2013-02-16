@@ -14,6 +14,8 @@ div, p, header, footer, span {
 	box-sizing: border-box;
 }
 
+body > div { -webkit-transition: all 1s ease-in-out; }
+
 .wrapper {
 	overflow: hidden;
 	margin-top: 101px;
