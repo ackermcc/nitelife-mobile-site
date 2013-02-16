@@ -58,16 +58,6 @@ require('scripts/database.php');
             document.getElementById("wrapper").style.display = "block";
         }//preloader
         window.onload = preloader;
-
-		$(document).ready(function () {
-		  function reorient(e) {
-		    var portrait = (window.orientation % 180 == 0);
-		    $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
-		    $("#landscape").css('display','block');
-		  }
-		  window.onorientationchange = reorient;
-		  window.setTimeout(reorient, 0);
-		});
 	</script>
 
 
