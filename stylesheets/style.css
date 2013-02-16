@@ -14,11 +14,6 @@ div, p, header, footer, span {
 	box-sizing: border-box;
 }
 
-.container {
-	width: 640px;
-	height: 960px;
-}
-
 .wrapper {
 	overflow: hidden;
 	margin-top: 101px;

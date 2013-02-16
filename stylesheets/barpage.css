@@ -82,24 +82,37 @@
 	.specials-table {
 		width: 100%;
 		display: none;
+		font-size: 36px;
 	}
 
-		.specials-table td:first-child {
-			width: 60%;
-			text-align: left;
+		.special-row {
+			width: 100%;
+			float: left;
+			clear: both;
+		}
+
+		.specials-table div:last-child {
+			margin-bottom: 15px;
+		}
+
+		.special-row div:first-child {
+			float: left;
+			margin-right: 10px;
+			max-width: 60%;
+			display: block;
 			-webkit-hyphens: auto;
 			-moz-hyphens: auto;
 			hyphens: auto;
 		}
 
-		.specials-table td:last-child {
-			width: 38%;
-			text-align: right;
+		.special-row div:last-child {
+			float: left;
+			/*width: 38%;*/
 		}
 
 	.active-day {
 		display: block;
-		margin: 30px 0px 50px 0px;
+		margin: 10px 0px 30px 0px;
 	}
 
 
@@ -107,7 +120,7 @@
 		background: #34c5f3;
 		border-radius: 5px;
 		color: #fff;
-		font-size: 30px;
+		font-size: 34px;
 		font-weight: bold;
 		padding: 8px 13px;
 		margin-bottom: 15px;
@@ -118,7 +131,7 @@
 		background: #42c01e;
 		border-radius: 5px;
 		color: #fff;
-		font-size: 30px;
+		font-size: 34px;
 		font-weight: bold;
 		padding: 8px 13px;
 		margin-bottom: 20px;
@@ -149,7 +162,7 @@
 		display: inline-block;
 	}
 
-	.specials-table td.null-special {
+	.specials-table div.null-special {
 		width: 100%;
 		margin: auto;
 		text-align: center;

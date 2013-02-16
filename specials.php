@@ -4,9 +4,11 @@
 // For now it grabs all of the bars.
 $bars = get_bars();
 
+?>
+
+<?php
 //Getting bar info
 $bar_info = get_bar_info($bar);
-
 ?>
 
 <script type="text/javascript">
