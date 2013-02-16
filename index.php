@@ -53,6 +53,12 @@ require('scripts/database.php');
 	</script>
 
 	<script type="text/javascript">
+		function preloader(){
+            // document.getElementById("loading").style.display = "none";
+            document.getElementById("wrapper").style.display = "block";
+        }//preloader
+        window.onload = preloader;
+
 		$(document).ready(function () {
 		  function reorient(e) {
 		    var portrait = (window.orientation % 180 == 0);
@@ -86,13 +92,15 @@ require('scripts/database.php');
 ?>
 <body>
 
+<!-- <div id="loading"></div> -->
+
 <div class="container">
 	<header>
 		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
 		<img src="images/logo_03.png" alt="" />
 		<img id="beta-ribbon" src="images/beta-ribbon.png" alt="" />
 	</header>
-	<div class="wrapper">
+	<div id="wrapper">
 		<?php if($bar){	?>
 		<div id="middle-content"><? include_once('bar.php'); ?></div>
 		<?php }else{ ?>

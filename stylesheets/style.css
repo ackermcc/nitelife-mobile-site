@@ -16,10 +16,22 @@ div, p, header, footer, span {
 
 body > div { -webkit-transition: all 1s ease-in-out; }
 
-.wrapper {
+#wrapper {
 	overflow: hidden;
 	margin-top: 101px;
+	display: none;
 }
+
+/*div#loading {             
+    top: 200 px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background: url(../images/loading.gif) no-repeat;
+    cursor: wait;                
+}*/
 
 header {
 	position: fixed;
