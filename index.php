@@ -11,6 +11,8 @@ require('scripts/database.php');
 
 <head>
 
+	<link rel="shortcut icon" href="images/nl_logo_r.png" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no, " />
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
