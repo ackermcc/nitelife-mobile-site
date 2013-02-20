@@ -107,7 +107,7 @@ if($slug){
 			admin_update_banner($id, $_FILES["banner"]["name"]);
 		 }
 		
-		 header( 'Location: bar-list.php' ) ;
+		 header( 'Location: index.php' ) ;
 		
 	}
  }
@@ -148,9 +148,9 @@ if($slug){
 	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=$bar['password']?>"></input></br>
 	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=$bar['phone']?>"></input></br>
 	<?php if($slug){ ?>
-		<br><input type="submit" name="update-bar" value="Update" /> <a href="bar-list.php">Go back to bar list</a></br>
+		<br><input type="submit" name="update-bar" value="Update" /> <a href="index.php">Go back to bar list</a></br>
 	<?php }else{ ?>
-		<br><input type="submit" name="update-bar" value="Add" /> <a href="bar-list.php">Go back to bar list</a></br>
+		<br><input type="submit" name="update-bar" value="Add" /> <a href="index.php">Go back to bar list</a></br>
 	<?php } ?>
 	</form>
 	

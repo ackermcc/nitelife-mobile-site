@@ -13,7 +13,7 @@ require('scripts/database.php');
 
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
 
-	<meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no, " />
+	<meta name="viewport" content="width=device-width, initial-scale=0.5" />
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -28,6 +28,7 @@ require('scripts/database.php');
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<link rel="stylesheet" href="stylesheets/barpage.css">
 	<link rel="stylesheet" href="stylesheets/location-style.css">
+	<link rel="stylesheet" href="stylesheets/specials.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
 
 	<script type="application/javascript" src="js/jquery.js"></script>
@@ -54,7 +55,13 @@ require('scripts/database.php');
 		}, false);
 	</script>
 
+	<script type="text/javascript">
+		$(window).load(function () {
+			$("footer div").removeClass('active');
+			$("#specials").addClass('active');
+		});
 
+	</script>
 </head>
 
 
@@ -86,7 +93,7 @@ require('scripts/database.php');
 		<?php if($bar){	?>
 		<div id="middle-content"><? include_once('bar.php'); ?></div>
 		<?php }else{ ?>
-		<div id="middle-content"><? include_once('location.php'); ?></div>	
+		<div id="middle-content"><? include_once('specials.php'); ?></div>	
 		<?php } ?>
 	</div>
 	<? include_once('bottom_menu.php'); ?>

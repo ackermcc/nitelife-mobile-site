@@ -35,7 +35,6 @@
 		    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 		}
 
-
 .specials-date-picker {
 	width: 95%;
 	margin: 20px auto 0px auto;
@@ -71,7 +70,7 @@
 
 .specials-viewer, .hh-viewer {
 	width: 95%;
-	padding: 25px 25px 10px 25px;
+	padding: 25px 25px 5px 25px;
 	margin: auto;
 	background: #f9f9f9;
 	border-left: 1px solid #d0d0d0;
@@ -83,21 +82,34 @@
 	.specials-table {
 		width: 100%;
 		display: none;
+		font-size: 36px;
 	}
 
-		.specials-table td:first-child {
-			width: 65%;
-			text-align: left;
+		.special-row {
+			width: 100%;
+			float: left;
+			clear: both;
 		}
 
-		.specials-table td:last-child {
-			width: 35%;
-			text-align: right;
+		.specials-table div:last-child {
+			margin-bottom: 15px;
+		}
+
+		.special-row div:first-child {
+			float: left;
+			margin-right: 10px;
+			max-width: 60%;
+			display: block;
+		}
+
+		.special-row div:last-child {
+			float: left;
+			/*width: 38%;*/
 		}
 
 	.active-day {
 		display: block;
-		margin: 30px 0px 50px 0px;
+		margin: 10px 0px 30px 0px;
 	}
 
 
@@ -105,7 +117,7 @@
 		background: #34c5f3;
 		border-radius: 5px;
 		color: #fff;
-		font-size: 30px;
+		font-size: 34px;
 		font-weight: bold;
 		padding: 8px 13px;
 		margin-bottom: 15px;
@@ -113,12 +125,13 @@
 	}
 
 	.special-time {
-		background: #42c01e;
+		/*background: #42c01e;*/
+		border: 3px solid #34c5f3;
 		border-radius: 5px;
-		color: #fff;
-		font-size: 30px;
+		color: #34c5f3;
+		font-size: 34px;
 		font-weight: bold;
-		padding: 8px 13px;
+		padding: 5px 13px;
 		margin-bottom: 20px;
 		display: inline-block;
 	}
@@ -147,7 +160,7 @@
 		display: inline-block;
 	}
 
-	.specials-table td.null-special {
+	.specials-table div.null-special {
 		width: 100%;
 		margin: auto;
 		text-align: center;
