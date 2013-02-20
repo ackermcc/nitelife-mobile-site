@@ -33,7 +33,7 @@ function get_bar_info($slug){
 		}
 	}
 	
-	$openResults = mysql_query("SELECT * FROM open_times WHERE bmysql_queryar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+	$openResults = mysql_query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
 	if($openResults){
 		for ($open_times = array(); $tmp = mysql_fetch_array($openResults);){
 			$open_times[$tmp['day']] = $tmp;
@@ -73,7 +73,6 @@ function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $t
 
 function admin_update_icon($id, $filename){
 	$query = "UPDATE bar SET icon_url='".$filename."' WHERE id='".$id."'";
-	echo $query;
 	$ok = mysql_query($query);
 	if($ok) return true;
 	else return false;

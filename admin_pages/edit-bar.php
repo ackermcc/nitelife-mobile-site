@@ -5,7 +5,6 @@ $slug = $_REQUEST['bar'];
 
 if($slug){
 	
-	echo $slug;
 	$id = get_id_from_slug($slug);
 
 	if(isset($_POST['update-bar'])){
@@ -101,7 +100,6 @@ if($slug){
 		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
 			move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
 			admin_update_icon($id, $_FILES["icon"]["name"]);
-			echo $_FILES["icon"]["name"];
 		 }
 		 
 		 if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){

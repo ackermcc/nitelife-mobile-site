@@ -207,7 +207,6 @@ $bar_info = get_bar_info($bar);
 			<img src="images/info-flag.png" />
 			<div class="info-section">
 				<div class="left-info"> 
-					
 					<?php if($bar_info['open_times']['U']) {	?>
 						<span>U</span> <?=$bar_info['open_times']['U']['times']?><br>
 					<?php } ?>
