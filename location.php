@@ -31,7 +31,7 @@ $bars = get_bars();
 					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
 						<img src="images/<?=$bar['icon_url']?>" alt="" />
 					<?php }else{ ?>
-						<img src="images/no-img-icon.jpg" alt=""/>
+						<img src="icons/no-img-icon.jpg" alt=""/>
 					<?php } ?>
 					<div class="bar-info">
 						<div class="bar-name truncate"><?=$bar['name']?></div>
