@@ -72,8 +72,8 @@ input#location-search {
 	border: 1px solid #ccc;
 	background: #fff;
 	float: left;
-	width: 141px;
-	height: 141px;
+	width: 100px;
+	height: 100px;
 }
 
 	.bar-icon img {
@@ -83,7 +83,7 @@ input#location-search {
 .bar-info {
 	float: left;
 	margin-left: 15px; 
-	width: 67%;
+	width: 65%;
 }
 
 	.bar-name {
