@@ -14,6 +14,7 @@ $bars = get_bars();
 			<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
 			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
 		</div>
+		<input id="location-search" placeholder="search locations"/>
 		
 		<?php foreach($bars as $bar){
 		/* 
@@ -29,9 +30,9 @@ $bars = get_bars();
 			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-location">
 					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
-						<img src="images/<?=$bar['icon_url']?>" alt="" />
+						<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
 					<?php }else{ ?>
-						<img src="icons/no-img-icon.jpg" alt=""/>
+						<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
 					<?php } ?>
 					<div class="bar-info">
 						<div class="bar-name truncate"><?=$bar['name']?></div>

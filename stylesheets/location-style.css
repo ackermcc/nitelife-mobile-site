@@ -36,6 +36,22 @@ a.bar-page-link {
 			text-shadow: 0px 1px 0px #fff;
 		}
 
+input#location-search {
+	width: 89%;
+	height: 60px;
+	margin: 10px auto;
+	margin-left: 2%;
+	border-color: #d0d0d0;
+	border-radius: 40px;
+	line-height: 60px;
+	padding-left: 25px;
+	font-size: 36px;
+}
+
+	::-webkit-input-placeholder { /* WebKit browsers */
+    	font-size: 36px;
+	}
+
 .bar-location {
 	width: 95%;
 	margin: 10px auto 0px auto;
@@ -52,11 +68,17 @@ a.bar-page-link {
 
 }
 
-.bar-location img {
+.bar-icon {
 	border: 1px solid #ccc;
+	background: #fff;
 	float: left;
-	width: 15%;
+	width: 141px;
+	height: 141px;
 }
+
+	.bar-icon img {
+		width: 100%;
+	}
 
 .bar-info {
 	float: left;
