@@ -30,7 +30,7 @@ if($slug){
 		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
 			move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
 			admin_update_icon($id, $_FILES["icon"]["name"]);
-			echo $_FILES["icon"]["name"];
+			//echo $_FILES["icon"]["name"];
 		 }
 		 
 		 if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){
@@ -107,7 +107,7 @@ if($slug){
 			admin_update_banner($id, $_FILES["banner"]["name"]);
 		 }
 		
-		 header( 'Location: index.php' ) ;
+		 header( 'Location: edit-bar.php?bar='.$slug ) ;
 		
 	}
  }
@@ -135,8 +135,22 @@ if($slug){
 	<br>ID: <?=$bar['id']?></br>
 	<br>Name: <input type="text" name="name" style="width:250px;" value="<?=$bar['name']?>"></input></br>
 	<br>Slug: <input type="text" name="slug" style="width:250px;" value="<?=$bar['slug']?>"></input></br>
-	<br>Icon: <?php if(!$bar['icon_url']){ echo 'No Icon'; }else{ ?><img src="../icons/<?=$bar['icon_url']?>" /> <?php } ?><input type="file" name="icon"></br>
-	<br>Banner: <?php if(!$bar['banner_url']){ echo 'No Banner'; }else{ ?><img src="../banners/<?=$bar['banner_url']?>" /> <?php } ?><input type="file" name="banner"></br>
+	
+	<br>Icon: 
+			<?php if(!$bar['icon_url']){ 
+				echo 'No Icon'; 
+			}else{ ?>
+				<img src="../icons/<?=$bar['icon_url']?>" />
+			<?php } ?>
+			<input type="file" name="icon"></br>
+	<br>Banner: 
+			<?php if(!$bar['banner_url']){ 
+				echo 'No Banner'; 
+			}else{ ?>
+				<img src="../banners/<?=$bar['banner_url']?>" /> 
+			<?php } ?>
+			<input type="file" name="banner"></br>
+
 	<br>Address: <input type="text" name="address" style="width:250px;" value="<?=$bar['address']?>"></input></br>
 	<br>Zipcode: <input type="text" name="zipcode" style="width:250px;" value="<?=$bar['zipcode']?>"></input></br>
 	<br>Region: <input type="text" name="region" style="width:250px;" value="<?=$bar['region']?>"></input></br>
@@ -181,7 +195,7 @@ if($slug){
 		</table>
 		<input type="submit" name="delete-specials" value="Delete Specials" />
 		<h3>Add New</h3>
-		Name:<input type="text" style="width:200;" name="new-special-name" />
+		Name:<input type="text" style="width:200;" name="new-special-name" maxlength="80" />
 		Times:<input type="text" name="new-special-times" />
 		Date Start:<input type="date" name="special-start-date" />
 		Date End:<input type="date" name="special-end-date" /> 
