@@ -92,8 +92,8 @@ $bar_info = get_bar_info($bar);
 		<div class="section">
 			<div class="video-section">
 				<div class="bar-title"><?=$bar_info['info']['name']?></div>
-				<?php if($bar['banner_url'] && $bar['banner_url'] != ''){ ?>
-					<img src="banners/<?=$bar['banner_url']?>" alt="" />
+				<?php if($bar_info['banner_url'] && $bar_info['banner_url'] != ''){ ?>
+					<img src="images/<?=$bar_info['banner_url']?>" alt="" />
 				<?php }else{ ?>
 					<img src="images/no-img-banner.jpg" alt="" />
 				<?php } ?>
