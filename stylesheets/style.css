@@ -78,6 +78,10 @@ header {
 	overflow: auto;
 }
 
+.container {
+	display: block;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -119,5 +123,29 @@ footer {
 		font-size: 50px;
 		text-align: center;
 	}
+
+#rotation-issue {
+		display: none;
+}
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) and (orientation : landscape) {
+	.container {
+		display: none;
+	}
+
+	.icon-mobile-phone {
+		font-size: 300px;
+	}
+
+	#rotation-issue {
+		display: block;
+		font-size: 60px;
+		color: #999;
+		text-align: center;
+		margin-top: 50px;
+	}
+}
 
 
