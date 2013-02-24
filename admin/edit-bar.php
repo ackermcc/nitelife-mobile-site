@@ -117,10 +117,24 @@ if($slug){
 <!DOCTYPE html>
 
 <html>
-
 <head>
+	<link rel="shortcut icon" href="images/nl_logo_r.png" />
+	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="../css/font-awesome.css">
+	<meta charset="utf-8" />
+	<title>NiteLife - Admin</title>
+
+	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
+
 <body>
+<header>
+	<img src="../images/logo_admin.png" alt="" />
+</header>
+
+<div class="edit-container">
+	<div>
 <?php if($slug){ ?>
 <h2>Bar Information</h2>
 <?php }else{ ?>
@@ -167,13 +181,15 @@ if($slug){
 		<br><input type="submit" name="update-bar" value="Add" /> <a href="index.php">Go back to bar list</a></br>
 	<?php } ?>
 	</form>
-	
+	</div>
+
+	<div>
 	<?php if($slug){ ?>
 		<h2>Specials</h2>
 		<form method="post">
-		<table border="1">
+		<table cellpadding="0" cellspacing="0" border="0">
 			<tr>
-				<td>ID</td>
+				<!-- <td>ID</td> -->
 				<td>Name</td>
 				<td>Times</td>
 				<td>Start Date</td>
@@ -183,7 +199,7 @@ if($slug){
 			</tr>
 		<?php foreach($specials as $special){ ?>
 				<tr>
-					<td><?=$special['id']?></td>
+					<!-- <td><?=$special['id']?></td> -->
 					<td><?=$special['name']?></td>
 					<td><?=$special['times']?></td>
 					<td><?=$special['date_start']?></td>
@@ -209,16 +225,16 @@ if($slug){
 		<input type="submit" name="add-special" value="Add" />
 		
 		<h2>Open Times</h2>
-		<table border="1">
+		<table cellpadding="0" cellspacing="0" border="0"> 
 			<tr>
-				<td>ID</td>
+				<!-- <td>ID</td> -->
 				<td>Times</td>
 				<td>Day</td>
 				<td></td>
 			</tr>
 		<?php foreach($opentimes as $opentime){ ?>
 				<tr>
-					<td><?=$opentime['id']?></td>
+					<!-- <td><?=$opentime['id']?></td> -->
 					<td><?=$opentime['times']?></td>
 					<td><?=$opentime['day']?></td>
 					<td><input type="checkbox" name="delete-open-times[]" value="<?=$opentime['id']?>"></td>
@@ -238,9 +254,10 @@ if($slug){
 		<input type="submit" name="add-open" value="Add" />
 		</form>
 	<?php } ?>
-	
-	
 
 </form>
+</div>
+</div>
+
 </body>
 </html>

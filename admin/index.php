@@ -13,29 +13,51 @@ $bars = admin_get_bars();
 
 
 ?>
-<form method="post">
-<?php if($message) echo $message; ?>
-<table border="1">
-	<tr>
-	<td>Name</td>
-	<td>Address</td>
-	<td>Description</td>
-	<td>Slug</td>
-	<td>Facebook</td>
-	<td>Twitter</td>
-	<td></td>
-	</tr>
-	<?php foreach ($bars as $bar){ ?>
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="shortcut icon" href="images/nl_logo_r.png" />
+	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="../css/font-awesome.css">
+	<meta charset="utf-8" />
+	<title>NiteLife - Admin</title>
+
+	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+
+<body>
+<header>
+	<img src="../images/logo_admin.png" alt="" />
+	<div id="add-bar"><a href="edit-bar.php"><i class="icon-plus"></i></a></div>
+</header>
+
+<div class="container">
+	<form method="post">
+	<?php if($message) echo $message; ?>
+	<table cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td><a href="edit-bar.php?bar=<?=$bar['slug']?>"><?=$bar['name']?></a></td>
-			<td><?=$bar['address']?></td>
-			<td><?=$bar['description']?></td>
-			<td><?=$bar['slug']?></td>
-			<td><?=$bar['facebook']?></td>
-			<td><?=$bar['twitter']?></td>
-			<td><input type="checkbox" name="delete-bars[]" value="<?=$bar['id']?>"></td>
+			<td>Name</td>
+			<td>Address</td>
+			<!-- <td>Description</td> -->
+			<td>Slug</td>
+			<td></td>
 		</tr>
-	<?}	?>
-</table>
-<a href="edit-bar.php">Add Bar</a><input type="submit" name="delete-bar" value="Delete Bars" />
-</form>
+		<?php foreach ($bars as $bar){ ?>
+			<tr>
+				<td><a class="bar-name-link" href="edit-bar.php?bar=<?=$bar['slug']?>"><?=$bar['name']?></a></td>
+				<td><?=$bar['address']?></td>
+				<!-- <td><?=$bar['description']?></td> -->
+				<td><?=$bar['slug']?></td>
+				<td><input type="checkbox" name="delete-bars[]" value="<?=$bar['id']?>"></td>
+			</tr>
+		<?}	?>
+	</table>
+	<input type="submit" name="delete-bar" value="Delete Bars" />
+	</form>
+</div>
+
+</body>
+</html>
+
