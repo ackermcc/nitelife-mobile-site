@@ -161,7 +161,7 @@ if($slug){
 			<?php if(!$bar['banner_url']){ 
 				echo 'No Banner'; 
 			}else{ ?>
-				<img src="../banners/<?=$bar['banner_url']?>" /> 
+				<img id="banner" src="../banners/<?=$bar['banner_url']?>" /> 
 			<?php } ?>
 			<input type="file" name="banner"></br>
 

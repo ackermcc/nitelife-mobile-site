@@ -88,4 +88,7 @@ table tr:nth-child(odd) {
 		text-decoration: underline;
 	}
 
+#banner {
+	width: 40%;
+}
 
