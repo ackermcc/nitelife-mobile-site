@@ -3,12 +3,7 @@
 // will change this later to be location specific.  
 // For now it grabs all of the bars.
 $bars = get_bars();
-
-?>
-
-<?php
-//Getting bar info
-$bar_info = get_bar_info($bar);
+$specials = get_bar_specials();
 ?>
 
 <script type="text/javascript">
@@ -105,8 +100,8 @@ $(window).load(function(){
 				<div id="<?=$bar['slug']?>" class="bar-special-index">
 					<div class="bar-name truncate2"><?=$bar['name']?></div>
 						<div class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['M']){
-								foreach($bar_info['specials']['M'] as $special){?>
+							<?php if($specials[$bar['id']]['M']){
+								foreach($specials[$bar['id']]['M'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -117,8 +112,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['T']){
-								foreach($bar_info['specials']['T'] as $special){?>
+							<?php if($specials[$bar['id']]['T']){
+								foreach($specials[$bar['id']]['T'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -129,8 +124,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['W']){
-								foreach($bar_info['specials']['W'] as $special){?>
+							<?php if($specials[$bar['id']]['W']){
+								foreach($specials[$bar['id']]['W'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -141,8 +136,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['H']){
-								foreach($bar_info['specials']['H'] as $special){?>
+							<?php if($specials[$bar['id']]['H']){
+								foreach($specials[$bar['id']]['H'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -153,8 +148,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['F']){
-								foreach($bar_info['specials']['F'] as $special){?>
+							<?php if($specials[$bar['id']]['F']){
+								foreach($specials[$bar['id']]['F'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -165,8 +160,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['S']){
-								foreach($bar_info['specials']['S'] as $special){?>
+							<?php if($specials[$bar['id']]['S']){
+								foreach($specials[$bar['id']]['S'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
@@ -177,8 +172,8 @@ $(window).load(function(){
 							<?php } ?>
 						</div>
 						<div class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($bar_info['specials']['U']){
-								foreach($bar_info['specials']['U'] as $special){?>
+							<?php if($specials[$bar['id']]['U']){
+								foreach($specials[$bar['id']]['U'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>

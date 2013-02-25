@@ -11,7 +11,7 @@ mysql_select_db("nitelife", $con);
 
 function get_bars(){
 
-	$result = mysql_query("SELECT name, address, slug, icon_url FROM bar");
+	$result = mysql_query("SELECT name, address, slug, icon_url, id FROM bar");
 	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
 	return $bars;
 
@@ -156,6 +156,24 @@ function admin_delete_bars($ids){
 		$query = "DELETE FROM bar WHERE id='".$id."'";
 		$ok = mysql_query($query);
 	}
+	
+}
+
+function get_bar_specials(){
+	$query = "SELECT id FROM bar";
+	$results = mysql_query($query);
+	for ($barids = array(); $tmp = mysql_fetch_array($results);) $barids[] = $tmp;
+
+	$specials = array(); 
+
+	foreach ($barids as $barid){
+		$specialquery = "SELECT special.* FROM special WHERE bar_id='".$barid['id']."'";
+		$specialresults = mysql_query($specialquery);
+		for ($specials[$barid['id']] = array(); $tmp = mysql_fetch_array($specialresults);){
+			$specials[$barid['id']][$tmp['day']][] = $tmp;
+		}
+	}
+	return $specials;
 	
 }
 
