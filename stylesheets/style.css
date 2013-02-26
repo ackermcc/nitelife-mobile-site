@@ -83,6 +83,7 @@ header {
 }
 
 footer {
+	display: block;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
@@ -131,7 +132,7 @@ footer {
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) and (orientation : landscape) {
-	.container {
+	.container, footer {
 		display: none;
 	}
 

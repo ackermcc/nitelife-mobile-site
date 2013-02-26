@@ -83,6 +83,11 @@ require('scripts/database.php');
 ?>
 <body>
 
+<div id="rotation-issue">
+	<i class="icon-mobile-phone"></i><br>
+	Ahh! Turn me back upright!
+</div>
+
 <div class="container">
 	<header>
 		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
