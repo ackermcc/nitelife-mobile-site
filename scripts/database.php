@@ -159,24 +159,26 @@ function admin_delete_bars($ids){
 	
 }
 
-function get_bar_specials(){
-	$query = "SELECT id FROM bar";
-	$results = mysql_query($query);
-	for ($barids = array(); $tmp = mysql_fetch_array($results);) $barids[] = $tmp;
-
+function get_bar_specials($bars){
 	$specials = array(); 
 
-	foreach ($barids as $barid){
-		$specialquery = "SELECT special.* FROM special WHERE bar_id='".$barid['id']."'";
+	foreach ($bars as $bar){
+		$specialquery = "SELECT special.* FROM special WHERE bar_id='".$bar['id']."'";
 		$specialresults = mysql_query($specialquery);
-		for ($specials[$barid['id']] = array(); $tmp = mysql_fetch_array($specialresults);){
-			$specials[$barid['id']][$tmp['day']][] = $tmp;
+		for ($specials[$bar['id']] = array(); $tmp = mysql_fetch_array($specialresults);){
+			$specials[$bar['id']][$tmp['day']][] = $tmp;
 		}
 	}
 	return $specials;
 	
 }
 
+function get_bars_for_specials_page(){
+	$result = mysql_query("SELECT name, address, slug, icon_url, id FROM bar ORDER BY RAND() LIMIT 8");
+	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
+	return $bars;
+
+}
 
 
 

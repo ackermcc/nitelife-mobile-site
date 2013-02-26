@@ -2,8 +2,9 @@
 
 // will change this later to be location specific.  
 // For now it grabs all of the bars.
-$bars = get_bars();
-$specials = get_bar_specials();
+//$bars = get_bars();
+$bars = get_bars_for_specials_page();
+$specials = get_bar_specials($bars);
 ?>
 
 <script type="text/javascript">
@@ -85,104 +86,88 @@ $(window).load(function(){
 			<div id="next-date"><i class="icon-chevron-right"></i></div>
 		</div>
 		
-		<?php foreach($bars as $bar){
-		/* 
+		<?php foreach($bars as $bar){ ?>
 		
-		now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
-		You can get the bar slug using <?=$bar['slug']?>
-		So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
-		a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
-		slug present.
-
-		*/
- 		?>
 			<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-special-index">
 					<div class="bar-name truncate2"><?=$bar['name']?></div>
-						<div class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['M']){
-								foreach($specials[$bar['id']]['M'] as $special){?>
+					
+						<?php if($specials[$bar['id']]['M']){ ?>
+							<div class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
+									<?php foreach($specials[$bar['id']]['M'] as $special){ ?>
+										<div class="special-row" valign="top">
+											<div class="special"><?=$special['name']?></div>
+											<div class="special-time"><?=$special['times']?></div>
+										</div>
+									<?php } ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['T']){ ?>
+							<div class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['T'] as $special){ ?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="tuesday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['T']){
-								foreach($specials[$bar['id']]['T'] as $special){?>
+								<?php } ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['W']){ ?>
+							<div class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['W'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="wednesday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['W']){
-								foreach($specials[$bar['id']]['W'] as $special){?>
+							<?php 	} ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['H']){ ?>
+							<div class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['H'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="thursday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['H']){
-								foreach($specials[$bar['id']]['H'] as $special){?>
+							<?php 	} ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['F']){ ?>
+							<div class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['F'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="friday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['F']){
-								foreach($specials[$bar['id']]['F'] as $special){?>
+								<?php 	} ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['S']){ ?>
+							<div class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['S'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="saturday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['S']){
-								foreach($specials[$bar['id']]['S'] as $special){?>
+							<?php 	} ?>
+							</div>
+						<?php } ?>
+						
+						<?php if($specials[$bar['id']]['U']){ ?>
+							<div class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach($specials[$bar['id']]['U'] as $special){?>
 									<div class="special-row" valign="top">
 										<div class="special"><?=$special['name']?></div>
 										<div class="special-time"><?=$special['times']?></div>
 									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
-						<div class="specials-table" id="sunday-specials" border="0" cellspacing="0" cellpadding="0">
-							<?php if($specials[$bar['id']]['U']){
-								foreach($specials[$bar['id']]['U'] as $special){?>
-									<div class="special-row" valign="top">
-										<div class="special"><?=$special['name']?></div>
-										<div class="special-time"><?=$special['times']?></div>
-									</div>
-							<?php 	}
-							}else{ ?>
-								<div class="null-special">Sorry there are no specials today. Bummer.</div>
-							<?php } ?>
-						</div>
+							<?php 	} ?>
+							</div>
+						<?php } ?>
 					</div>
 					<div class="see-more-specials">
 							...
