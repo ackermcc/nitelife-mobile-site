@@ -91,12 +91,14 @@ $bar_info = get_bar_info($bar);
 	<div class="content">
 		<div class="section">
 			<div class="video-section">
+				<div class="inner-video-section">
 				<div class="bar-title"><?=$bar_info['info']['name']?></div>
 				<?php if($bar_info['info']['banner_url'] && $bar_info['info']['banner_url'] != ''){ ?>
 					<img src="banners/<?=$bar_info['info']['banner_url']?>" alt="" />
 				<?php }else{ ?>
-					<img src="images/no-img-banner.jpg" alt="" />
+					<img id="noimg" src="images/no-img-banner.jpg" alt="" />
 				<?php } ?>
+				</div>
 			</div>
 		</div>
 	
