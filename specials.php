@@ -14,7 +14,7 @@ $divIdNames = array(
 
 <script type="text/javascript">
 $(window).load(function(){
-/*
+
 	var d = new Date();
 	var day = d.getDay();
 
@@ -22,37 +22,30 @@ $(window).load(function(){
 		if (day == 0) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#sunday-specials").addClass('active-day');
-			$(".date-picker1 td:last-child").addClass('active-date');
 			$("#current-date").text("Sunday");
 		} else if (day == 1) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#monday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(1)").addClass('active-date');
 			$("#current-date").text("Monday");
 		} else if (day == 2) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#tuesday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(2)").addClass('active-date');
 			$("#current-date").text("Tuesday");
 		} else if (day ==3 ) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#wednesday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(3)").addClass('active-date');
 			$("#current-date").text("Wednesday");
 		} else if (day == 4) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#thursday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(4)").addClass('active-date');
 			$("#current-date").text("Thursday");
 		} else if (day == 5) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#friday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(5)").addClass('active-date');
 			$("#current-date").text("Friday");
 		} else if (day == 6) {
 			$(".specials-table").removeClass('active-day');
 			$("div.specials-table#saturday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(6)").addClass('active-date');
 			$("#current-date").text("Saturday");
 		}
 	}
@@ -80,7 +73,7 @@ $(window).load(function(){
 	});
 
 	});
-*/
+
 	</script>
 
 
@@ -96,7 +89,7 @@ $(window).load(function(){
 		
 			$bars = get_bars_and_specials($day);
 			if(count($bars) > 0){ ?>
-				<div id="<?=$divIdNames[$day]?>">
+				<div class="specials-table" id="<?=$divIdNames[$day]?>">
 				<?php foreach($bars['bars'] as $bar){ ?>
 
 					<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
