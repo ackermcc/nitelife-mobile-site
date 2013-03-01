@@ -8,8 +8,8 @@
 			<i class="icon-beer"></i><br>
 			Specials
 		</div></a>
-		<div id="my-nl">
+		<!-- <div id="my-nl">
 			<i class="icon-user"></i><br>
 			My NL
-		</div>
+		</div> -->
 	</footer>
