@@ -206,10 +206,9 @@ $bar_info = get_bar_info($bar);
 		<div class="section">
 			<img src="images/info-flag.png" />
 			<div class="info-section">
+				<div class="bar-information"><?=$bar_info['info']['address']?></div>
+				<hr>
 				<div class="left-info"> 
-					<?php if($bar_info['open_times']['U']) {	?>
-						<span>U</span> <?=$bar_info['open_times']['U']['times']?><br>
-					<?php } ?>
 					<?php if($bar_info['open_times']['M']) {	?>
 						<span>M</span> <?=$bar_info['open_times']['M']['times']?><br>
 					<?php } ?>
@@ -219,16 +218,19 @@ $bar_info = get_bar_info($bar);
 					<?php if($bar_info['open_times']['W']) {	?>
 						<span>W</span> <?=$bar_info['open_times']['W']['times']?><br>
 					<?php } ?>
-				</div>
-				<div class="right-info"> 
 					<?php if($bar_info['open_times']['H']) {	?>
 						<span>R</span> <?=$bar_info['open_times']['H']['times']?><br>
 					<?php } ?>
+				</div>
+				<div class="right-info"> 
 					<?php if($bar_info['open_times']['F']) {	?>
 						<span>F</span> <?=$bar_info['open_times']['F']['times']?><br>
 					<?php } ?>
 					<?php if($bar_info['open_times']['S']) {	?>
 						<span>S</span> <?=$bar_info['open_times']['S']['times']?><br>
+					<?php } ?>
+					<?php if($bar_info['open_times']['U']) {	?>
+						<span>U</span> <?=$bar_info['open_times']['U']['times']?><br>
 					<?php } ?>
 				</div>
 				</div>
