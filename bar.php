@@ -206,7 +206,10 @@ $bar_info = get_bar_info($bar);
 		<div class="section">
 			<img src="images/info-flag.png" />
 			<div class="info-section">
-				<div class="bar-information"><?=$bar_info['info']['address']?></div>
+				<div class="bar-information">
+					<?=$bar_info['info']['address']?>, <?=$bar_info['info']['zipcode']?><br>
+					<span><?=$bar_info['info']['phone']?></span>
+				</div>
 				<hr>
 				<div class="left-info"> 
 					<?php if($bar_info['open_times']['M']) {	?>
