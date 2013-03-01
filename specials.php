@@ -95,10 +95,10 @@ $(window).load(function(){
 		<?php foreach($days as $day){ 
 		
 			$bars = get_bars_and_specials($day);
-			if(count($bars) > 0){
-				foreach($bars['bars'] as $bar){
-			?>
+			if(count($bars) > 0){ ?>
 				<div id="<?=$divIdNames[$day]?>">
+				<?php foreach($bars['bars'] as $bar){ ?>
+
 					<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
 					
 						<div id="<?=$bar['slug']?>" class="bar-special-index">
@@ -115,9 +115,9 @@ $(window).load(function(){
 							...
 						</div>
 					</a>
-				</div>
 					
-			<? 	}
+			<?php 	} ?>
+				</div> <?php
 		
 			}
 		
