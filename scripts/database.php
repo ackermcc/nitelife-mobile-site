@@ -159,26 +159,31 @@ function admin_delete_bars($ids){
 	
 }
 
-function get_bar_specials($bars){
-	$specials = array(); 
+function get_bars_and_specials($day){
 
-	foreach ($bars as $bar){
-		$specialquery = "SELECT special.* FROM special WHERE bar_id='".$bar['id']."'";
-		$specialresults = mysql_query($specialquery);
-		for ($specials[$bar['id']] = array(); $tmp = mysql_fetch_array($specialresults);){
-			$specials[$bar['id']][$tmp['day']][] = $tmp;
-		}
-	}
-	return $specials;
+	$query_for_bars = "SELECT slug, name, id FROM `bar` WHERE id IN (SELECT bar_id FROM `special` WHERE day='".$day."') ORDER BY RAND() LIMIT 8";
+	$results = mysql_query($query_for_bars);
 	
-}
+	for ($bars = array(); $tmp = mysql_fetch_array($results);) $bars['bars'][] = $tmp;
 
-function get_bars_for_specials_page(){
-	$result = mysql_query("SELECT name, address, slug, icon_url, id FROM bar ORDER BY RAND() LIMIT 8");
-	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
+	// Now get all the specials for these bars
+	$all_specials = array();
+	
+	if(count($bars['bars']) > 0){
+		foreach($bars['bars'] as $bar){
+			
+			$query_for_specials = "SELECT * FROM `special` WHERE bar_id='".$bar['id']."' AND day='".$day."'";
+			$results = mysql_query($query_for_specials);
+			for ($specials = array(); $tmp = mysql_fetch_array($results);) $specials[] = $tmp;
+			$all_specials[$bar['id']][] = $specials;
+			
+		}	
+		$bars['specials'] = $all_specials;
+	}
 	return $bars;
 
 }
+
 
 
 

@@ -1,14 +1,20 @@
 <?php
 
-// will change this later to be location specific.  
-// For now it grabs all of the bars.
-//$bars = get_bars();
-$bars = get_bars_for_specials_page();
-$specials = get_bar_specials($bars);
+$days = array("M", "T", "W", "H", "F", "S", "U");
+$divIdNames = array(
+    "M"  => "monday-specials",
+    "T" => "tuesday-specials",
+    "W" => "wednesday-specials",
+	"H" => "thursday-specials",
+	"F" => "friday-specials",
+	"S" => "saturday-specials",
+	"U" => "sunday-specials"
+	);
 ?>
 
 <script type="text/javascript">
 $(window).load(function(){
+/*
 	var d = new Date();
 	var day = d.getDay();
 
@@ -74,7 +80,7 @@ $(window).load(function(){
 	});
 
 	});
-
+*/
 	</script>
 
 
@@ -86,8 +92,38 @@ $(window).load(function(){
 			<div id="next-date"><i class="icon-chevron-right"></i></div>
 		</div>
 		
-		<?php foreach($bars as $bar){ ?>
+		<?php foreach($days as $day){ 
 		
+			$bars = get_bars_and_specials($day);
+			if(count($bars) > 0){
+				foreach($bars['bars'] as $bar){
+			?>
+				<div id="<?=$divIdNames[$day]?>">
+					<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
+					
+						<div id="<?=$bar['slug']?>" class="bar-special-index">
+							<div class="bar-name truncate2"><?=$bar['name']?></div>
+						
+							<?php foreach($bars['specials'][$bar['id']][0] as $special){							?>
+								<div class="special-row" valign="top">
+									<div class="special"><?=$special['name']?></div>
+									<div class="special-time"><?=$special['times']?></div>
+								</div>
+							<?php } ?>
+						</div>
+						<div class="see-more-specials">
+							...
+						</div>
+					</a>
+				</div>
+					
+			<? 	}
+		
+			}
+		
+		
+		}
+		/*
 			<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-special-index">
 					<div class="bar-name truncate2"><?=$bar['name']?></div>
@@ -174,7 +210,7 @@ $(window).load(function(){
 					</div>
 				</a>
 					
-			<? } ?>
+			<? } */ ?>
 
 		</div>
 
