@@ -6,7 +6,7 @@
 		</div></a>
 		<a href="specials-page.php"><div id="specials">
 			<i class="icon-beer"></i><br>
-			Specials
+			The Buzz
 		</div></a>
 		<!-- <div id="my-nl">
 			<i class="icon-user"></i><br>
