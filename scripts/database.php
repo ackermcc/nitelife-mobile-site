@@ -1,13 +1,6 @@
 <?php
 
-$con = mysql_connect("localhost","root","");
-if (!$con)
-{
-	die('Could not connect: ' . mysql_error());
-}
-
-mysql_select_db("nitelife", $con);
-
+require('authenticate.php');
 
 function get_bars(){
 
