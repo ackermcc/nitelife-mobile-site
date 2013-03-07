@@ -2,6 +2,92 @@
 
 require('authenticate.php');
 
+if($_GET['lat'] && $_GET['lng']){
+
+getClosestBars($_GET['lat'], $_GET['lng']);
+
+
+}elseif($_GET['search']){
+
+	getBarsWithSearch($_GET['search']);
+	
+}
+
+function getBarsWithSearch($search){
+
+	$getSearched = "SELECT name, address, slug, icon_url, id FROM `bar` WHERE name LIKE '".$search."%'";
+	$result = mysql_query($getSearched);
+	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
+	if(count($bars) != 0){
+		foreach($bars as $bar){
+			/* 
+			
+			now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
+			You can get the bar slug using <?=$bar['slug']?>
+			So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
+			a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
+			slug present.
+
+			*/
+			?>
+				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
+					<div id="<?=$bar['slug']?>" class="bar-location">
+						<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
+							<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
+						<?php }else{ ?>
+							<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
+						<?php } ?>
+						<div class="bar-info">
+							<div class="bar-name truncate"><?=$bar['name']?></div>
+							<div class="bar-address truncate"><?=$bar['address']?></div>
+						</div>
+						<div class="bar-miles"></div>
+					</div>
+				</a>
+					
+			<? }
+	}else{
+		echo "Sorry there are no bars with that name";
+	
+	}
+}
+
+function getClosestBars($lat, $lng){
+
+	$getClosest = "SELECT name, address, slug, icon_url, id FROM `bar` ORDER BY ABS((ABS(lat)-".abs($lat).") + (ABS(lng)-".abs($lng).")) ASC LIMIT 10";
+	$result = mysql_query($getClosest);
+	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
+	foreach($bars as $bar){
+		/* 
+		
+		now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
+		You can get the bar slug using <?=$bar['slug']?>
+		So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
+		a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
+		slug present.
+
+		*/
+ 		?>
+			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
+				<div id="<?=$bar['slug']?>" class="bar-location">
+					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
+						<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
+					<?php }else{ ?>
+						<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
+					<?php } ?>
+					<div class="bar-info">
+						<div class="bar-name truncate"><?=$bar['name']?></div>
+						<div class="bar-address truncate"><?=$bar['address']?></div>
+					</div>
+					<div class="bar-miles"></div>
+				</div>
+			</a>
+				
+		<? }
+	//$sendThis = json_encode($bars);
+	//echo $sendThis;
+}
+
 function get_bars(){
 
 	$result = mysql_query("SELECT name, address, slug, icon_url, id FROM bar");

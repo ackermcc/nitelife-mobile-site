@@ -14,9 +14,11 @@ $bars = get_bars();
 			<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
 			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
 		</div>
-		<input id="location-search" placeholder="search locations"/>
-		
-		<?php foreach($bars as $bar){
+		<input id="location-search" placeholder="search locations" onkeydown="if (event.keyCode == 13) { getBarsWithSearch(); return false; }"/>
+		<div id="nearby-locations">
+		</div>
+
+		<?php /* foreach($bars as $bar){
 		/* 
 		
 		now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
@@ -25,7 +27,7 @@ $bars = get_bars();
 		a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
 		slug present.
 
-		*/
+		
  		?>
 			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 				<div id="<?=$bar['slug']?>" class="bar-location">
@@ -42,7 +44,7 @@ $bars = get_bars();
 				</div>
 			</a>
 				
-		<? } ?>
+		<? } */ ?>
 
 	</div>
 

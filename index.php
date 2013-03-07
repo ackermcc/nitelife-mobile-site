@@ -34,6 +34,8 @@ require('scripts/database.php');
 	<script type="application/javascript" src="js/iscroll.js"></script>
 	<script type="application/javascript" src="js/fastclick.js"></script>
 	<script type="application/javascript" src="js/nitelife-jquery.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBtoUkFZDAjp_11DUBQB6pfzi6anr00aLc&sensor=false"></script>
+	<script type="application/javascript" src="js/maps.js"></script>
 
 	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -69,7 +71,6 @@ require('scripts/database.php');
 
 	</script>
 
-
 </head>
 
 
@@ -89,7 +90,7 @@ require('scripts/database.php');
 	//The logic basically says if we have a bar page, include bar.php, if we dont, include the location page.  
 
 ?>
-<body>
+<body <?php if(!$bar) echo 'onload="getBars() ;"'; ?>>
 
 <div id="rotation-issue">
 	<i class="icon-mobile-phone"></i><br>
