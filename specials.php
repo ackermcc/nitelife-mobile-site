@@ -81,7 +81,7 @@ $(window).load(function(){
 
 		<div class="specials-date-selector">
 			<div id="prev-date"><i class="icon-chevron-left"></i></div>
-			<div id="current-date">Thursday</div>
+			<div id="current-date"></div>
 			<div id="next-date"><i class="icon-chevron-right"></i></div>
 		</div>
 		
@@ -95,7 +95,7 @@ $(window).load(function(){
 					<a style="text-decoration: none;" href="?bar=<?=$bar['slug']?>">
 					
 						<div id="<?=$bar['slug']?>" class="bar-special-index">
-							<div class="bar-name truncate2"><?=$bar['name']?></div>
+							<div class="bar-name-specials truncate2"><?=$bar['name']?></div>
 						
 							<?php foreach($bars['specials'][$bar['id']][0] as $special){							?>
 								<div class="special-row" valign="top">
