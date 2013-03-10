@@ -53,37 +53,45 @@ function getBarsWithSearch($search){
 }
 
 function getClosestBars($lat, $lng){
-
-	$getClosest = "SELECT name, address, slug, icon_url, id FROM `bar` ORDER BY ABS((ABS(lat)-".abs($lat).") + (ABS(lng)-".abs($lng).")) ASC LIMIT 10";
-	$result = mysql_query($getClosest);
+	$dist = 20;
+	$getClosest = "SELECT name, address, slug, icon_url, id, 3956 * 2 * ASIN(SQRT( POWER(SIN((".$lat."-abs(lat)) * pi()/180 / 2),2) + 
+		COS(".$lat." * pi()/180 ) * COS(abs(lat) *  pi()/180) * POWER(SIN((".$lng." - lng) * pi()/180 / 2), 2) )) 
+		as distance FROM `bar` having distance <= ".$dist." ORDER BY distance limit 10;";
+	//having distance < @dist 
+	//$getClosest = "SELECT name, address, slug, icon_url, id FROM `bar` ORDER BY ABS((ABS(lat)-".abs($lat).") + (ABS(lng)-".abs($lng).")) ASC LIMIT 10";
+	$result = mysql_query($getClosest) or die ('Error: '.mysql_error ());
 	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
-	foreach($bars as $bar){
-		/* 
-		
-		now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
-		You can get the bar slug using <?=$bar['slug']?>
-		So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
-		a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
-		slug present.
+	if(count($bars) < 1){
+		foreach($bars as $bar){
+			/* 
+			
+			now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
+			You can get the bar slug using <?=$bar['slug']?>
+			So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
+			a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
+			slug present.
 
-		*/
- 		?>
-			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
-				<div id="<?=$bar['slug']?>" class="bar-location">
-					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
-						<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
-					<?php }else{ ?>
-						<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
-					<?php } ?>
-					<div class="bar-info">
-						<div class="bar-name truncate"><?=$bar['name']?></div>
-						<div class="bar-address truncate"><?=$bar['address']?></div>
+			*/
+			?>
+				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
+					<div id="<?=$bar['slug']?>" class="bar-location">
+						<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
+							<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
+						<?php }else{ ?>
+							<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
+						<?php } ?>
+						<div class="bar-info">
+							<div class="bar-name truncate"><?=$bar['name']?></div>
+							<div class="bar-address truncate"><?=$bar['address']?></div>
+						</div>
+						<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
 					</div>
-					<div class="bar-miles"></div>
-				</div>
-			</a>
-				
-		<? }
+				</a>
+					
+			<? }
+		}else{
+			echo "Sorry there are no bars nearby";
+		}
 	//$sendThis = json_encode($bars);
 	//echo $sendThis;
 }
