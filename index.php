@@ -73,6 +73,8 @@ require('scripts/database.php');
 
 	<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
 
+	<!-- WEBSITE REDIRECT -->
+
 	<script type="text/javascript">
 	<!--
 	if (screen.width >= 699) {
@@ -81,6 +83,10 @@ require('scripts/database.php');
 	//-->
 	</script>
 
+	<!-- ADD TO HOME SCREEN HELPER -->
+
+	<link rel="stylesheet" href="stylesheets/add2home.css">
+	<script type="application/javascript" src="js/add2home.js"></script>
 
 </head>
 
