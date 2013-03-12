@@ -17,6 +17,7 @@ require('scripts/database.php');
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="news_keywords" content="night life, bars, bar specials, cincinnati, bar deals, NiteLife, bar live feed, deals, cincinnati bar specials">
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
