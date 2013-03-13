@@ -76,11 +76,26 @@ require('scripts/database.php');
 	<!-- WEBSITE REDIRECT -->
 
 	<script type="text/javascript">
-	<!--
-	if (screen.width >= 699) {
-	document.location = "http://nitelifecam.com";
+	var isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i) ? true : false;
+		},
+		BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+		},
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+		},
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i) ? true : false;
+		},
+		any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+		}
+	};
+	if(!isMobile){
+		document.location = "http://nitelifecam.com";
 	}
-	//-->
 	</script>
 
 	<!-- ADD TO HOME SCREEN HELPER -->
