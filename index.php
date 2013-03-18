@@ -22,7 +22,18 @@ require('scripts/database.php');
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
-	<link rel="apple-touch-startup-image" href="images/startup.png">
+	
+	<!-- <link rel="apple-touch-startup-image" href="images/startup.png"> -->
+	<!-- iPhone (Retina) -->
+	<link href="images/startup.png"
+	      media="(device-width: 320px) and (device-height: 480px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
+	<!-- iPhone 5 -->
+	<link href="images/startup-5.png"
+	      media="(device-width: 320px) and (device-height: 568px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
 
 	<meta charset="utf-8" />
 	<title>NiteLife</title>
@@ -90,6 +101,13 @@ require('scripts/database.php');
 	<link rel="stylesheet" href="stylesheets/add2home.css">
 	<script type="application/javascript" src="js/add2home.js"></script>
 
+	<!-- LOADING -->
+	<script type="text/javascript">
+	$(window).load(function(){
+	  $('.loadingDiv').css('display','none');
+	});
+	</script>
+
 </head>
 
 
@@ -110,6 +128,7 @@ require('scripts/database.php');
 
 ?>
 <body <?php if(!$bar) echo 'onload="getBars() ;"'; ?>>
+	<div class="loadingDiv"></div>
 
 <div id="rotation-issue">
 	<i class="icon-mobile-phone"></i><br>
@@ -122,6 +141,7 @@ require('scripts/database.php');
 		<img src="images/logo_03.png" alt="" />
 		<img id="beta-ribbon" src="images/beta-ribbon.png" alt="" />
 	</header>
+
 	<div class="wrapper">
 		<?php if($bar){	?>
 		<div id="middle-content"><? include_once('bar.php'); ?></div>

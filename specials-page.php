@@ -21,7 +21,19 @@ require('scripts/database.php');
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
-	<link rel="apple-touch-startup-image" href="images/startup.png">
+	
+	<!-- <link rel="apple-touch-startup-image" href="images/startup.png"> -->
+
+	<!-- iPhone (Retina) -->
+	<link href="images/startup.png"
+	      media="(device-width: 320px) and (device-height: 480px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
+	<!-- iPhone 5 -->
+	<link href="images/startup-5.png"
+	      media="(device-width: 320px) and (device-height: 568px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
 
 	<meta charset="utf-8" />
 	<title>NiteLife</title>
@@ -88,6 +100,12 @@ require('scripts/database.php');
 	}
 	//-->
 	</script>
+
+	<script type="text/javascript">
+	$(window).load(function(){
+	  $('.loadingDiv').css('display','none');
+	});
+	</script>
 	
 </head>
 
@@ -109,6 +127,7 @@ require('scripts/database.php');
 
 ?>
 <body>
+	<div class="loadingDiv"></div>
 
 <div id="rotation-issue">
 	<i class="icon-mobile-phone"></i><br>
