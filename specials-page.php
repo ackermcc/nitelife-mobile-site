@@ -13,14 +13,27 @@ require('scripts/database.php');
 
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
 
-	<meta name="viewport" content="initial-scale=0.5, user-scalable=no " />
+	<meta name="viewport" content="width=device-width; initial-scale=0.5; maximum-scale=0.5; minimum-scale=0.5; user-scalable=no; target-densityDpi=device-dpi" />
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="news_keywords" content="night life, bars, bar specials, cincinnati, bar deals, NiteLife, bar live feed, deals, cincinnati bar specials">
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
-	<link rel="apple-touch-startup-image" href="images/startup.png">
+	
+	<!-- <link rel="apple-touch-startup-image" href="images/startup.png"> -->
+
+	<!-- iPhone (Retina) -->
+	<link href="images/startup.png"
+	      media="(device-width: 320px) and (device-height: 480px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
+	<!-- iPhone 5 -->
+	<link href="images/startup-5.png"
+	      media="(device-width: 320px) and (device-height: 568px)
+	         and (-webkit-device-pixel-ratio: 2)"
+	      rel="apple-touch-startup-image">
 
 	<meta charset="utf-8" />
 	<title>NiteLife</title>
@@ -87,6 +100,12 @@ require('scripts/database.php');
 	}
 	//-->
 	</script>
+
+	<script type="text/javascript">
+	$(window).load(function(){
+	  $('.loadingDiv').css('display','none');
+	});
+	</script>
 	
 </head>
 
@@ -108,6 +127,7 @@ require('scripts/database.php');
 
 ?>
 <body>
+	<div class="loadingDiv"></div>
 
 <div id="rotation-issue">
 	<i class="icon-mobile-phone"></i><br>
