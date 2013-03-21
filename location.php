@@ -13,6 +13,9 @@ $bars = get_bars();
 			<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
 			<div id="location-nav-map"><i class="icon-map-marker"></i></div>
 		<input id="location-search" placeholder="search locations" onkeydown="if (event.keyCode == 13) { getBarsWithSearch(); return false; }"/>
+		<input type="hidden" id="current-lat" value="" />
+		<input type="hidden" id="current-lng" value="" />
+		<input type="hidden" id="number-of-bars" value="0" />
 		<div id="nearby-locations">
 		</div>
 

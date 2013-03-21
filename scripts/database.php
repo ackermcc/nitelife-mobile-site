@@ -4,7 +4,7 @@ require('authenticate.php');
 
 if($_GET['lat'] && $_GET['lng']){
 
-getClosestBars($_GET['lat'], $_GET['lng']);
+getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
 
 
 }elseif($_GET['search']){
@@ -20,15 +20,6 @@ function getBarsWithSearch($search){
 	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
 	if(count($bars) != 0){
 		foreach($bars as $bar){
-			/* 
-			
-			now, each of these bars needs to redirect to a url nitelife.com?bar=bar-slug.
-			You can get the bar slug using <?=$bar['slug']?>
-			So create the url like nitelife.com?bar=<?=$bar['slug']?>.  You can do this in javascript as
-			a redirect or however you wish.  I will put logic in the index page that determines if there's a bar 
-			slug present.
-
-			*/
 			?>
 				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
 					<div id="<?=$bar['slug']?>" class="bar-location">
@@ -52,35 +43,96 @@ function getBarsWithSearch($search){
 	}
 }
 
-function getClosestBars($lat, $lng){
-	$dist = 20;
-	$getClosest = "CALL geodist(".$lat.", ".$lng.", ".$dist.");";
-	$result = mysql_query($getClosest) or die ('Error: '.mysql_error ());
-	for ($bars = array(); $tmp = mysql_fetch_array($result);) $bars[] = $tmp;
-	if(count($bars) < 1){
-		foreach($bars as $bar){
-			?>
-				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
-					<div id="<?=$bar['slug']?>" class="bar-location">
-						<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
-							<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
-						<?php }else{ ?>
-							<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
-						<?php } ?>
-						<div class="bar-info">
-							<div class="bar-name truncate"><?=$bar['name']?></div>
-							<div class="bar-address truncate"><?=$bar['address']?></div>
-						</div>
-						<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
+function displayBars($bars){
+	
+	foreach($bars as $bar){
+		?>
+			<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
+				<div id="<?=$bar['slug']?>" class="bar-location">
+					<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
+						<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
+					<?php }else{ ?>
+						<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
+					<?php } ?>
+					<div class="bar-info">
+						<div class="bar-name truncate"><?=$bar['name']?></div>
+						<div class="bar-address truncate"><?=$bar['address']?></div>
 					</div>
-				</a>
-					
-			<? }
-		}else{
-			echo "Sorry there are no bars nearby";
+					<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
+				</div>
+			</a>
+				
+	<? }
+
+}
+
+function free_results($db){
+
+	if ($res = $db->store_result()) {
+        printf("---\n");
+        var_dump($res->fetch_assoc());
+        $res->free();
+    }
+	while ($db->more_results() && $db->next_result());
+
+}
+
+function getClosestBars($lat, $lng, $start){
+
+	global $db;
+	$dist = 20.0;
+	
+	//$lat = 0;
+	//$lng = 0;
+	
+	$lng = -84.516404;
+	$lat = 39.1275712;
+	
+	if($start == -1) $start = 0;
+	
+	// We know we have lat and long and that they are not 0. 
+	// Other cases handled in js.
+	//if($lat && $lng && abs($lat) > 0 && abs($lng) > 0){
+	$getClosest = "CALL geodist(".$lat.", ".$lng.", ".$dist.", ".$start.");";
+	$result = $db->query($getClosest) or die ('Error: '.$db->error);
+	
+	//echo $getClosest;
+	
+	$bars = array();
+	while($row = $result->fetch_assoc()){
+		$bars[] = $row;
+	}
+	$result->free();
+	
+	free_results($db);
+	
+	if(count($bars) > 0){
+	
+		displayBars($bars);
+		
+	}else{
+	
+		echo "Sorry there are no bars nearby.  Here are some random bars!";
+		
+		$getRandom = "CALL getrandom(".$lat.", ".$lng.");";
+		$result = $db->query($getRandom) or die ('Error: '.$db->error);
+		
+		$bars = array();
+		while($row = $result->fetch_assoc()){
+			$bars[] = $row;
 		}
-	//$sendThis = json_encode($bars);
-	//echo $sendThis;
+		$result->free();
+		
+		free_results($db);
+		
+		if(count($bars) > 0){
+			displayBars($bars);
+		}
+		
+
+	}
+	
+	
 }
 
 function get_bars(){

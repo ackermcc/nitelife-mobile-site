@@ -1,4 +1,16 @@
 
+		function getGeolocation(){
+			try {
+				if(!! navigator.geolocation)
+					return navigator.geolocation;
+				else
+					return undefined;
+			} catch(e) {
+				return undefined;
+			}
+		}
+		
+		
 		
 		function codeAddress(street, zipcode) {
 			var address = document.getElementById("address").value;
@@ -15,102 +27,6 @@
 			});
 		}
 
-		//var mapProp = {
-		//	  zoom:12,
-		//	  mapTypeId:google.maps.MapTypeId.ROADMAP
-		//  };
-		  
-		//var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-	  
-		// first we need to get the user's current location, and we will get local bars from there.
-		// Try W3C Geolocation (Preferred)
-		function getLatLongOfUser(){
-			var initialLocation;
-			var loc = new Array();
-			
-			if(navigator.geolocation) {
-					browserSupportFlag = true;
-					navigator.geolocation.getCurrentPosition(function(position) {
-						//initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-						//map.setCenter(initialLocation);
-						alert("lat: "+position.coords.latitude+" long: "+position.coords.longitude);
-						loc[0] = position.coords.latitude;
-						loc[1] = position.coords.longitude;
-						//return loc;
-					}, function() {
-					  handleNoGeolocation(browserSupportFlag);
-					  alert("no geoloc");
-					 // return null;
-					});
-		
-			//return loc;
-			// Browser doesn't support Geolocation
-			}else {
-				//browserSupportFlag = false;
-				//handleNoGeolocation(browserSupportFlag);
-				alert("no geoloc");
-				return null;
-			}
-			return loc;
-			
-		}
-		
-		function getCurrentLocation(callback) {
-		  if(!navigator.geolocation) return;
-		  navigator.geolocation.getCurrentPosition(function(position) {
-			var currLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-			callback(currLocation);
-		  });
-		}
-	  
-		function handleNoGeolocation(errorFlag) {
-			if (errorFlag == true) {
-				alert("Geolocation service failed.");
-				initialLocation = newyork;
-			} else {
-				alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-				initialLocation = siberia;
-			}
-			//map.setCenter(initialLocation);
-		}
-		
-		//console.log(map.getCenter());
-		
-		
-		//var marker = new google.maps.Marker({
-		//	position: cincinnati,
-		//	map: map,
-		//	title:"Hello World!"
-		//});
-		
-		// now we have an initialLocation! 
-		
-		// Lets use ajax to get the bars, we will send the location later.
-		
-		function getBars()
-		{
-			var xmlhttp;
-			if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp=new XMLHttpRequest();
-			}else{// code for IE6, IE5
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			
-			
-			xmlhttp.onreadystatechange=function(){
-				if (xmlhttp.readyState==4 && xmlhttp.status==200){
-					document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				}
-			}
-			//var coords = getLatLongOfUser();
-			//alert(coords[0]);
-			getCurrentLocation(function(loc){
-				xmlhttp.open("GET","scripts/database.php?lat="+loc.ib+"&lng="+loc.jb,true);
-				xmlhttp.send();
-			});
-
-		}
 		
 		function getBarsWithSearch(){
 			
@@ -128,12 +44,19 @@
 					document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
 				}
 			}
+			http = new XMLHttpRequest();
+
+			http.open("GET", "/getdata/dummy.xml");
+			http.onreadystatechange=function() {
+				if(http.readyState == 4) {
+					// alert(http.responseText);
+				}
+			}
+			http.send(null);
 			
 			var searchValue = $("#location-search").val();
 			xmlhttp.open("GET","scripts/database.php?search="+searchValue,true);
 			xmlhttp.send();
-
-		
 		
 		}
 		/*
@@ -149,6 +72,106 @@
 			}
 		}
 		*/
+	
+function getClosestBars(position){
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
+				//$("#number-of-bars").val('15');
+				$("#number-of-bars").val($('.bar-location').length);
+				
+			}
+		}
+		//getLatLongOfUser(xmlhttp);
+		
+		$("#current-lat").val(position.coords.latitude.toString());
+		$("#current-lng").val(position.coords.longitude.toString());
+		xmlhttp.open("GET","scripts/database.php?lat="+position.coords.latitude.toString()+"&lng="+position.coords.longitude.toString()+"&start=0",true);
+		xmlhttp.send();
+}
 
 
+function getGeolocation(){
+	try {
+		if(!! navigator.geolocation)
+			return navigator.geolocation;
+		else
+			return undefined;
+	} catch(e) {
+		return undefined;
+	}
+}
+	
+function initialize() {
+	if(geo = getGeolocation()){
+		geo.watchPosition(getClosestBars);
+	
+	}else{
+		//get random bars
+	
+	}
+
+
+
+/*
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  
+  */
+}
+/*
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=TRUE_OR_FALSE&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+*/
+window.onload = function() {
+    initialize();
+        }
+		
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+	
+		alert('scrolled!');
+		var start = $("#number-of-bars").val();
+		var lat = $("#current-lat").val();
+		var lng = $("#current-lng").val();
+		var xmlhttp;
+		
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				//document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
+				$("#number-of-bars").val($('.bar-location').length);
+				$("#nearby-locations").append(xmlhttp.responseText);
+				
+			}
+		}
+		
+		xmlhttp.open("GET","scripts/database.php?lat="+lat+"&lng="+lng+"&start="+start,true);
+										
+		xmlhttp.send();
+   }
+});
 	
