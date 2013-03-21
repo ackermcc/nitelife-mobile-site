@@ -88,6 +88,7 @@ require('scripts/database.php');
 
 	<!-- WEBSITE REDIRECT -->
 
+<<<<<<< HEAD
 	<script type="text/javascript">
 	var isMobile = {
 		Android: function() {
@@ -110,6 +111,27 @@ require('scripts/database.php');
 		document.location = "http://nitelifecam.com";
 	}
 	</script>
+=======
+	<!-- <script type="text/javascript">
+	if (screen.width >= 800) {
+	document.location = "http://nitelifecam.com";
+	}
+	</script> -->
+
+	<script type="text/javascript">
+	    if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+
+	    }
+
+	    else if(navigator.userAgent.match(/android/i)) {
+
+	    }
+
+	    else {
+	      window.location = "http://nitelifecam.com";
+	    }
+  	</script>
+>>>>>>> origin/master
 
 	<!-- ADD TO HOME SCREEN HELPER -->
 
