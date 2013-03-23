@@ -88,16 +88,8 @@ require('scripts/database.php');
 	<!-- WEBSITE REDIRECT -->
 
 	<script type="text/javascript">
-	    if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-
-	    }
-
-	    else if(navigator.userAgent.match(/android/i)) {
-
-	    }
-
-	    else {
-	      window.location = "http://nitelifecam.com";
+	    if(!navigator.userAgent.match(/android/i) && !(navigator.userAgent.match(/iPhone/i)) && !(navigator.userAgent.match(/iPod/i))) {
+			window.location = "http://nitelifecam.com";
 	    }
   	</script>
 
