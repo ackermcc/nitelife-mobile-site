@@ -111,7 +111,7 @@ require('scripts/database.php');
 	    }
 
 	    else {
-	      window.location = "http://nitelifecam.com";
+	      window.location = "http://cincynitelife.com";
 	    }
   	</script>
 
