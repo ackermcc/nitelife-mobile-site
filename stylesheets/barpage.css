@@ -119,7 +119,7 @@
 
 		.special-row div:last-child {
 			float: left;
-			/*width: 38%;*/
+			max-width: 38%;
 		}
 
 	.active-day {
