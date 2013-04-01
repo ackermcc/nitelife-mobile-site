@@ -81,7 +81,7 @@ $(window).load(function(){
 
 		<div class="specials-date-selector">
 			<div id="prev-date"><i class="icon-chevron-left"></i></div>
-			<div id="current-date"></div>
+			<div id="current-date">&nbsp;</div>
 			<div id="next-date"><i class="icon-chevron-right"></i></div>
 		</div>
 		
