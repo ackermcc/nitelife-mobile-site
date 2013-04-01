@@ -165,7 +165,7 @@ footer {
 }
 
 
-/* Smartphones (landscape) ----------- */
+/* Smartphones (landscape) ----------- 
 @media only screen and (min-width : 321px) and (orientation : landscape) {
 	.container, footer {
 		display: none;
@@ -183,5 +183,6 @@ footer {
 		margin-top: 50px;
 	}
 }
+*/
 
 

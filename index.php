@@ -88,21 +88,8 @@ require('scripts/database.php');
 	<!-- WEBSITE REDIRECT -->
 
 	<script type="text/javascript">
-<<<<<<< HEAD
 	    if(!navigator.userAgent.match(/android/i) && !(navigator.userAgent.match(/iPhone/i)) && !(navigator.userAgent.match(/iPod/i))) {
 			window.location = "http://nitelifecam.com";
-=======
-	    if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-
-	    }
-
-	    else if(navigator.userAgent.match(/android/i)) {
-
-	    }
-
-	    else {
-	      window.location = "http://cincynitelife.com";
->>>>>>> origin/master
 	    }
   	</script>
 
@@ -112,31 +99,17 @@ require('scripts/database.php');
 	<script type="application/javascript" src="js/add2home.js"></script>
 
 	<!-- LOADING -->
+	<!-- // moved to when bars load
 	<script type="text/javascript">
 	$(window).load(function(){
-	  $('.loadingDiv').css('display','none');
+	  $('.loadingDiv').css('display','none'); 
 	});
 	</script>
+	-->
 
 </head>
+<?php $bar = $_GET['bar']; ?>
 
-
-<?php
-	//To see if we should get the bar page or location page.
-	$bar = $_GET['bar'];
-	
-	if($bar){
-		//display the bar page, because there is a bar url
-	
-	}else{
-		//display the location page.
-	
-	}
-	
-	// I used this code to demonstrate below, but I commented out the lines cause I wasnt sure if it would break.
-	//The logic basically says if we have a bar page, include bar.php, if we dont, include the location page.  
-
-?>
 <body>
 	<div class="loadingDiv"></div>
 

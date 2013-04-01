@@ -83,9 +83,10 @@ function getClosestBars(position){
 		
 		xmlhttp.onreadystatechange=function(){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				$('.loadingDiv').css('display','none');
 				document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				//$("#number-of-bars").val('15');
 				$("#number-of-bars").val($('.bar-location').length);
+				$(window).scroll(addBars);
 				
 			}
 		}
@@ -112,7 +113,6 @@ function getGeolocation(){
 function initialize() {
 	if(geo = getGeolocation()){
 		geo.watchPosition(getClosestBars);
-	
 	}else{
 		//get random bars
 	
@@ -145,10 +145,13 @@ window.onload = function() {
     initialize();
         }
 		
-$(window).scroll(function() {
-   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+
+function addBars() {
+
+   if($(window).scrollTop() + $(window).height() > .9*$(document).height()) {
 	
-		alert('scrolled!');
+		//console.log('scrolled!');
 		var start = $("#number-of-bars").val();
 		var lat = $("#current-lat").val();
 		var lng = $("#current-lng").val();
@@ -163,15 +166,15 @@ $(window).scroll(function() {
 		xmlhttp.onreadystatechange=function(){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				//document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				$("#number-of-bars").val($('.bar-location').length);
 				$("#nearby-locations").append(xmlhttp.responseText);
-				
+				$(window).scroll(addBars);
+				$("#number-of-bars").val($('.bar-location').length);
 			}
 		}
 		
-		xmlhttp.open("GET","scripts/database.php?lat="+lat+"&lng="+lng+"&start="+start,true);
-										
+		$(window).off("scroll", addBars);
+		xmlhttp.open("GET","scripts/database.php?lat="+lat+"&lng="+lng+"&start="+start,true);					
 		xmlhttp.send();
    }
-});
+  }
 	
