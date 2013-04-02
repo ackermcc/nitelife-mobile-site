@@ -9,10 +9,10 @@ $bars = get_bars();
 
 
 	<div class="content">
-			<div id="location-nav">
+			<!--<div id="location-nav">
 				<div id="location-nav-list" class="active-location-nav"><i class="icon-th-list"></i></div>
 				<div id="location-nav-map"><i class="icon-map-marker"></i></div>
-			</div>
+			</div>-->
 		<input id="location-search" placeholder="search locations" onkeydown="if (event.keyCode == 13) { getBarsWithSearch(); return false; }"/>
 		<input type="hidden" id="current-lat" value="" />
 		<input type="hidden" id="current-lng" value="" />
