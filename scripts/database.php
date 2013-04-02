@@ -82,18 +82,12 @@ function getClosestBars($lat, $lng, $start){
 	global $db;
 	$dist = 20.0;
 	
-	//$lat = 0;
-	//$lng = 0;
-	
-	// $lng = -84.516404;
-	// $lat = 39.1275712;
-	
 	if($start == -1) $start = 0;
 	
 	// We know we have lat and long and that they are not 0. 
 	// Other cases handled in js.
 	//if($lat && $lng && abs($lat) > 0 && abs($lng) > 0){
-	$getClosest = "CALL geodist(".$lat.", ".$lng.", ".$dist.", ".$start.");";
+	$getClosest = "CALL geodistNew(".$lat.", ".$lng.", ".$dist.", ".$start.");";
 	$result = $db->query($getClosest) or die ('Error: '.$db->error);
 	
 	//echo $getClosest;
