@@ -85,8 +85,8 @@ function getClosestBars($lat, $lng, $start){
 	//$lat = 0;
 	//$lng = 0;
 	
-	$lng = -84.516404;
-	$lat = 39.1275712;
+	// $lng = -84.516404;
+	// $lat = 39.1275712;
 	
 	if($start == -1) $start = 0;
 	

@@ -112,7 +112,7 @@ function getGeolocation(){
 	
 function initialize() {
 	if(geo = getGeolocation()){
-		geo.watchPosition(getClosestBars);
+		geo.getCurrentPosition(getClosestBars);
 	}else{
 		//get random bars
 	

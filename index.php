@@ -89,7 +89,7 @@ require('scripts/database.php');
 
 	<script type="text/javascript">
 	    if(!navigator.userAgent.match(/android/i) && !(navigator.userAgent.match(/iPhone/i)) && !(navigator.userAgent.match(/iPod/i))) {
-			window.location = "http://nitelifecam.com";
+			window.location = "http://cincynitelife.com";
 	    }
   	</script>
 
