@@ -169,6 +169,7 @@ function addBars() {
 				$("#nearby-locations").append(xmlhttp.responseText);
 				$(window).scroll(addBars);
 				$("#number-of-bars").val($('.bar-location').length);
+				$('.loadingDiv').css('display','block');
 			}
 		}
 		
@@ -176,5 +177,6 @@ function addBars() {
 		xmlhttp.open("GET","scripts/database.php?lat="+lat+"&lng="+lng+"&start="+start,true);					
 		xmlhttp.send();
    }
+   $('.loadingDiv').css('display','none');
   }
 	
