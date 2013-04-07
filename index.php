@@ -123,9 +123,13 @@ require('scripts/database.php');
 <div class="container">
 	<header>
 		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
-		<img src="images/logo_03.png" alt="" />
+		<img id="about-us" src="images/logo_03.png" alt="" />
 		<img id="beta-ribbon" src="images/beta-ribbon.png" alt="" />
 	</header>
+
+	<div id="about-page">
+		twitter and facebook
+	</div>
 
 	<div class="wrapper">
 		<?php if($bar){	?>
