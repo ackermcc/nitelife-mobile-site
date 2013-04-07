@@ -102,11 +102,12 @@ function getClosestBars($lat, $lng, $start){
 	
 	if(count($bars) > 0){
 	
-		displayBars($bars);
+		echo json_encode(array('random' => false, 'bars' => $bars));
+		//displayBars($bars);
 		
 	}else{
 	
-		echo "Sorry there are no bars nearby.  Here are some random bars!";
+		//echo "Sorry there are no bars nearby.  Here are some random bars!";
 		
 		$getRandom = "CALL getrandom(".$lat.", ".$lng.");";
 		$result = $db->query($getRandom) or die ('Error: '.$db->error);
@@ -120,7 +121,8 @@ function getClosestBars($lat, $lng, $start){
 		free_results($db);
 		
 		if(count($bars) > 0){
-			displayBars($bars);
+			//displayBars($bars);
+			echo json_encode(array('random' => true, 'bars' => $bars));
 		}
 		
 

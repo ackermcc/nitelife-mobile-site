@@ -49,6 +49,7 @@ require('scripts/database.php');
 	<script type="application/javascript" src="js/nitelife-jquery.js"></script>
 	<script type="application/javascript" src="js/maps.js"></script>
 
+
 	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
@@ -89,7 +90,7 @@ require('scripts/database.php');
 
 	<script type="text/javascript">
 	    if(!navigator.userAgent.match(/android/i) && !(navigator.userAgent.match(/iPhone/i)) && !(navigator.userAgent.match(/iPod/i))) {
-			window.location = "http://cincynitelife.com";
+			//window.location = "http://cincynitelife.com";
 	    }
   	</script>
 
@@ -110,13 +111,14 @@ require('scripts/database.php');
 </head>
 <?php $bar = $_GET['bar']; ?>
 
-<body>
+<body onload="loadScript()">
 	<div class="loadingDiv"></div>
 
 <div id="rotation-issue">
 	<i class="icon-mobile-phone"></i><br>
 	Ahh! Turn me back upright!
 </div>
+
 
 <div class="container">
 	<header>

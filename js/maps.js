@@ -1,102 +1,64 @@
+/*
 
-		function getGeolocation(){
-			try {
-				if(!! navigator.geolocation)
-					return navigator.geolocation;
-				else
-					return undefined;
-			} catch(e) {
-				return undefined;
-			}
-		}
-		
-		
-		
-		function codeAddress(street, zipcode) {
-			var address = document.getElementById("address").value;
-			geocoder.geocode( { 'address': address}, function(results, status) {
-			  if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map: map,
-					position: results[0].geometry.location
-				});
-			  } else {
-				alert("Geocode was not successful for the following reason: " + status);
-			  }
-			});
-		}
+Copyright (c) 2013 Nitelife Entertainment, http://www.cincynitelife.com
+Not for use by any other entities
 
-		
-		function getBarsWithSearch(){
-			
-			var xmlhttp;
-			if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp=new XMLHttpRequest();
-			}else{// code for IE6, IE5
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			
-			
-			xmlhttp.onreadystatechange=function(){
-				if (xmlhttp.readyState==4 && xmlhttp.status==200){
-					document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				}
-			}
-			http = new XMLHttpRequest();
+Main javascript utilities used for mobile Nitelife site
 
-			http.open("GET", "/getdata/dummy.xml");
-			http.onreadystatechange=function() {
-				if(http.readyState == 4) {
-					// alert(http.responseText);
-				}
-			}
-			http.send(null);
-			
-			var searchValue = $("#location-search").val();
-			xmlhttp.open("GET","scripts/database.php?search="+searchValue,true);
-			xmlhttp.send();
-		
-		}
-		/*
-		function getLatLong(address, id){
-			if(address != null && id != null){
-				var mygc = new google.maps.Geocoder();
-				mygc.geocode({'address' : address}, function(results, status){
-					if(results != null){
-						 $("#lat-"+id).val(results[0].geometry.location.lat());
-						$("#long-"+id).val(results[0].geometry.location.lng());
-					}
-				});
-			}
-		}
-		*/
-	
-function getClosestBars(position){
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		}else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				$('.loadingDiv').css('display','none');
-				document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				$("#number-of-bars").val($('.bar-location').length);
-				$(window).scroll(addBars);
-				
-			}
-		}
-		//getLatLongOfUser(xmlhttp);
-		
-		$("#current-lat").val(position.coords.latitude.toString());
-		$("#current-lng").val(position.coords.longitude.toString());
-		xmlhttp.open("GET","scripts/database.php?lat="+position.coords.latitude.toString()+"&lng="+position.coords.longitude.toString()+"&start=0",true);
-		xmlhttp.send();
+*/
+
+function getGeolocation(){
+	try {
+		if(!!navigator.geolocation)
+			return navigator.geolocation;
+		else
+			return undefined;
+	} catch(e) {
+		return undefined;
+	}
 }
+
+/*
+	Gets bars when the search bar is used
+*/
+function getBarsWithSearch(){
+	
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	}else{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
+		}
+	}
+	http = new XMLHttpRequest();
+	
+	var searchValue = $("#location-search").val();
+	xmlhttp.open("GET","scripts/database.php?search="+searchValue,true);
+	xmlhttp.send();
+
+}
+
+/*
+TODO: Use function to implement getting lat and long on admin page for new bars
+Works! Just needs to be put in the right place
+function getLatLong(address, id){
+	if(address != null && id != null){
+		var mygc = new google.maps.Geocoder();
+		mygc.geocode({'address' : address}, function(results, status){
+			if(results != null){
+				 $("#lat-"+id).val(results[0].geometry.location.lat());
+				$("#long-"+id).val(results[0].geometry.location.lng());
+			}
+		});
+	}
+}
+*/
 
 
 function getGeolocation(){
@@ -109,52 +71,46 @@ function getGeolocation(){
 		return undefined;
 	}
 }
-	
-function initialize() {
-	if(geo = getGeolocation()){
-		geo.getCurrentPosition(getClosestBars);
-	}else{
-		//get random bars
-	
-	}
-
-
-
-/*
-  var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  
-  */
-}
-/*
-function loadScript() {
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=TRUE_OR_FALSE&callback=initialize";
-  document.body.appendChild(script);
-}
-
-window.onload = loadScript;
-
-*/
-window.onload = function() {
-    initialize();
-        }
 		
 
+/*
+	Method used for initial bar list and to populate more on scrolldown
+	If position.coords is defined then it's getting the initial bar list.  
+	If position.coords is undefined, then make sure the user scrolled to the bottom
+*/
+var map;
 
-function addBars() {
+function addBars(position) {
 
-   if($(window).scrollTop() + $(window).height() > .9*$(document).height()) {
-	
-		//console.log('scrolled!');
-		var start = $("#number-of-bars").val();
-		var lat = $("#current-lat").val();
-		var lng = $("#current-lng").val();
+	// Works better if it updates 90% to the bottom instead
+   if($(window).scrollTop() + $(window).height() > .9*$(document).height() || position.coords != undefined) {
+		
+		if(position.coords != undefined){	// save lat and long if first call for list
+		
+			var lat = position.coords.latitude.toString()
+			var lng = position.coords.longitude.toString()
+			$("#current-lat").val(lat);
+			$("#current-lng").val(lng);
+			
+				
+			var latlng = new google.maps.LatLng(lat, lng);
+			var myOptions = {
+				zoom: 12,
+				center: latlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById("nested-map-section"),
+			myOptions);
+			
+			
+		}else{	// get lat and long if getting more bars
+		
+			var lat = $("#current-lat").val();
+			var lng = $("#current-lng").val();
+			
+		}
+		
+		/*
 		var xmlhttp;
 		
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -165,18 +121,120 @@ function addBars() {
 		
 		xmlhttp.onreadystatechange=function(){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				//document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-				$("#nearby-locations").append(xmlhttp.responseText);
-				$(window).scroll(addBars);
-				$("#number-of-bars").val($('.bar-location').length);
-				$('.loadingDiv').css('display','block');
+			
+				$('.loadingDiv').css('display','none');		// Stop loading gif
+				var json = xmlhttp.responseText;
+				console.log(json.bars);
+				//console.log('bars : ' +xmlhttp.responseText);
+				//$("#nearby-locations").append(xmlhttp.responseText);
+				//$("#nearby-locations").append(displayBars(xmlhttp.responseText.bars));
+				//$(window).scroll(addBars);	// Start scroll listener
+
 			}
 		}
+		*/
 		
-		$(window).off("scroll", addBars);
-		xmlhttp.open("GET","scripts/database.php?lat="+lat+"&lng="+lng+"&start="+start,true);					
-		xmlhttp.send();
-   }
-   $('.loadingDiv').css('display','none');
-  }
+		$(window).off("scroll", addBars);	// Disable scroll listener
+		$('.loadingDiv').css('display','block');	// Start loading gif
+		//console.log('Lat : '+lat+' Long: '+lng);
+		
+		$.getJSON('scripts/database.php?lat='+lat+"&lng="+lng+"&start="+$('.bar-location').length, null, function(data) {
+
+			$('.loadingDiv').css('display','none');
+			if(data.random == true) $("#nearby-locations").append("Sorry there are no bars nearby.  Here are some random bars!");
+			$("#nearby-locations").append(displayBars(data.bars));
+			$(window).scroll(addBars);
+			
+			addMarkers(data.bars);
+		});
+	}
+ }
+  
+  
+function addMarkers(bars){
+
+	for (var i = 0; i < bars.length; i++)
+	{
+		var myLatlng = new google.maps.LatLng(bars[i].lat,bars[i].lng);
+
+		var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title:bars[i].name
+		});
+	}
+}
+  
+  
+function displayBars(bars){
+	
+	barList = '';
+
+	for (var i = 0; i < bars.length; i++)
+	{
+
+		barObject = '<a class="bar-page-link" href="?bar='+bars[i].slug+'">';
+		barObject += '<div id="'+bars[i].slug+'" class="bar-location">';
+		if(bars[i].icon_url != null && bars[i].icon_url != ''){
+			barObject += '<div class="bar-icon"><img src="icons/'+bars[i].icon_url+'" alt="" /></div>';
+		}else{
+			barObject += '<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>';
+		}
+		barObject += '<div class="bar-info">';
+		barObject += '<div class="bar-name truncate">'+bars[i].name+'</div>';
+		barObject += '<div class="bar-address truncate">'+bars[i].address+'</div>';
+		barObject += '</div>';
+		barObject += '<div class="bar-miles">'+ Math.round(bars[i].distance * 10)/10+' mi</div>';
+		barObject += '</div>';
+		barObject += '</a>';
+		
+		barList += barObject;
+	}
+	
+	return barList;
+
+}
+  	
+function initialize() {
+
+	if(geo = getGeolocation()){
+		geo.getCurrentPosition(addBars); //TODO: Add parameters to customize getCurrentPosition call
+	}else{
+		//TODO: Add code to deal with no geolocation provided
+		// Use getRandomBars method of db
+	}
+	
+	$('#location-nav-map').click(function() {
+	
+		$('#location-search').css('display', 'none');
+		$('#nearby-locations').css('display', 'none');
+		
+		$('#map-section').css('display', 'block');
+	
+	});
+	
+	$('#location-nav-list').click(function() {
+		
+		$('#map-section').css('display', 'none');
+	
+		$('#location-search').css('display', 'block');
+		$('#nearby-locations').css('display', 'block');
+
+	});
+
+}
+
+function loadScript() {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBtoUkFZDAjp_11DUBQB6pfzi6anr00aLc&sensor=false&callback=initialize";
+	document.body.appendChild(script);
+}
+
+
+
+//google.maps.event.addDomListener(window, 'load', initialize);
+//window.onload = function() {
+ //   initialize();
+//}
 	
