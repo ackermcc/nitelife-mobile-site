@@ -82,6 +82,22 @@ $(window).load(function(){
 	$("footer div").removeClass('active');
 	$(".back").css('display','block');
 
+	$('.popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    
+    window.open(url, 'twitter', opts);
+ 
+    return false;
+
 });
 </script>
 <?php
@@ -99,6 +115,8 @@ $bar_info = get_bar_info($bar);
 			</div>
 			<div class="bar-title"><?=$bar_info['info']['name']?></div>
 		</div>
+
+		<a class="twitter popup" href="http://twitter.com/share?text=Check%20out%20these%20specials%20at&via=cincynitelife&">Tweet</a>
 	
 		<div class="section">
 			<img src="images/specials-flag.png" />
