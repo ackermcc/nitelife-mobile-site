@@ -82,24 +82,12 @@ $(window).load(function(){
 	$("footer div").removeClass('active');
 	$(".back").css('display','block');
 
-	$('.popup').click(function(event) {
-    var width  = 575,
-        height = 400,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        url    = this.href,
-        opts   = 'status=1' +
-                 ',width='  + width  +
-                 ',height=' + height +
-                 ',top='    + top    +
-                 ',left='   + left;
-    
-    window.open(url, 'twitter', opts);
- 
-    return false;
+	
 
 });
 </script>
+	
+
 <?php
 //Getting bar info
 $bar_info = get_bar_info($bar);
@@ -115,11 +103,13 @@ $bar_info = get_bar_info($bar);
 			</div>
 			<div class="bar-title"><?=$bar_info['info']['name']?></div>
 		</div>
-
-		<a class="twitter popup" href="http://twitter.com/share?text=Check%20out%20these%20specials%20at&via=cincynitelife&">Tweet</a>
 	
 		<div class="section">
 			<img src="images/specials-flag.png" />
+			<div id="twitter-share">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out these specials at <?=$bar_info['info']['name']?>" data-via="CincyNiteLife" data-size="large" data-count="vertical">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
 			<div class="specials-date-picker">
 				<table class="date-picker1" border="0" cellspacing="0" cellpadding="0">
 					<tr>
