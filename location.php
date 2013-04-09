@@ -16,7 +16,7 @@ $bars = get_bars();
 		<input id="location-search" placeholder="search locations" onkeydown="if (event.keyCode == 13) { getBarsWithSearch(); return false; }"/>
 		
 		<div id="map-section">
-			<div id="nested-map-section" style="width:100%; height:100%"></div>
+			<div id="nested-map-section"></div>
 		</div>
 		
 		<input type="hidden" id="current-lat" value="" />

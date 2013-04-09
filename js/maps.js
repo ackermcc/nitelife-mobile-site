@@ -210,12 +210,14 @@ function initialize() {
 		$('#nearby-locations').css('display', 'none');
 		
 		$('#map-section').css('display', 'block');
+		google.maps.event.trigger(map, 'resize');
 	
 	});
 	
 	$('#location-nav-list').click(function() {
 		
 		$('#map-section').css('display', 'none');
+		google.maps.event.trigger(map, 'resize');
 	
 		$('#location-search').css('display', 'block');
 		$('#nearby-locations').css('display', 'block');
