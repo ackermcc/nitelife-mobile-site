@@ -111,3 +111,12 @@ input#location-search {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+/*MAP*/
+
+#map-section {
+	width: 640px;
+	height: 740px;
+	padding: 15px;
+	display: none;
+}

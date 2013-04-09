@@ -9,8 +9,18 @@ $(window).load(function(){
 		$(this).addClass('active-location-nav');
 	});
 
+	// ABOUT
+
 	$("#about-us").click(function(){
 		$(this).css('box-shadow','0px 0px 8px #000');
-		// alert("yolo");
 	});
+
+	// MAP
+
+	var devicewidth = $(window).width();
+	var deviceheight = $(window).height() - 350;
+
+	$("#map-section").css('width', devicewidth);
+	$("#map-section").css('height', deviceheight);
+
 });
