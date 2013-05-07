@@ -42,7 +42,11 @@ function getBarsWithSearch(){
 	
 	var searchValue = $("#location-search").val();
 	$('.loadingDiv').css('display','block');
-	xmlhttp.open("GET","scripts/database.php?search="+searchValue,true);
+	var lat = $("#current-lat").val();
+	var lng = $("#current-lng").val();
+	
+	
+	xmlhttp.open("GET","scripts/database.php?search="+searchValue+"&lat="+lat+"&lng="+lng,true);
 	xmlhttp.send();
 
 }

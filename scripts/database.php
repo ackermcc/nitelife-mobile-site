@@ -2,30 +2,31 @@
 
 require('authenticate.php');
 
-if($_GET['lat'] && $_GET['lng']){
-
-	getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
-
-}elseif($_GET['search']){
+if($_GET['search']){
 
 	getBarsWithSearch($_GET['search'], $_GET['lat'], $_GET['lng']);
 	
+}elseif($_GET['lat'] && $_GET['lng']){
+
+	getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
+
 }
 
 function getBarsWithSearch($search, $lat, $lng){
 
 	global $db;
-
+	
 	if(isset($lat) && isset($lng) && $lat != 0 && $lng != 0)
-			$getSearched = "CALL searchBarsWithLatLng('".$search."', ".$lat.", ".$lng.");";
+		$getSearched = "CALL searchBarsWithLatLng('".$search."', ".$lat.", ".$lng.");";
 	else	// if theyre not set or equal 0, dont get the distance
 		$getSearched = "SELECT name, address, slug, icon_url, id FROM `bar` WHERE name LIKE '".$search."%'";
+
 	
 	$result = $db->query($getSearched) or die ('Error: '.$db->error);
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
 	
 	free_results($db);
-	
+
 	if(count($bars) != 0){
 		echo "Search results for '".$search."'";
 		foreach($bars as $bar){
@@ -41,7 +42,7 @@ function getBarsWithSearch($search, $lat, $lng){
 							<div class="bar-name truncate"><?=$bar['name']?></div>
 							<div class="bar-address truncate"><?=$bar['address']?></div>
 						</div>
-						<div class="bar-miles"></div>
+						<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
 					</div>
 				</a>
 					
@@ -50,6 +51,7 @@ function getBarsWithSearch($search, $lat, $lng){
 		echo "Sorry there are no bars with that name";
 	
 	}
+	
 }
 
 function displayBars($bars){
@@ -97,7 +99,7 @@ function getClosestBars($lat, $lng, $start){
 	// Other cases handled in js.
 	//if($lat && $lng && abs($lat) > 0 && abs($lng) > 0){
 	$getClosest = "CALL geodistNew(".$lat.", ".$lng.", ".$dist.", ".$start.");";
-	$result = $db->query($getClosest) or die ('Error: '.$db->error);
+	$result = $db->query($getClosest) or die ('Error1: '.$db->error);
 	
 	//echo $getClosest;
 	
@@ -119,7 +121,7 @@ function getClosestBars($lat, $lng, $start){
 		//echo "Sorry there are no bars nearby.  Here are some random bars!";
 		
 		$getRandom = "CALL getrandom(".$lat.", ".$lng.");";
-		$result = $db->query($getRandom) or die ('Error: '.$db->error);
+		$result = $db->query($getRandom) or die ('Error2: '.$db->error);
 		
 		$bars = array();
 		while($row = $result->fetch_assoc()){
@@ -149,7 +151,7 @@ function get_bars(){
 	//	$bars[] = $row;
 	//}
 	
-	$result = $db->query("SELECT name, address, slug, icon_url, id FROM bar") or die ('Error: '.$db->error);
+	$result = $db->query("SELECT name, address, slug, icon_url, id FROM bar") or die ('Error3: '.$db->error);
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
 	
 	return $bars;
@@ -165,7 +167,7 @@ function get_bar_info($slug){
 
 	global $db;
 	
-	$barResults = $db->query("SELECT * FROM bar WHERE slug='".$slug."'") or die ('Error: '.$db->error);
+	$barResults = $db->query("SELECT * FROM bar WHERE slug='".$slug."'") or die ('Error4: '.$db->error);
 	$bar_info = $result->fetch_assoc();
 	
 	//$barResults = mysql_query("SELECT * FROM bar WHERE slug='".$slug."'");
