@@ -4,26 +4,30 @@ require('authenticate.php');
 
 if($_GET['lat'] && $_GET['lng']){
 
-getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
-
+	getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
 
 }elseif($_GET['search']){
 
-	getBarsWithSearch($_GET['search']);
+	getBarsWithSearch($_GET['search'], $_GET['lat'], $_GET['lng']);
 	
 }
 
-function getBarsWithSearch($search){
+function getBarsWithSearch($search, $lat, $lng){
 
 	global $db;
 
-	$getSearched = "SELECT name, address, slug, icon_url, id FROM `bar` WHERE name LIKE '".$search."%'";
-	//$result = mysql_query($getSearched);
+	if(isset($lat) && isset($lng) && $lat != 0 && $lng != 0)
+			$getSearched = "CALL searchBarsWithLatLng('".$search."', ".$lat.", ".$lng.");";
+	else	// if theyre not set or equal 0, dont get the distance
+		$getSearched = "SELECT name, address, slug, icon_url, id FROM `bar` WHERE name LIKE '".$search."%'";
 	
 	$result = $db->query($getSearched) or die ('Error: '.$db->error);
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
 	
+	free_results($db);
+	
 	if(count($bars) != 0){
+		echo "Search results for '".$search."'";
 		foreach($bars as $bar){
 			?>
 				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">

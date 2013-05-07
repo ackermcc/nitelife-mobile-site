@@ -33,12 +33,15 @@ function getBarsWithSearch(){
 	
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			$(window).off("scroll", addBars);
+			$('.loadingDiv').css('display','none');
 			document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
 		}
 	}
 	http = new XMLHttpRequest();
 	
 	var searchValue = $("#location-search").val();
+	$('.loadingDiv').css('display','block');
 	xmlhttp.open("GET","scripts/database.php?search="+searchValue,true);
 	xmlhttp.send();
 
