@@ -85,6 +85,8 @@ $(window).load(function(){
 	
 
 });
+
+window.onload = function () { $('.loadingDiv').css('display','none'); };
 </script>
 	
 
