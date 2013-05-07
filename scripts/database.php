@@ -26,31 +26,10 @@ function getBarsWithSearch($search, $lat, $lng){
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
 	
 	free_results($db);
-
-	if(count($bars) != 0){
-		echo "Search results for '".$search."'";
-		foreach($bars as $bar){
-			?>
-				<a class="bar-page-link" href="?bar=<?=$bar['slug']?>">
-					<div id="<?=$bar['slug']?>" class="bar-location">
-						<?php if($bar['icon_url'] && $bar['icon_url'] != ''){ ?>
-							<div class="bar-icon"><img src="icons/<?=$bar['icon_url']?>" alt="" /></div>
-						<?php }else{ ?>
-							<div class="bar-icon"><img src="images/no-img-icon.jpg" alt=""/></div>
-						<?php } ?>
-						<div class="bar-info">
-							<div class="bar-name truncate"><?=$bar['name']?></div>
-							<div class="bar-address truncate"><?=$bar['address']?></div>
-						</div>
-						<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
-					</div>
-				</a>
-					
-			<? }
-	}else{
-		echo "Sorry there are no bars with that name";
 	
-	}
+	$barinfo = array('search'=>$search,'bars'=>$bars);
+
+	echo json_encode($barinfo);
 	
 }
 
@@ -168,7 +147,7 @@ function get_bar_info($slug){
 	global $db;
 	
 	$barResults = $db->query("SELECT * FROM bar WHERE slug='".$slug."'") or die ('Error4: '.$db->error);
-	$bar_info = $result->fetch_assoc();
+	$bar_info = $barResults->fetch_assoc();
 	
 	//$barResults = mysql_query("SELECT * FROM bar WHERE slug='".$slug."'");
 	//$bar_info = mysql_fetch_array($barResults);

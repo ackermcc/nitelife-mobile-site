@@ -23,31 +23,17 @@ function getGeolocation(){
 */
 function getBarsWithSearch(){
 	
-	var xmlhttp;
-	if (window.XMLHttpRequest)
-	  {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	}else{// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	
-	xmlhttp.onreadystatechange=function(){
-		if (xmlhttp.readyState==4 && xmlhttp.status==200){
-			$(window).off("scroll", addBars);
-			$('.loadingDiv').css('display','none');
-			document.getElementById("nearby-locations").innerHTML=xmlhttp.responseText;
-		}
-	}
-	http = new XMLHttpRequest();
-	
 	var searchValue = $("#location-search").val();
 	$('.loadingDiv').css('display','block');
 	var lat = $("#current-lat").val();
 	var lng = $("#current-lng").val();
 	
-	
-	xmlhttp.open("GET","scripts/database.php?search="+searchValue+"&lat="+lat+"&lng="+lng,true);
-	xmlhttp.send();
+	$.getJSON( "scripts/database.php?search="+searchValue+"&lat="+lat+"&lng="+lng, function(data) {
+		$(window).off("scroll", addBars);
+		$('.loadingDiv').css('display','none');
+		$('#nearby-locations').html("Search results for "+data.search);
+		$('#nearby-locations').append(displayBars(data.bars));
+	});
 
 }
 
@@ -116,30 +102,6 @@ function addBars(position) {
 			var lng = $("#current-lng").val();
 			
 		}
-		
-		/*
-		var xmlhttp;
-		
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		}else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-			
-				$('.loadingDiv').css('display','none');		// Stop loading gif
-				var json = xmlhttp.responseText;
-				console.log(json.bars);
-				//console.log('bars : ' +xmlhttp.responseText);
-				//$("#nearby-locations").append(xmlhttp.responseText);
-				//$("#nearby-locations").append(displayBars(xmlhttp.responseText.bars));
-				//$(window).scroll(addBars);	// Start scroll listener
-
-			}
-		}
-		*/
 		
 		$(window).off("scroll", addBars);	// Disable scroll listener
 		$('.loadingDiv').css('display','block');	// Start loading gif
