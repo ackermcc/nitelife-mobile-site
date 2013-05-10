@@ -7,6 +7,9 @@ Main javascript utilities used for mobile Nitelife site
 
 */
 
+var markersArray = [];
+var latlngArray = [];
+
 function getGeolocation(){
 	try {
 		if(!!navigator.geolocation)
@@ -31,6 +34,11 @@ function getBarsWithSearch(){
 	$.getJSON( "scripts/database.php?search="+searchValue+"&lat="+lat+"&lng="+lng, function(data) {
 		$(window).off("scroll", addBars);
 		$('.loadingDiv').css('display','none');
+		
+		clearMarkers();
+		addMarkers(data.bars);
+		centerAroundMarkers();
+		
 		$('#nearby-locations').html("Search results for "+data.search);
 		$('#nearby-locations').append(displayBars(data.bars));
 	});
@@ -110,28 +118,75 @@ function addBars(position) {
 		$.getJSON('scripts/database.php?lat='+lat+"&lng="+lng+"&start="+$('.bar-location').length, null, function(data) {
 
 			$('.loadingDiv').css('display','none');
-			if(data.random == true) $("#nearby-locations").append("Sorry there are no bars nearby.  Here are some random bars!");
+
+			if(data.random == true){
+
+				centerAroundMarkers();
+				$("#nearby-locations").append("Sorry there are no bars nearby.  Here are some random bars!");
+ 
+			}
 			$("#nearby-locations").append(displayBars(data.bars));
 			$(window).scroll(addBars);
 			
-			addMarkers(data.bars);
+			addMarkers(data.markers);
 		});
 	}
  }
   
+function clearMarkers() {
+	for (var i = 0; i < markersArray.length; i++ ) {
+		markersArray[i].setMap(null);
+	}
+	markersArray = [];
+	latlngArray = [];
+}
   
 function addMarkers(bars){
 
 	for (var i = 0; i < bars.length; i++)
 	{
 		var myLatlng = new google.maps.LatLng(bars[i].lat,bars[i].lng);
-
+		
 		var marker = new google.maps.Marker({
 			position: myLatlng,
 			map: map,
 			title:bars[i].name
 		});
+		
+		/*
+		console.log('slug: '+bars[i].slug+' name: '+bars[i].name);
+		
+		marker.info = new google.maps.InfoWindow({
+			content: '<a href="?bar='+bars[i].slug+'">'+bars[i].name+'</a>'
+		});
+		
+		google.maps.event.addListener(marker, 'click', function() {
+			marker.info.open(map, marker);
+		});
+		*/
+		markersArray.push(marker);
+		latlngArray.push(myLatlng);
 	}
+}
+
+function centerAroundMarkers(){
+
+	console.log(map.toString());
+
+	var bounds = new google.maps.LatLngBounds();
+
+	for (var i = 0, LtLgLen = latlngArray.length; i < LtLgLen; i++) {
+	  bounds.extend (latlngArray[i]);
+	  console.log(latlngArray[i].toString());
+	}
+	console.log(bounds.getCenter());
+	var cent = bounds.getCenter();
+	
+	map.setOptions({
+        center: cent,
+        zoom: 15
+    });
+
 }
   
   

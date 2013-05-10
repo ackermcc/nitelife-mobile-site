@@ -77,6 +77,11 @@ function getClosestBars($lat, $lng, $start){
 	// We know we have lat and long and that they are not 0. 
 	// Other cases handled in js.
 	//if($lat && $lng && abs($lat) > 0 && abs($lng) > 0){
+	$getAllMarkers = "SELECT name, slug, lat, lng FROM bar";
+	$result = $db->query($getAllMarkers);
+	$markers = array();
+	while($row = $result->fetch_assoc()){	$markers[] = $row;	}
+	
 	$getClosest = "CALL geodistNew(".$lat.", ".$lng.", ".$dist.", ".$start.");";
 	$result = $db->query($getClosest) or die ('Error1: '.$db->error);
 	
@@ -92,7 +97,7 @@ function getClosestBars($lat, $lng, $start){
 	
 	if(count($bars) > 0){
 	
-		echo json_encode(array('random' => false, 'bars' => $bars));
+		echo json_encode(array('random' => false, 'bars' => $bars, 'markers'=>$markers));
 		//displayBars($bars);
 		
 	}else{
@@ -112,7 +117,8 @@ function getClosestBars($lat, $lng, $start){
 		
 		if(count($bars) > 0){
 			//displayBars($bars);
-			echo json_encode(array('random' => true, 'bars' => $bars));
+			$randombool = ($start == 0 ? true : false);
+			echo json_encode(array('random' => $randombool, 'bars' => $bars, 'markers'=>$markers));
 		}
 		
 
