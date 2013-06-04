@@ -3,29 +3,31 @@ require('../scripts/database.php');
 
 $slug = $_REQUEST['bar'];
 
+global $db;
+
 if($slug){
 	
 	$id = get_id_from_slug($slug);
 
 	if(isset($_POST['update-bar'])){
 
-		$name = $_POST['name'];
-		$slug = $_POST['slug'];
-		$address = $_POST['address'];
-		$zip = $_POST['zipcode'];
-		$region = $_POST['region'];
-		$desc = $_POST['description'];
-		$fb = $_POST['facebook'];
-		$twit = $_POST['twitter'];
-		$four = $_POST['foursquare'];
-		$user = $_POST['username'];
-		$pass = $_POST['password'];
-		$phone = $_POST['phone'];
-
-
-		$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
-
-
+		$name = addslashes($_POST['name']);
+		$slug = addslashes($_POST['slug']);
+		$address = addslashes($_POST['address']);
+		$zip = addslashes($_POST['zipcode']);
+		$region = addslashes($_POST['region']);
+		$desc = addslashes($_POST['description']);
+		$fb = addslashes($_POST['facebook']);
+		$twit = addslashes($_POST['twitter']);
+		$four = addslashes($_POST['foursquare']);
+		$user = addslashes($_POST['username']);
+		$pass = addslashes($_POST['password']);
+		$phone = addslashes($_POST['phone']);
+		$lat = addslashes($_POST['lat']);
+		$lng = addslashes($_POST['lng']);
+		
+		$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone, $lat, $lng);
+		if ($success) $message = "Bar updated successfully";
 
 		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
 			move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
@@ -40,7 +42,7 @@ if($slug){
 	 }
 	 
 	 if(isset($_POST['add-special'])){
-		$name = $_POST['new-special-name'];
+		$name = addslashes($_POST['new-special-name']);
 		$times = $_POST['new-special-times'];
 		$startdate = $_POST['special-start-date'];
 		$enddate = $_POST['special-end-date'];
@@ -60,7 +62,7 @@ if($slug){
 		$message = "Specials deleted successfully";
 	 }
 	 if(isset($_POST['add-open'])){
-		$times = $_POST['new-open-times'];
+		$times = addslashes($_POST['new-open-times']);
 		$days = $_POST['open-days'];
 		
 		admin_add_opentimes($id, $days, $times);		
@@ -81,18 +83,18 @@ if($slug){
  
 	if(isset($_POST['update-bar'])){
 		
-		$name = $_POST['name'];
-		$slug = $_POST['slug'];
-		$address = $_POST['address'];
-		$zip = $_POST['zipcode'];
-		$region = $_POST['region'];
-		$desc = $_POST['description'];
-		$fb = $_POST['facebook'];
-		$twit = $_POST['twitter'];
-		$four = $_POST['foursquare'];
-		$user = $_POST['username'];
-		$pass = $_POST['password'];
-		$phone = $_POST['phone'];
+		$name = addslashes($_POST['name']);
+		$slug = addslashes($_POST['slug']);
+		$address = addslashes($_POST['address']);
+		$zip = addslashes($_POST['zipcode']);
+		$region = addslashes($_POST['region']);
+		$desc = addslashes($_POST['description']);
+		$fb = addslashes($_POST['facebook']);
+		$twit = addslashes($_POST['twitter']);
+		$four = addslashes($_POST['foursquare']);
+		$user = addslashes($_POST['username']);
+		$pass = addslashes($_POST['password']);
+		$phone = addslashes($_POST['phone']);
 		
 		$id = admin_add_bar($name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
 		
@@ -121,11 +123,45 @@ if($slug){
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
 	<link rel="stylesheet" href="admin.css">
 	<link rel="stylesheet" href="../css/font-awesome.css">
+	
 	<meta charset="utf-8" />
 	<title>NiteLife - Admin</title>
 
 	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="application/javascript" src="../js/jquery.js"></script>
+	<script type="application/javascript" src="../js/maps.js"></script>
+	<script type="text/javascript">
+	
+		
+	//http://maps.googleapis.com/maps/api/geocode/json?address=205+W+McMillan+St,+45219&sensor=false
+
+	
+	$( document ).ready(function() {
+		
+			
+		$("#setLatLng").click(function() {
+		
+			var str = $('[name="address"]').val() + ' ' + $('[name="zipcode"]').val();
+			var address = str.split(' ').join('+');
+			
+			$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false', null, function(data) {
+				$('[name="lat"]').val(data.results[0].geometry.location.lat);
+				$('[name="lng"]').val(data.results[0].geometry.location.lng);
+			});
+
+			
+		});
+
+		
+	});
+		
+
+	
+	</script>
+	
+	
+	
 </head>
 
 <body>
@@ -145,10 +181,11 @@ if($slug){
 	<?=$bar['icon_url']?>
 	<input type="hidden" value="<?=$bar['slug']?>" name="bar" />
 	<input type="hidden" value="<?=$bar['id']?>" name="id" />
+	<br>ID: <?=$bar['id']?></br><br />
 	<?php if($success) echo 'Bar Successfully Updated'; ?>
-	<br>ID: <?=$bar['id']?></br>
-	<br>Name: <input type="text" name="name" style="width:250px;" value="<?=$bar['name']?>"></input></br>
-	<br>Slug: <input type="text" name="slug" style="width:250px;" value="<?=$bar['slug']?>"></input></br>
+	
+	<br>Name: <input type="text" name="name" style="width:250px;" value="<?=stripslashes($bar['name'])?>"></input></br>
+	<br>Slug: <input type="text" name="slug" style="width:250px;" value="<?=stripslashes($bar['slug'])?>"></input></br>
 	
 	<br>Icon: 
 			<?php if(!$bar['icon_url']){ 
@@ -165,16 +202,19 @@ if($slug){
 			<?php } ?>
 			<input type="file" name="banner"></br>
 
-	<br>Address: <input type="text" name="address" style="width:250px;" value="<?=$bar['address']?>"></input></br>
-	<br>Zipcode: <input type="text" name="zipcode" style="width:250px;" value="<?=$bar['zipcode']?>"></input></br>
-	<br>Region: <input type="text" name="region" style="width:250px;" value="<?=$bar['region']?>"></input></br>
-	<br>Description: <textarea name="description" style="width:250px;"><?=$bar['description']?></textarea></br>
-	<br>Facebook: <input type="text" name="facebook" style="width:250px;" value="<?=$bar['facebook']?>"></input></br>
-	<br>Twitter: <input type="text" name="twitter" style="width:250px;" value="<?=$bar['twitter']?>"></input></br>
-	<br>Foursquare: <input type="text" name="foursquare" style="width:250px;" value="<?=$bar['foursquare']?>"></input></br>
-	<br>Username: <input type="text" name="username" style="width:250px;" value="<?=$bar['username']?>"></input></br>
-	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=$bar['password']?>"></input></br>
-	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=$bar['phone']?>"></input></br>
+	<br>Address: <input type="text" name="address" style="width:250px;" value="<?=stripslashes($bar['address'])?>"></input></br>
+	<br>Zipcode: <input type="text" name="zipcode" style="width:250px;" value="<?=stripslashes($bar['zipcode'])?>"></input></br>
+	<br>Region: <input type="text" name="region" style="width:250px;" value="<?=stripslashes($bar['region'])?>"></input></br>
+	<br>Description: <textarea name="description" style="width:250px;"><?=stripslashes($bar['description'])?></textarea></br>
+	<br>Facebook: <input type="text" name="facebook" style="width:250px;" value="<?=stripslashes($bar['facebook'])?>"></input></br>
+	<br>Twitter: <input type="text" name="twitter" style="width:250px;" value="<?=stripslashes($bar['twitter'])?>"></input></br>
+	<br>Foursquare: <input type="text" name="foursquare" style="width:250px;" value="<?=stripslashes($bar['foursquare'])?>"></input></br>
+	<br>Username: <input type="text" name="username" style="width:250px;" value="<?=stripslashes($bar['username'])?>"></input></br>
+	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=stripslashes($bar['password'])?>"></input></br>
+	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=stripslashes($bar['phone'])?>"></input></br>
+	<br>Latitude: <input type="text" name="lat" id="pos-lat" style="width:80px;" value="<?=stripslashes($bar['lat'])?>"></input></br>
+	</br>Longitude: <input type="text" name="lng" id="pos-lng" style="width:80px;" value="<?=stripslashes($bar['lng'])?>"></input></br>
+	<br><button id="setLatLng" type="button">Set Position</button></br>
 	<?php if($slug){ ?>
 		<br><input type="submit" name="update-bar" value="Update" /> <a href="index.php">Go back to bar list</a></br>
 	<?php }else{ ?>

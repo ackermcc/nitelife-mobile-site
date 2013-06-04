@@ -12,12 +12,16 @@ var latlngArray = [];
 
 function getGeolocation(){
 	try {
-		if(!!navigator.geolocation)
+		if(!!navigator.geolocation){
 			return navigator.geolocation;
-		else
+		}else{
+			alert('in else');
 			return undefined;
+		}
 	} catch(e) {
+		alert('in catch');
 		return undefined;
+
 	}
 }
 
@@ -60,19 +64,7 @@ function getLatLong(address, id){
 	}
 }
 */
-
-
-function getGeolocation(){
-	try {
-		if(!! navigator.geolocation)
-			return navigator.geolocation;
-		else
-			return undefined;
-	} catch(e) {
-		return undefined;
-	}
-}
-		
+	
 
 /*
 	Method used for initial bar list and to populate more on scrolldown
@@ -80,6 +72,24 @@ function getGeolocation(){
 	If position.coords is undefined, then make sure the user scrolled to the bottom
 */
 var map;
+
+function addRandomBars(){
+	alert('here!');
+	
+	$.getJSON('scripts/database.php?lat=0&lng=0&start='+$('.bar-location').length, null, function(data) {
+
+		$('.loadingDiv').css('display','none');
+
+
+		centerAroundMarkers();
+		$("#nearby-locations").append("Sorry there are no bars nearby.  Here are some random bars!");
+		$("#nearby-locations").append(displayBars(data.bars));
+		$(window).scroll(addBars);
+		
+		addMarkers(data.markers);
+	});
+
+}
 
 function addBars(position) {
 
@@ -106,8 +116,14 @@ function addBars(position) {
 			
 		}else{	// get lat and long if getting more bars
 		
-			var lat = $("#current-lat").val();
-			var lng = $("#current-lng").val();
+			if (!$("#current-lat").val() || !lng = $("#current-lng").val()){
+				var lat = 0;
+				var lng = 0;
+			}else{
+				var lat = $("#current-lat").val();
+				var lng = $("#current-lng").val();
+			}
+			
 			
 		}
 		
@@ -226,6 +242,8 @@ function initialize() {
 	}else{
 		//TODO: Add code to deal with no geolocation provided
 		// Use getRandomBars method of db
+		addRandomBars();
+		
 	}
 	
 	$('#location-nav-map').click(function() {

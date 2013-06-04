@@ -8,7 +8,6 @@ if(isset($_POST['delete-bar'])){
 
 }
 
-
 $bars = admin_get_bars();
 
 
@@ -46,9 +45,8 @@ $bars = admin_get_bars();
 		</tr>
 		<?php foreach ($bars as $bar){ ?>
 			<tr>
-				<td><a class="bar-name-link" href="edit-bar.php?bar=<?=$bar['slug']?>"><?=$bar['name']?></a></td>
-				<td><?=$bar['address']?></td>
-				<!-- <td><?=$bar['description']?></td> -->
+				<td><a class="bar-name-link" href="edit-bar.php?bar=<?=$bar['slug']?>"><?=stripslashes($bar['name'])?></a></td>
+				<td><?=stripslashes($bar['address'])?></td>
 				<td><?=$bar['slug']?></td>
 				<td><input type="checkbox" name="delete-bars[]" value="<?=$bar['id']?>"></td>
 			</tr>

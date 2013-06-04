@@ -204,14 +204,14 @@ function admin_get_bar($slug){
 	return $result->fetch_assoc();
 }
 
-function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twitter, $four, $user, $password, $phone){
+function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twitter, $four, $user, $password, $phone, $lat, $lng){
 
 	global $db;
 	
 	$query = "UPDATE bar SET name='".$name."', slug='".$slug."', address='".$address."', zipcode='"
 			.$zip."', region='".$region."', description='".$desc."', facebook='".$fb."', twitter='"
 			.$twitter."', foursquare='".$four."', username='".$user."', password='".$password."', 
-			phone='".$phone."' WHERE id='$id'";
+			phone='".$phone."', lat='".$lat."', lng='".$lng."' WHERE id='$id'";
 	$ok = $db->query($query);
 	if($ok) return true;
 	else return false;
