@@ -17,6 +17,7 @@ if($slug){
 		$zip = addslashes($_POST['zipcode']);
 		$region = addslashes($_POST['region']);
 		$desc = addslashes($_POST['description']);
+		$website = addslashes($_POST['website']);
 		$fb = addslashes($_POST['facebook']);
 		$twit = addslashes($_POST['twitter']);
 		$four = addslashes($_POST['foursquare']);
@@ -26,7 +27,7 @@ if($slug){
 		$lat = addslashes($_POST['lat']);
 		$lng = addslashes($_POST['lng']);
 		
-		$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone, $lat, $lng);
+		$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $website, $fb, $twit, $four, $user, $pass, $phone, $lat, $lng);
 		if ($success) $message = "Bar updated successfully";
 
 		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
@@ -89,6 +90,7 @@ if($slug){
 		$zip = addslashes($_POST['zipcode']);
 		$region = addslashes($_POST['region']);
 		$desc = addslashes($_POST['description']);
+		$website = addslashes($_POST['website']);
 		$fb = addslashes($_POST['facebook']);
 		$twit = addslashes($_POST['twitter']);
 		$four = addslashes($_POST['foursquare']);
@@ -96,7 +98,7 @@ if($slug){
 		$pass = addslashes($_POST['password']);
 		$phone = addslashes($_POST['phone']);
 		
-		$id = admin_add_bar($name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
+		$id = admin_add_bar($name, $slug, $address, $zip, $region, $desc, $website, $fb, $twit, $four, $user, $pass, $phone);
 		
 		
 		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
@@ -121,15 +123,15 @@ if($slug){
 <html>
 <head>
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
-	<link rel="stylesheet" href="admin.css">
-	<link rel="stylesheet" href="../css/font-awesome.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
 	
 	<meta charset="utf-8" />
 	<title>NiteLife - Admin</title>
 
 	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<script type="application/javascript" src="../js/jquery.js"></script>
+	<script type="application/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="application/javascript" src="../js/maps.js"></script>
 	<script type="text/javascript">
 	
@@ -153,6 +155,12 @@ if($slug){
 			
 		});
 
+
+		$(".edit_special").click(function() {
+
+			alert('here');
+		});
+
 		
 	});
 		
@@ -166,7 +174,7 @@ if($slug){
 
 <body>
 <header>
-	<img src="../images/logo_admin.png" alt="" />
+	<img src="http://m.cincynitelife.com/images/logo_admin.png" alt="" />
 </header>
 
 <div class="edit-container">
@@ -191,7 +199,7 @@ if($slug){
 			<?php if(!$bar['icon_url']){ 
 				echo 'No Icon'; 
 			}else{ ?>
-				<img src="../icons/<?=$bar['icon_url']?>" />
+				<img src="http://m.cincynitelife.com/icons/<?=$bar['icon_url']?>" />
 			<?php } ?>
 			<input type="file" name="icon"></br>
 	<br>Banner: 
@@ -202,16 +210,17 @@ if($slug){
 			<?php } ?>
 			<input type="file" name="banner"></br>
 
-	<br>Address: <input type="text" name="address" style="width:250px;" value="<?=stripslashes($bar['address'])?>"></input></br>
-	<br>Zipcode: <input type="text" name="zipcode" style="width:250px;" value="<?=stripslashes($bar['zipcode'])?>"></input></br>
-	<br>Region: <input type="text" name="region" style="width:250px;" value="<?=stripslashes($bar['region'])?>"></input></br>
-	<br>Description: <textarea name="description" style="width:250px;"><?=stripslashes($bar['description'])?></textarea></br>
-	<br>Facebook: <input type="text" name="facebook" style="width:250px;" value="<?=stripslashes($bar['facebook'])?>"></input></br>
-	<br>Twitter: <input type="text" name="twitter" style="width:250px;" value="<?=stripslashes($bar['twitter'])?>"></input></br>
-	<br>Foursquare: <input type="text" name="foursquare" style="width:250px;" value="<?=stripslashes($bar['foursquare'])?>"></input></br>
-	<br>Username: <input type="text" name="username" style="width:250px;" value="<?=stripslashes($bar['username'])?>"></input></br>
-	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=stripslashes($bar['password'])?>"></input></br>
-	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=stripslashes($bar['phone'])?>"></input></br>
+	<br>Address: <input type="text" name="address" value="<?=stripslashes($bar['address'])?>"></input></br>
+	<br>Zipcode: <input type="text" name="zipcode" value="<?=stripslashes($bar['zipcode'])?>"></input></br>
+	<br>Region: <input type="text" name="region" value="<?=stripslashes($bar['region'])?>"></input></br>
+	<br>Description: <textarea name="description" ><?=stripslashes($bar['description'])?></textarea></br>
+	<br>Website: <input type="text" name="website" value="<?=stripslashes($bar['website'])?>"></input></br>
+	<br>Facebook: <input type="text" name="facebook" value="<?=stripslashes($bar['facebook'])?>"></input></br>
+	<br>Twitter: <input type="text" name="twitter" value="<?=stripslashes($bar['twitter'])?>"></input></br>
+	<br>Foursquare: <input type="text" name="foursquare" value="<?=stripslashes($bar['foursquare'])?>"></input></br>
+	<br>Username: <input type="text" name="username" value="<?=stripslashes($bar['username'])?>"></input></br>
+	<br>Password: <input type="text" name="password" value="<?=stripslashes($bar['password'])?>"></input></br>
+	<br>Phone: <input type="text" name="phone" value="<?=stripslashes($bar['phone'])?>"></input></br>
 	<br>Latitude: <input type="text" name="lat" id="pos-lat" style="width:80px;" value="<?=stripslashes($bar['lat'])?>"></input></br>
 	</br>Longitude: <input type="text" name="lng" id="pos-lng" style="width:80px;" value="<?=stripslashes($bar['lng'])?>"></input></br>
 	<br><button id="setLatLng" type="button">Set Position</button></br>
@@ -236,15 +245,17 @@ if($slug){
 				<td>End Date</td>
 				<td>Day</td>
 				<td></td>
+				<td></td>
 			</tr>
 		<?php foreach($specials as $special){ ?>
-				<tr>
+				<tr id="special_<?=$special['id']?>">
 					<!-- <td><?=$special['id']?></td> -->
-					<td><?=$special['name']?></td>
-					<td><?=$special['times']?></td>
-					<td><?=$special['date_start']?></td>
-					<td><?=$special['date_end']?></td>
-					<td><?=$special['day']?></td>
+					<td class="name"><?=$special['name']?></td>
+					<td class="times"><?=$special['times']?></td>
+					<td class="date_start"><?=$special['date_start']?></td>
+					<td class="date_end"><?=$special['date_end']?></td>
+					<td class="day"><?=$special['day']?></td>
+					<td><button type="button" class="edit_special" id="edit_special_<?=$special['id']?>">edit</button></td>
 					<td><input type="checkbox" name="delete-special[]" value="<?=$special['id']?>"></td>
 				</tr>
 		<?php } ?>
@@ -298,6 +309,5 @@ if($slug){
 </form>
 </div>
 </div>
-
 </body>
 </html>

@@ -1,0 +1,1 @@
+[01-Jun-2013 08:41:41] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nitelife/public_html/m/scripts/authenticate.php on line 3

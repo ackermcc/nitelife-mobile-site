@@ -17,7 +17,7 @@ $bars = admin_get_bars();
 <html>
 <head>
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
-	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="css/admin.css">
 	<link rel="stylesheet" href="../css/font-awesome.css">
 	<meta charset="utf-8" />
 	<title>NiteLife - Admin</title>
@@ -28,7 +28,7 @@ $bars = admin_get_bars();
 
 <body>
 <header>
-	<img src="../images/logo_admin.png" alt="" />
+	<img src="http://m.cincynitelife.com/images/logo_admin.png" alt="" />
 	<div id="add-bar"><a href="edit-bar.php"><i class="icon-plus"></i></a></div>
 </header>
 

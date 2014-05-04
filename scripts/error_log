@@ -1,0 +1,10 @@
+[27-Aug-2013 19:48:27] PHP Fatal error:  Call to a member function query() on a non-object in /home4/nitelife/public_html/m/scripts/database.php on line 167
+[27-Aug-2013 19:49:04] PHP Fatal error:  Call to a member function query() on a non-object in /home4/nitelife/public_html/m/scripts/database.php on line 167
+[27-Aug-2013 19:49:56] PHP Warning:  mysqli::query() [<a href='mysqli.query'>mysqli.query</a>]: Empty query in /home4/nitelife/public_html/m/scripts/database.php on line 168
+[05-Sep-2013 18:16:53] PHP Parse error:  syntax error, unexpected '=' in /home4/nitelife/public_html/m/scripts/database.php on line 93
+[05-Sep-2013 18:17:17] PHP Parse error:  syntax error, unexpected '=' in /home4/nitelife/public_html/m/scripts/database.php on line 93
+[22-Oct-2013 19:19:43] PHP Fatal error:  Call to undefined method mysqli_result::fetch() in /home4/nitelife/public_html/m/scripts/database.php on line 39
+[22-Oct-2013 19:22:33] PHP Fatal error:  Call to undefined method mysqli::fetch_assoc() in /home4/nitelife/public_html/m/scripts/database.php on line 39
+[22-Oct-2013 19:22:35] PHP Fatal error:  Call to undefined method mysqli::fetch_assoc() in /home4/nitelife/public_html/m/scripts/database.php on line 39
+[22-Oct-2013 19:28:05] PHP Parse error:  syntax error, unexpected '*' in /home4/nitelife/public_html/m/scripts/database.php on line 45
+[28-Oct-2013 20:56:00] PHP Parse error:  syntax error, unexpected ']' in /home4/nitelife/public_html/m/scripts/database.php on line 70

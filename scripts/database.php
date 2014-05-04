@@ -1,14 +1,134 @@
 <?php
 
 require('authenticate.php');
+if($_GET['bar_info']){
 
-if($_GET['search']){
+	get_bar_info_json($_GET['bar_info']);
+
+}elseif($_GET['bar_slug'] && $_GET['lat'] && $_GET['lng']){
+
+	get_bar_info_with_distance($_GET['bar_slug'], $_GET['lat'], $_GET['lng']);
+
+}elseif($_GET['search']){
 
 	getBarsWithSearch($_GET['search'], $_GET['lat'], $_GET['lng']);
+	
+}elseif($_GET['thebuzz']){
+
+	getTheBuzz($_GET['lat'], $_GET['lng'], $_GET['day']);
+
+}elseif($_GET['region']){
+
+	getBarsByRegion($_GET['region'], $_GET['lat'], $_GET['lng'], $_GET['day']);
 	
 }elseif($_GET['lat'] && $_GET['lng']){
 
 	getClosestBars($_GET['lat'], $_GET['lng'], $_GET['start']);
+
+}
+
+function getBarsByRegion($region, $lat, $lng, $day){
+	global $db;
+	
+	$query = "CALL getBarByRegion(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).", '".$db->real_escape_string($region)."');";
+	$result = $db->query($query) or die ('Error: '.$db->error);
+	
+	$bars = array();
+	while($row = $result->fetch_assoc()){
+		$bars[] = $row;
+	}
+	$result->free();
+	free_results($db);
+
+	$allBars = array();
+	
+	foreach($bars as $bar){
+		$getSpecials = "SELECT * FROM `special` WHERE bar_id='".$bar["id"]."' AND day='".$day."'";
+		$getOpenTimes = "SELECT * FROM `open_times` WHERE bar_id='".$bar["id"]."' AND day='".$day."'";
+		
+		$spResults = $db->query($getSpecials);
+	
+		if($spResults){
+			for ($specials = array(); $tmp = $spResults->fetch_assoc();){
+				$specials[$tmp['day']][] = $tmp;
+			}
+		}
+		
+		$openResults = $db->query($getOpenTimes);
+		if($openResults){
+			for ($open_times = array(); $tmp = $openResults->fetch_assoc();){
+				$open_times[$tmp['day']] = $tmp;
+			}
+		}
+		
+		if (count($specials) > 0){
+		
+			$all_info = array(
+				"info" => $bar,
+				"open_times" => $open_times,
+				"specials" => $specials
+			);
+			
+			$allBars[] = $all_info;
+		}
+	
+	}
+	echo json_encode($allBars);
+	
+}
+
+
+function getTheBuzz($lat, $lng, $day){
+	
+	global $db;
+	
+	$getClosest = "CALL geodistAll(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).");";
+	
+	$result = $db->query($getClosest) or die ('Error1: '.$db->error);
+	
+	//echo $getClosest;
+	
+	$bars = array();
+	while($row = $result->fetch_assoc()){
+		$bars[] = $row;
+	}
+	$result->free();
+	free_results($db);
+	
+	$allBars = array();
+	
+	foreach($bars as $bar){
+		$getSpecials = "SELECT * FROM `special` WHERE bar_id='".$bar["id"]."' AND day='".$day."'";
+		$getOpenTimes = "SELECT * FROM `open_times` WHERE bar_id='".$bar["id"]."' AND day='".$day."'";
+		
+		$spResults = $db->query($getSpecials);
+	
+		if($spResults){
+			for ($specials = array(); $tmp = $spResults->fetch_assoc();){
+				$specials[$tmp['day']][] = $tmp;
+			}
+		}
+		
+		$openResults = $db->query($getOpenTimes);
+		if($openResults){
+			for ($open_times = array(); $tmp = $openResults->fetch_assoc();){
+				$open_times[$tmp['day']] = $tmp;
+			}
+		}
+		
+		if (count($specials) > 0){
+		
+			$all_info = array(
+				"info" => $bar,
+				"open_times" => $open_times,
+				"specials" => $specials
+			);
+			
+			$allBars[] = $all_info;
+		}
+	
+	}
+	echo json_encode($allBars);
 
 }
 
@@ -17,7 +137,7 @@ function getBarsWithSearch($search, $lat, $lng){
 	global $db;
 	
 	if(isset($lat) && isset($lng) && $lat != 0 && $lng != 0)
-		$getSearched = "CALL searchBarsWithLatLng('".$search."', ".$lat.", ".$lng.");";
+		$getSearched = "CALL searchBarsWithLatLng('".$db->real_escape_string($search)."', ".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).");";
 	else	// if theyre not set or equal 0, dont get the distance
 		$getSearched = "SELECT name, address, slug, icon_url, id FROM `bar` WHERE name LIKE '".$search."%'";
 
@@ -82,7 +202,12 @@ function getClosestBars($lat, $lng, $start){
 	$markers = array();
 	while($row = $result->fetch_assoc()){	$markers[] = $row;	}
 	
-	$getClosest = "CALL geodistNew(".$lat.", ".$lng.", ".$dist.", ".$start.");";
+	if ($_GET['amount'] == 'all') {
+		$getClosest = "CALL geodistAll(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).");";
+	} else {
+		$getClosest = "CALL geodistNew(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).", ".$db->real_escape_string($dist).", ".$db->real_escape_string($start).");";
+	}
+	
 	$result = $db->query($getClosest) or die ('Error1: '.$db->error);
 	
 	//echo $getClosest;
@@ -104,7 +229,7 @@ function getClosestBars($lat, $lng, $start){
 	
 		//echo "Sorry there are no bars nearby.  Here are some random bars!";
 		
-		$getRandom = "CALL getrandom(".$lat.", ".$lng.");";
+		$getRandom = "CALL getrandom(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).");";
 		$result = $db->query($getRandom) or die ('Error2: '.$db->error);
 		
 		$bars = array();
@@ -130,11 +255,6 @@ function getClosestBars($lat, $lng, $start){
 function get_bars(){
 
 	global $db;
-	//$result = mysql_query("SELECT name, address, slug, icon_url, id FROM bar");
-	//$bars = array();
-	//while($row = $result->fetch_assoc()){
-	//	$bars[] = $row;
-	//}
 	
 	$result = $db->query("SELECT name, address, slug, icon_url, id FROM bar") or die ('Error3: '.$db->error);
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
@@ -148,18 +268,65 @@ function get_home(){
 
 }
 
+function get_bar_info_json($slug){
+
+	echo json_encode(get_bar_info($slug));
+
+}
+
+function get_bar_info_with_distance($slug, $lat, $lng){
+
+	global $db;
+	$getBar = "CALL getBarInfo(".$db->real_escape_string($lat).", ".$db->real_escape_string($lng).", '".$db->real_escape_string($slug)."');";
+	$result = $db->query($getBar) or die ('Error1: '.$db->error);
+	
+	$bar = $result->fetch_assoc();
+	$result->free();
+	free_results($db);
+	
+	
+	if ($bar) {
+	
+		$spResults = $db->query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$db->real_escape_string($slug)."')");
+		
+		if($spResults){
+			for ($specials = array(); $tmp = $spResults->fetch_assoc();){
+				$specials[$tmp['day']][] = $tmp;
+			}
+		}
+		
+		//$openResults = mysql_query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+		$openResults = $db->query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$db->real_escape_string($slug)."')");
+		if($openResults){
+			for ($open_times = array(); $tmp = $openResults->fetch_assoc();){
+				$open_times[$tmp['day']] = $tmp;
+			}
+		}
+
+		$all_info = array(
+			"info" => $bar,
+			"open_times" => $open_times,
+			"specials" => $specials
+		);
+		
+		echo json_encode($all_info);
+	
+	}
+
+}
+
 function get_bar_info($slug){
 
 	global $db;
 	
-	$barResults = $db->query("SELECT * FROM bar WHERE slug='".$slug."'") or die ('Error4: '.$db->error);
+	$barResults = $db->query("SELECT * FROM bar WHERE slug='".$db->real_escape_string($slug)."'") or die ('Error4: '.$db->error);
 	$bar_info = $barResults->fetch_assoc();
 	
 	//$barResults = mysql_query("SELECT * FROM bar WHERE slug='".$slug."'");
 	//$bar_info = mysql_fetch_array($barResults);
 	
 	//$spResults = mysql_query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
-	$spResults = $db->query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+	$spResults = $db->query("SELECT * FROM special WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$db->real_escape_string($slug)."')");
 	
 	if($spResults){
 		for ($specials = array(); $tmp = $spResults->fetch_assoc();){
@@ -168,7 +335,7 @@ function get_bar_info($slug){
 	}
 	
 	//$openResults = mysql_query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
-	$openResults = $db->query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$slug."')");
+	$openResults = $db->query("SELECT * FROM open_times WHERE bar_id IN (SELECT id FROM bar WHERE slug='".$db->real_escape_string($slug)."')");
 	if($openResults){
 		for ($open_times = array(); $tmp = $openResults->fetch_assoc();){
 			$open_times[$tmp['day']] = $tmp;
@@ -188,7 +355,7 @@ function admin_get_bars(){
 	
 	global $db;
 	
-	$result = $db->query("SELECT * FROM bar");
+	$result = $db->query("SELECT * FROM bar ORDER BY `name` ASC");
 	//$result = mysql_query("SELECT * FROM bar");
 	for ($bars = array(); $tmp = $result->fetch_assoc();) $bars[] = $tmp;
 	return $bars;
@@ -204,12 +371,12 @@ function admin_get_bar($slug){
 	return $result->fetch_assoc();
 }
 
-function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twitter, $four, $user, $password, $phone, $lat, $lng){
+function admin_update($id, $name, $slug, $address, $zip, $region, $desc, $website, $fb, $twitter, $four, $user, $password, $phone, $lat, $lng){
 
 	global $db;
 	
 	$query = "UPDATE bar SET name='".$name."', slug='".$slug."', address='".$address."', zipcode='"
-			.$zip."', region='".$region."', description='".$desc."', facebook='".$fb."', twitter='"
+			.$zip."', region='".$region."', description='".$desc."', website='".$website."', facebook='".$fb."', twitter='"
 			.$twitter."', foursquare='".$four."', username='".$user."', password='".$password."', 
 			phone='".$phone."', lat='".$lat."', lng='".$lng."' WHERE id='$id'";
 	$ok = $db->query($query);
@@ -232,7 +399,8 @@ function admin_update_banner($id, $filename){
 	global $db;
 
 	$query = "UPDATE bar SET banner_url='".$filename."' WHERE id='".$id."'";
-	$ok = $query->fetch_assoc();
+	$ok = $db->query($query);
+	//$ok = $query->fetch_assoc();
 	if($ok) return true;
 	else return false;
 
@@ -256,7 +424,8 @@ function admin_get_opentimes($slug){
 	global $db;
 
 	$id = get_id_from_slug($slug);
-	$query = "SELECT * FROM open_times WHERE bar_id='".$id."'";
+	//$query = "SELECT * FROM open_times WHERE bar_id='".$id."'";
+	$query = "SELECT * FROM open_times LEFT JOIN day_order ON open_times.day = day_order.day WHERE bar_id='".$id."' ORDER BY `day_order`.order";
 	$results = $db->query($query);
 	
 	for ($opentimes = array(); $tmp = $results->fetch_assoc();) $opentimes[] = $tmp;
@@ -294,17 +463,18 @@ function admin_add_specials($id, $name, $times, $startdate, $enddate, $days, $al
 	foreach($days as $day){
 		$query = "INSERT INTO special (`bar_id`, `name`, `date_start`, `date_end`, `times`, `day`, `all_day`)
 				VALUES ('".$id."', '".$name."', '".$startdate."', '".$enddate."', '".$times."', '".$day."', '".$all_day."')";
-				$ok = $db->connect($query);
+		
+		$ok = $db->query($query);
+	
 	}
 } 
 
-function admin_add_bar($name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone){
+function admin_add_bar($name, $slug, $address, $zip, $region, $desc, $website, $fb, $twit, $four, $user, $pass, $phone){
 	global $db;
-	$query = "INSERT INTO bar (`name`, `slug`, `address`, `zipcode`, `region`, `description`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`) 
+	$query = "INSERT INTO bar (`name`, `slug`, `address`, `zipcode`, `region`, `description`, `website`, `facebook`, `twitter`, `foursquare`, `username`, `password`, `phone`) 
 				values ('".$name."', '".$slug."', '".$address."', '".$zipcode."', '".$region."', '".$desc."', 
-					'".$fb."', '".$twit."', '".$four."', '".$user."', '".$pass."', '".$phone."')";
+					'".$website."', '".$fb."', '".$twit."', '".$four."', '".$user."', '".$pass."', '".$phone."')";
 	$success = $db->query($query);
-	return $db->insert_id();
 }
 
 function admin_delete_specials($ids){

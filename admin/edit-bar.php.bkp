@@ -1,0 +1,305 @@
+<?php
+require('../scripts/database.php');
+
+$slug = $_REQUEST['bar'];
+
+global $db;
+
+if($slug){
+	
+	$id = get_id_from_slug($slug);
+
+	if(isset($_POST['update-bar'])){
+
+		$name = addslashes($_POST['name']);
+		$slug = addslashes($_POST['slug']);
+		$address = addslashes($_POST['address']);
+		$zip = addslashes($_POST['zipcode']);
+		$region = addslashes($_POST['region']);
+		$desc = addslashes($_POST['description']);
+		$fb = addslashes($_POST['facebook']);
+		$twit = addslashes($_POST['twitter']);
+		$four = addslashes($_POST['foursquare']);
+		$user = addslashes($_POST['username']);
+		$pass = addslashes($_POST['password']);
+		$phone = addslashes($_POST['phone']);
+		$lat = addslashes($_POST['lat']);
+		$lng = addslashes($_POST['lng']);
+		
+		$success = admin_update($id, $name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone, $lat, $lng);
+		if ($success) $message = "Bar updated successfully";
+
+		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
+			move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
+			admin_update_icon($id, $_FILES["icon"]["name"]);
+			//echo $_FILES["icon"]["name"];
+		 }
+		 
+		 if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){
+			move_uploaded_file($_FILES["banner"]["tmp_name"], "../banners/" . $_FILES["banner"]["name"]);
+			admin_update_banner($id, $_FILES["banner"]["name"]);
+		 }
+	 }
+	 
+	 if(isset($_POST['add-special'])){
+		$name = addslashes($_POST['new-special-name']);
+		$times = $_POST['new-special-times'];
+		$startdate = $_POST['special-start-date'];
+		$enddate = $_POST['special-end-date'];
+		$days = $_POST['special-days'];
+		
+		
+		admin_add_specials($id, $name, $times, $startdate, $enddate, $days);
+		
+		$message = "Specials added successfully";
+	 
+	 }
+	 
+	 if(isset($_POST['delete-specials'])){
+		$deletes = $_POST['delete-special'];
+		admin_delete_specials($deletes);
+	 
+		$message = "Specials deleted successfully";
+	 }
+	 if(isset($_POST['add-open'])){
+		$times = addslashes($_POST['new-open-times']);
+		$days = $_POST['open-days'];
+		
+		admin_add_opentimes($id, $days, $times);		
+	 }
+	 
+	 if(isset($_POST['delete-open-time'])){
+		$ids = $_POST['delete-open-times'];
+		admin_remove_opentimes($ids);
+	 
+	 }	
+	
+	 
+	 $bar = admin_get_bar($slug);
+	 $specials = admin_get_specials($slug);
+	 $opentimes = admin_get_opentimes($slug);
+	 
+ }else{
+ 
+	if(isset($_POST['update-bar'])){
+		
+		$name = addslashes($_POST['name']);
+		$slug = addslashes($_POST['slug']);
+		$address = addslashes($_POST['address']);
+		$zip = addslashes($_POST['zipcode']);
+		$region = addslashes($_POST['region']);
+		$desc = addslashes($_POST['description']);
+		$fb = addslashes($_POST['facebook']);
+		$twit = addslashes($_POST['twitter']);
+		$four = addslashes($_POST['foursquare']);
+		$user = addslashes($_POST['username']);
+		$pass = addslashes($_POST['password']);
+		$phone = addslashes($_POST['phone']);
+		
+		$id = admin_add_bar($name, $slug, $address, $zip, $region, $desc, $fb, $twit, $four, $user, $pass, $phone);
+		
+		
+		if($_FILES["icon"] && $_FILES["icon"]["name"] != ''){
+			move_uploaded_file($_FILES["icon"]["tmp_name"], "../icons/" . $_FILES["icon"]["name"]);
+			admin_update_icon($id, $_FILES["icon"]["name"]);
+		 }
+		 
+		 if($_FILES["banner"] && $_FILES["banner"]["name"] != ''){
+			move_uploaded_file($_FILES["banner"]["tmp_name"], "../banners/" . $_FILES["banner"]["name"]);
+			admin_update_banner($id, $_FILES["banner"]["name"]);
+		 }
+		
+		 header( 'Location: edit-bar.php?bar='.$slug ) ;
+		
+	}
+ }
+
+?>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="shortcut icon" href="images/nl_logo_r.png" />
+	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="../css/font-awesome.css">
+	
+	<meta charset="utf-8" />
+	<title>NiteLife - Admin</title>
+
+	<script type="text/javascript" src="//use.typekit.net/uni7btv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="application/javascript" src="../js/jquery.js"></script>
+	<script type="application/javascript" src="../js/maps.js"></script>
+	<script type="text/javascript">
+	
+		
+	//http://maps.googleapis.com/maps/api/geocode/json?address=205+W+McMillan+St,+45219&sensor=false
+
+	
+	$( document ).ready(function() {
+		
+			
+		$("#setLatLng").click(function() {
+		
+			var str = $('[name="address"]').val() + ' ' + $('[name="zipcode"]').val();
+			var address = str.split(' ').join('+');
+			
+			$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false', null, function(data) {
+				$('[name="lat"]').val(data.results[0].geometry.location.lat);
+				$('[name="lng"]').val(data.results[0].geometry.location.lng);
+			});
+
+			
+		});
+
+		
+	});
+		
+
+	
+	</script>
+	
+	
+	
+</head>
+
+<body>
+<header>
+	<img src="http://m.cincynitelife.com/images/logo_admin.png" alt="" />
+</header>
+
+<div class="edit-container">
+	<div>
+<?php if($slug){ ?>
+<h2>Bar Information</h2>
+<?php }else{ ?>
+<?php if($message) echo $message;?>
+<h2>Add Bar</h2>
+<?php } ?>
+<form method="post" enctype="multipart/form-data">
+	<?=$bar['icon_url']?>
+	<input type="hidden" value="<?=$bar['slug']?>" name="bar" />
+	<input type="hidden" value="<?=$bar['id']?>" name="id" />
+	<br>ID: <?=$bar['id']?></br><br />
+	<?php if($success) echo 'Bar Successfully Updated'; ?>
+	
+	<br>Name: <input type="text" name="name" style="width:250px;" value="<?=stripslashes($bar['name'])?>"></input></br>
+	<br>Slug: <input type="text" name="slug" style="width:250px;" value="<?=stripslashes($bar['slug'])?>"></input></br>
+	
+	<br>Icon: 
+			<?php if(!$bar['icon_url']){ 
+				echo 'No Icon'; 
+			}else{ ?>
+				<img src="http://m.cincynitelife.com/icons/<?=$bar['icon_url']?>" />
+			<?php } ?>
+			<input type="file" name="icon"></br>
+	<br>Banner: 
+			<?php if(!$bar['banner_url']){ 
+				echo 'No Banner'; 
+			}else{ ?>
+				<img id="banner" src="http://m.cincynitelife.com/banners/<?=$bar['banner_url']?>" /> 
+			<?php } ?>
+			<input type="file" name="banner"></br>
+
+	<br>Address: <input type="text" name="address" style="width:250px;" value="<?=stripslashes($bar['address'])?>"></input></br>
+	<br>Zipcode: <input type="text" name="zipcode" style="width:250px;" value="<?=stripslashes($bar['zipcode'])?>"></input></br>
+	<br>Region: <input type="text" name="region" style="width:250px;" value="<?=stripslashes($bar['region'])?>"></input></br>
+	<br>Description: <textarea name="description" style="width:250px;"><?=stripslashes($bar['description'])?></textarea></br>
+	<br>Facebook: <input type="text" name="facebook" style="width:250px;" value="<?=stripslashes($bar['facebook'])?>"></input></br>
+	<br>Twitter: <input type="text" name="twitter" style="width:250px;" value="<?=stripslashes($bar['twitter'])?>"></input></br>
+	<br>Foursquare: <input type="text" name="foursquare" style="width:250px;" value="<?=stripslashes($bar['foursquare'])?>"></input></br>
+	<br>Username: <input type="text" name="username" style="width:250px;" value="<?=stripslashes($bar['username'])?>"></input></br>
+	<br>Password: <input type="text" name="password" style="width:250px;" value="<?=stripslashes($bar['password'])?>"></input></br>
+	<br>Phone: <input type="text" name="phone" style="width:250px;" value="<?=stripslashes($bar['phone'])?>"></input></br>
+	<br>Latitude: <input type="text" name="lat" id="pos-lat" style="width:80px;" value="<?=stripslashes($bar['lat'])?>"></input></br>
+	</br>Longitude: <input type="text" name="lng" id="pos-lng" style="width:80px;" value="<?=stripslashes($bar['lng'])?>"></input></br>
+	<br><button id="setLatLng" type="button">Set Position</button></br>
+	<?php if($slug){ ?>
+		<br><input type="submit" name="update-bar" value="Update" /> <a href="index.php">Go back to bar list</a></br>
+	<?php }else{ ?>
+		<br><input type="submit" name="update-bar" value="Add" /> <a href="index.php">Go back to bar list</a></br>
+	<?php } ?>
+	</form>
+	</div>
+
+	<div>
+	<?php if($slug){ ?>
+		<h2>Specials</h2>
+		<form method="post">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<!-- <td>ID</td> -->
+				<td>Name</td>
+				<td>Times</td>
+				<td>Start Date</td>
+				<td>End Date</td>
+				<td>Day</td>
+				<td></td>
+				<td></td>
+			</tr>
+		<?php foreach($specials as $special){ ?>
+				<tr>
+					<!-- <td><?=$special['id']?></td> -->
+					<td><?=$special['name']?></td>
+					<td><?=$special['times']?></td>
+					<td><?=$special['date_start']?></td>
+					<td><?=$special['date_end']?></td>
+					<td><?=$special['day']?></td>
+					<td><button type="button">edit</button></td>
+					<td><input type="checkbox" name="delete-special[]" value="<?=$special['id']?>"></td>
+				</tr>
+		<?php } ?>
+		</table>
+		<input type="submit" name="delete-specials" value="Delete Specials" />
+		<h3>Add New</h3>
+		Name:<input type="text" style="width:200;" name="new-special-name" maxlength="80" />
+		Times:<input type="text" name="new-special-times" />
+		Date Start:<input type="date" name="special-start-date" />
+		Date End:<input type="date" name="special-end-date" /> 
+		Days: <input type="checkbox" name="special-days[]" value="M">M
+				<input type="checkbox" name="special-days[]" value="T">T
+				<input type="checkbox" name="special-days[]" value="W">W
+				<input type="checkbox" name="special-days[]" value="H">H
+				<input type="checkbox" name="special-days[]" value="F">F
+				<input type="checkbox" name="special-days[]" value="S">S
+				<input type="checkbox" name="special-days[]" value="U">U
+		<input type="submit" name="add-special" value="Add" />
+		
+		<h2>Open Times</h2>
+		<table cellpadding="0" cellspacing="0" border="0"> 
+			<tr>
+				<!-- <td>ID</td> -->
+				<td>Times</td>
+				<td>Day</td>
+				<td></td>
+			</tr>
+		<?php foreach($opentimes as $opentime){ ?>
+				<tr>
+					<!-- <td><?=$opentime['id']?></td> -->
+					<td><?=$opentime['times']?></td>
+					<td><?=$opentime['day']?></td>
+					<td><input type="checkbox" name="delete-open-times[]" value="<?=$opentime['id']?>"></td>
+				</tr>
+		<?php } ?>
+		</table>
+		<input type="submit" name="delete-open-time" value="Delete Open Times" />
+		<h3>Add New</h3>
+		Times:<input type="text" name="new-open-times" />
+		Days: <input type="checkbox" name="open-days[]" value="M">M
+				<input type="checkbox" name="open-days[]" value="T">T
+				<input type="checkbox" name="open-days[]" value="W">W
+				<input type="checkbox" name="open-days[]" value="H">H
+				<input type="checkbox" name="open-days[]" value="F">F
+				<input type="checkbox" name="open-days[]" value="S">S
+				<input type="checkbox" name="open-days[]" value="U">U
+		<input type="submit" name="add-open" value="Add" />
+		</form>
+	<?php } ?>
+
+</form>
+</div>
+</div>
+
+</body>
+</html>
