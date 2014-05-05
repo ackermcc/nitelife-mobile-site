@@ -97,7 +97,6 @@ require('scripts/database.php');
 	<!-- ADD TO HOME SCREEN HELPER -->
 
 	<link rel="stylesheet" href="stylesheets/add2home.css">
-	<script type="application/javascript" src="js/add2home.js"></script>
 
 	<!-- LOADING -->
 	<!-- // moved to when bars load
