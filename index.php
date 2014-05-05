@@ -14,11 +14,11 @@ require('scripts/database.php');
 	<link rel="shortcut icon" href="images/nl_logo_r.png" />
 
 	<meta name="viewport" content="width=device-width; initial-scale=0.5; maximum-scale=0.5; minimum-scale=0.5; user-scalable=no; target-densityDpi=device-dpi" />
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no " /> -->
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="news_keywords" content="night life, bars, bar specials, cincinnati, bar deals, NiteLife, bar live feed, deals, cincinnati bar specials">
+
+	<meta name="apple-itunes-app" content="app-id=721318710">
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
@@ -123,8 +123,7 @@ require('scripts/database.php');
 <div class="container">
 	<header>
 		<a href="javascript:history.go(-1)"><div class="back">Back</div></a>
-		<img id="about-us" src="images/logo_03.png" alt="" />
-		<img id="beta-ribbon" src="images/beta-ribbon.png" alt="" />
+		<img src="images/logo_03.png" alt="" />
 	</header>
 
 	<div id="about-page">
@@ -138,7 +137,7 @@ require('scripts/database.php');
 		<div id="middle-content"><? include_once('location.php'); ?></div>	
 		<?php } ?>
 	</div>
-	<? include_once('bottom_menu.php'); ?>
+
 </div>
 
 </body>

@@ -166,9 +166,11 @@ function displayBars($bars){
 					<?php } ?>
 					<div class="bar-info">
 						<div class="bar-name truncate"><?=$bar['name']?></div>
-						<div class="bar-address truncate"><?=$bar['address']?></div>
+						<div>
+							<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
+							<div class="bar-address truncate"><?=$bar['address']?></div>
+						</div>
 					</div>
-					<div class="bar-miles"><?=round($bar['distance'], 1)?> mi</div>
 				</div>
 			</a>
 				

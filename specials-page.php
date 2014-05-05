@@ -21,6 +21,8 @@ require('scripts/database.php');
 
 	<link rel="apple-touch-icon-precomposed" href="images/nl_logo.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/nl_logo_r.png" />
+
+	<meta name="apple-itunes-app" content="app-id=721318710">
 	
 	<!-- <link rel="apple-touch-startup-image" href="images/startup.png"> -->
 
@@ -111,7 +113,7 @@ require('scripts/database.php');
 	    }
 
 	    else {
-	      window.location = "http://cincynitelife.com";
+	      // window.location = "http://cincynitelife.com";
 	    }
   	</script>
 
