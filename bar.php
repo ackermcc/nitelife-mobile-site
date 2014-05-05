@@ -7,75 +7,51 @@ $(window).load(function(){
 		if (day == 0) {
 			$(".specials-table").removeClass('active-day');
 			$("#sunday-specials").addClass('active-day');
-			$(".date-picker1 td:last-child").addClass('active-date');
+			$("#day-specials-title").text("Sunday");
 		} else if (day == 1) {
 			$(".specials-table").removeClass('active-day');
 			$("#monday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(1)").addClass('active-date');
+			$("#day-specials-title").text("Monday");
 		} else if (day == 2) {
 			$(".specials-table").removeClass('active-day');
 			$("#tuesday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(2)").addClass('active-date');
+			$("#day-specials-title").text("Tuesday");
 		} else if (day ==3 ) {
 			$(".specials-table").removeClass('active-day');
 			$("#wednesday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(3)").addClass('active-date');
+			$("#day-specials-title").text("Wednesday");
 		} else if (day == 4) {
 			$(".specials-table").removeClass('active-day');
 			$("#thursday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(4)").addClass('active-date');
+			$("#day-specials-title").text("Thursday");
 		} else if (day == 5) {
 			$(".specials-table").removeClass('active-day');
 			$("#friday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(5)").addClass('active-date');
+			$("#day-specials-title").text("Friday");
 		} else if (day == 6) {
 			$(".specials-table").removeClass('active-day');
 			$("#saturday-specials").addClass('active-day');
-			$(".date-picker1 td:nth-child(6)").addClass('active-date');
+			$("#day-specials-title").text("Saturday");
 		}
 	}
 
 	datePicker();
 
-	$(".date-picker1 td:nth-child(1)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 1;
+	$("#prev").click(function(){
+		if (day == 0) {
+			day = 6;
+		} else {
+			day --;
+		}
 		datePicker();
 	});
 
-	$(".date-picker1 td:nth-child(2)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 2;
-		datePicker();
-	});
-
-	$(".date-picker1 td:nth-child(3)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 3;
-		datePicker();
-	});
-
-	$(".date-picker1 td:nth-child(4)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 4;
-		datePicker();
-	});
-
-	$(".date-picker1 td:nth-child(5)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 5;
-		datePicker();
-	});
-
-	$(".date-picker1 td:nth-child(6)").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 6;
-		datePicker();
-	});
-
-	$(".date-picker1 td:last-child").click(function(){
-		$(".date-picker1 td").removeClass('active-date');
-		day = 0;
+	$("#next").click(function(){
+		if (day == 6) {
+			day = 0;
+		} else {
+			day ++;
+		}
 		datePicker();
 	});
 
@@ -95,36 +71,20 @@ window.onload = function () { $('.loadingDiv').css('display','none'); };
 $bar_info = get_bar_info($bar);
 ?>
 	<div class="content">
-		<div class="section">
-			<div class="video-section">
-				<?php if($bar_info['info']['banner_url'] && $bar_info['info']['banner_url'] != ''){ ?>
-					<img src="banners/<?=$bar_info['info']['banner_url']?>" alt="" />
-				<?php }else{ ?>
-					<img id="noimg" src="images/no-img-banner.jpg" alt="" />
-				<?php } ?>
-			</div>
+		<div class="video-section">
+			<?php if($bar_info['info']['banner_url'] && $bar_info['info']['banner_url'] != ''){ ?>
+				<img src="banners/<?=$bar_info['info']['banner_url']?>" alt="" />
+				<img id="banner-gradient" src="images/title-image-gradient@2x.png">
+			<?php }else{ ?>
+				<img id="noimg" src="images/no-img-banner.jpg" alt="" />
+			<?php } ?>
 			<div class="bar-title"><?=$bar_info['info']['name']?></div>
 		</div>
 	
 		<div class="section">
-			<img src="images/specials-flag.png" />
-			<div id="twitter-share">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out these specials at <?=$bar_info['info']['name']?>" data-via="CincyNiteLife" data-size="large" data-count="vertical">Tweet</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
-			<div class="specials-date-picker">
-				<table class="date-picker1" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td>M</td>
-						<td>T</td>
-						<td>W</td>
-						<td>R</td>
-						<td>F</td>
-						<td>S</td>
-						<td>U</td>
-					</tr>
-				</table>
-			</div>
+			<div id="prev"><img src="images/l-arrow@2x.png"></div>
+			<div id="day-specials-title">Saturday</div>
+			<div id="next"><img src="images/r-arrow@2x.png"></div>
 			<div class="hh-viewer"><!-- lets create one div of these for each day, and set those for the days that arent selected to be invisible -->
 				<div class="specials-table" id="monday-specials" border="0" cellspacing="0" cellpadding="0">
 					<?php if($bar_info['specials']['M']){
@@ -214,38 +174,11 @@ $bar_info = get_bar_info($bar);
 		</div>
 
 		<div class="section">
-			<img src="images/info-flag.png" />
 			<div class="info-section">
 				<div class="bar-information">
-					<?=$bar_info['info']['address']?>, <?=$bar_info['info']['zipcode']?><br>
-					<span><?=$bar_info['info']['phone']?></span>
-				</div>
-				<hr>
-				<div class="left-info"> 
-					<?php if($bar_info['open_times']['M']) {	?>
-						<span>M</span> <?=$bar_info['open_times']['M']['times']?><br>
-					<?php } ?>
-					<?php if($bar_info['open_times']['T']) {	?>
-						<span>T</span> <?=$bar_info['open_times']['T']['times']?><br>
-					<?php } ?>
-					<?php if($bar_info['open_times']['W']) {	?>
-						<span>W</span> <?=$bar_info['open_times']['W']['times']?><br>
-					<?php } ?>
-					<?php if($bar_info['open_times']['H']) {	?>
-						<span>R</span> <?=$bar_info['open_times']['H']['times']?><br>
-					<?php } ?>
-				</div>
-				<div class="right-info"> 
-					<?php if($bar_info['open_times']['F']) {	?>
-						<span>F</span> <?=$bar_info['open_times']['F']['times']?><br>
-					<?php } ?>
-					<?php if($bar_info['open_times']['S']) {	?>
-						<span>S</span> <?=$bar_info['open_times']['S']['times']?><br>
-					<?php } ?>
-					<?php if($bar_info['open_times']['U']) {	?>
-						<span>U</span> <?=$bar_info['open_times']['U']['times']?><br>
-					<?php } ?>
-				</div>
+					<div class="truncate"><img src="images/nav@2x.png"><?=$bar_info['info']['address']?>, <?=$bar_info['info']['zipcode']?></div>
+					<div class="truncate"><img src="images/phone@2x.png"><?=$bar_info['info']['phone']?></div>
+					<div class="truncate"><img src="images/hours@2x.png"><?=$bar_info['open_times']['M']['times']?></div>
 				</div>
 			</div>
 		</div>
