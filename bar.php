@@ -1,3 +1,24 @@
+<?php 
+$day = strftime("%A",time());
+$currentAbv = "";
+if ($day == 'Monday'){
+$currentAbv = 'M';
+}elseif($day == 'Tuesday'){
+$currentAbv = 'T';
+}elseif($day == 'Wednesday'){
+$currentAbv = 'W';
+}elseif($day == 'Thursday'){
+$currentAbv = 'H';
+}elseif($day == 'Friday'){
+$currentAbv = 'F';
+}elseif($day == 'Saturday'){
+$currentAbv = 'S';
+}elseif($day == 'Sunday'){
+$currentAbv = 'U';
+} 
+
+?>
+
 <script type="text/javascript">
 $(window).load(function(){
 	var d = new Date();
@@ -178,7 +199,7 @@ $bar_info = get_bar_info($bar);
 				<div class="bar-information">
 					<div class="truncate"><img src="images/nav@2x.png"><?=$bar_info['info']['address']?>, <?=$bar_info['info']['zipcode']?></div>
 					<div class="truncate"><img src="images/phone@2x.png"><?=$bar_info['info']['phone']?></div>
-					<div class="truncate"><img src="images/hours@2x.png"><?=$bar_info['open_times']['M']['times']?></div>
+					<div class="truncate"><img src="images/hours@2x.png"><?=$bar_info['open_times'][$currentAbv]['times']?></div>
 				</div>
 			</div>
 		</div>
